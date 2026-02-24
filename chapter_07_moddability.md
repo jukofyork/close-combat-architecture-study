@@ -25,6 +25,7 @@ A framework for evaluating modding capabilities helps compare implementations. M
 ```mermaid
 flowchart LR
     subgraph L1["Level 1: Parameter Tweaking"]
+        direction TB
         L1A["Change values"]
         L1B["Balance"]
         L1C["Timing"]
@@ -32,6 +33,7 @@ flowchart LR
     end
     
     subgraph L2["Level 2: Content Addition"]
+        direction TB
         L2A["New units"]
         L2B["New maps"]
         L2C["New weapons"]
@@ -39,6 +41,7 @@ flowchart LR
     end
     
     subgraph L3["Level 3: Mechanics Changes"]
+        direction TB
         L3A["New behaviors"]
         L3B["New systems"]
         L3C["New AI"]
@@ -46,6 +49,7 @@ flowchart LR
     end
     
     subgraph L4["Level 4: Total Conversion"]
+        direction TB
         L4A["New genres"]
         L4B["New engines"]
         L4C["New rules"]
@@ -549,12 +553,14 @@ CloseCombatFree takes moddability further than any other clone by using QML (Qt 
 ```mermaid
 flowchart TB
     subgraph QMLLayer["QML Engine Layer"]
+        direction LR
         Q1[Units.qml]
         Q2[Scenarios.qml]
         Q3[Maps.qml]
     end
     
     subgraph CPPLayer["C++ Core Engine"]
+        direction LR
         C1[Physics System]
         C2[Pathfind System]
         C3[Combat System]
@@ -1003,6 +1009,7 @@ flowchart BT
 ```mermaid
 flowchart LR
     subgraph COMP["MODDING COMPLEXITY VS EXPRESSIVENESS"]
+        direction LR
         
         subgraph SDL["OpenCombat-SDL<br/>(XML only)"]
             SDL1["Complexity: Low"]

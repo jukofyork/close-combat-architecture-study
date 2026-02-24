@@ -7,6 +7,8 @@ Tactical wargames transform player commands into unit movement through layered a
 ```mermaid
 flowchart TB
     subgraph Hierarchy["COMMAND ABSTRACTION HIERARCHY"]
+        direction TB
+        
         PI["PLAYER INTENT<br/>'Take that hill!'"]
         
         ORDERS["ORDERS (Strategic)<br/>High-level objectives with intent<br/>- Timescale: Minutes<br/>- Authority: Player"]
@@ -227,6 +229,8 @@ function UpdateSoldierBehavior(soldier, world)
 ```mermaid
 flowchart LR
     subgraph Matrix["BEHAVIOR TRANSITION MATRIX"]
+        direction TB
+        
         header["From/To | MoveTo | Defend | Engage | Hide"]
         
         row1["MoveTo | Y | Y | Y* | Y*"]
@@ -355,15 +359,20 @@ Tactical wargames rely on military command structures. How orders move from play
 ```mermaid
 flowchart TB
     subgraph Models["COMMAND CHAIN MODELS"]
+        direction TB
+        
         subgraph ModelA["MODEL A: Direct Control (OpenCombat-SDL, CloseCombatFree)"]
+            direction LR
             P1["Player"] --> U1["Unit"] --> S1["Soldier"]
         end
         
         subgraph ModelB["MODEL B: Delegated Control (OpenCombat)"]
+            direction LR
             P2["Player"] --> L2["Squad Leader"] --> AI2["AI System"] --> S2["Soldier"]
         end
         
         subgraph ModelC["MODEL C: Hierarchical (Theoretical)"]
+            direction LR
             P3["Player"] --> C3["Company Commander"] --> L3["Squad Leader"] --> S3["Soldier"]
         end
         
@@ -463,7 +472,10 @@ Stance systems show unit posture and tactical intent to players and AI. The thre
 ```mermaid
 flowchart TB
     subgraph Stance["STANCE DIMENSIONS"]
+        direction TB
+        
         subgraph BodyPosture["BODY POSTURE (Physical)"]
+            direction TB
             standing["Standing<br/>- Fast movement<br/>- Good visibility<br/>- High exposure"]
             crouching["Crouching<br/>- Balanced<br/>- Medium cover<br/>- Good accuracy"]
             prone["Prone<br/>- Maximum cover<br/>- Slow movement<br/>- Best accuracy"]
@@ -471,6 +483,7 @@ flowchart TB
         end
         
         subgraph CombatStance["COMBAT STANCE (Tactical)"]
+            direction TB
             aggressive["Aggressive<br/>- Engage on sight<br/>- Advance while firing"]
             defensive["Defensive<br/>- Hold position<br/>- Return fire only"]
             ambush["Ambush<br/>- Wait for optimal shot<br/>- Hold fire until range"]
@@ -619,23 +632,30 @@ The core AI design choice in tactical games comes down to initiative: should uni
 ```mermaid
 flowchart LR
     subgraph Spectrum["AI AUTONOMY SPECTRUM"]
+        direction LR
+        
         subgraph None["NONE<br/>Pure Obedience"]
+            direction TB
             n1["Player"] --> n2["AI"]
         end
         
         subgraph Reactive["REACTIVE<br/>Return Fire"]
+            direction TB
             r1["Player"] --> r2["AI"]
         end
         
         subgraph Tactical["TACTICAL<br/>Flank/Suppress"]
+            direction TB
             t1["Player"] --> t2["AI"]
         end
         
         subgraph Strategic["STRATEGIC<br/>Squad Coord"]
+            direction TB
             s1["Player"] --> s2["AI"]
         end
         
         subgraph Full["FULL<br/>Full Auto"]
+            direction TB
             f1["Player"] --> f2["AI"]
         end
         

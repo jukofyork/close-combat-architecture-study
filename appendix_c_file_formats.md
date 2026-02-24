@@ -1554,6 +1554,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     subgraph PRIORITY["Mod Loading Priority"]
+        direction TB
         P1["1. User mod overrides"]
         P2["2. Official DLC/expansions"]
         P3["3. Base game data"]

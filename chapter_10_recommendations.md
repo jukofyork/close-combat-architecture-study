@@ -833,8 +833,9 @@ The three Close Combat clones share a common architectural foundation. Here's ho
 ```mermaid
 flowchart TB
     subgraph "Reference Architecture"
+        direction TB
 
-        subgraph CoreLayer["Core Layer (Performance)"
+        subgraph CoreLayer["Core Layer (Performance)"]
             SIM[Deterministic Simulation]
             MSG[Message Bus]
             STATE[Centralized BattleState]

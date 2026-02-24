@@ -74,6 +74,7 @@ OpenCombat-SDL represents all unit states in a **64-bit bitfield**. This compact
 ```mermaid
 flowchart TD
     subgraph Bitfield["64-bit State Bitfield Layout"]
+        direction LR
         bit0["Bit 0: Standing<br>(St)"]
         bit1["Bit 1: Prone<br>(Pro)"]
         bit2["Bit 2: Stopped<br>(Sto)"]
@@ -86,6 +87,7 @@ flowchart TD
     end
     
     subgraph Row2["Bits 9-18"]
+        direction LR
         bit9["Bit 9: Reload<br>(Rld)"]
         bit10["Bit 10: Dying (DyB)"]
         bit11["Bit 11: Dying (DyB)"]
@@ -99,6 +101,7 @@ flowchart TD
     end
     
     subgraph Row3["Bits 19-22 + Unused"]
+        direction LR
         bit19["Bit 19: Firing in Formation<br>(FIF)"]
         bit20["Bit 20: Defending<br>(Def)"]
         bit21["Bit 21: Ambushing<br>(Amb)"]
@@ -154,6 +157,7 @@ A soldier who is prone, crawling, and reloading:
 ```mermaid
 flowchart LR
     subgraph StateRepresentation["State Bitfield"]
+        direction LR
         unused["0000...0001"]
         reloadBits["0000"]
         crawlBits["0100"]
@@ -161,6 +165,7 @@ flowchart LR
     end
     
     subgraph ActiveStates["Active States"]
+        direction TB
         reload["Reload<br>(Bit 14)"]
         crawl["Crawling<br>(Bit 7)"]
         prone["Prone<br>(Bit 1)"]
