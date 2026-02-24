@@ -20,10 +20,10 @@ flowchart TB
         PI --> ORDERS --> BEHAVIORS --> ACTIONS
     end
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class PI dark
     class ORDERS,BEHAVIORS,ACTIONS medium
@@ -241,10 +241,10 @@ flowchart LR
         note["* Only if enemy lost/no ammo"]
     end
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class header dark
     class row1,row2,row3,row4 light
@@ -382,10 +382,10 @@ flowchart TB
     comms["Communication Range Limitations apply to all models"]
     Models --> comms
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class Models,ModelA,ModelB,ModelC light
     class P1,P2,P3,C3,L2,L3,S1,S2,S3,U1,AI2 medium
@@ -508,10 +508,10 @@ flowchart TB
         Movement ~~~ Alertness
     end
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class Stance light
     class BodyPosture,CombatStance,Movement,Alertness medium
@@ -665,10 +665,10 @@ flowchart LR
     labels["OpenCombat-SDL to OpenCombat (baseline) to Ideal RTS Feature to Planned Feature to Not Desired"]
     Spectrum --> labels
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class Spectrum light
     class None,Reactive,Tactical,Strategic,Full medium

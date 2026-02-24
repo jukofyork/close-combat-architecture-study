@@ -80,10 +80,10 @@ Units require complex setup involving stats, equipment, and positioning. Multipl
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class EntityFactory {
         +CreateSoldier(type, position)
@@ -202,10 +202,10 @@ Entities often include many optional components like weapons, equipment, and mod
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class SoldierBuilder {
         -Soldier* soldier
@@ -326,10 +326,10 @@ Games often need many similar units with slight variations, like veteran versus 
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class Prototype {
         <<interface>>
@@ -457,10 +457,10 @@ Military simulations require loading scenarios from various sources—files, dat
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class ScenarioLoader {
         <<interface>>
@@ -602,10 +602,10 @@ Military organization is hierarchical—platoons contain squads, squads contain 
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class Unit {
         <<abstract>>
@@ -761,10 +761,10 @@ Inheritance hierarchies become rigid and deep. The "diamond problem" complicates
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class Entity {
         +EntityID id
@@ -926,10 +926,10 @@ AI systems expose complex interfaces—pathfinding, threat detection, cover eval
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class AIFacade {
         +MoveTo(unit, destination)
@@ -1082,10 +1082,10 @@ Network multiplayer introduces several challenges:
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class GameObject {
         <<interface>>
@@ -1223,10 +1223,10 @@ Tactical wargames face several command-related challenges:
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class Command {
         <<interface>>
@@ -1441,10 +1441,10 @@ Units in tactical wargames have multiple states that present challenges:
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class UnitState {
         <<interface>>
@@ -1626,10 +1626,10 @@ Game development faces several event-related challenges:
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class Event {
         +EventType type
@@ -1823,10 +1823,10 @@ AI development faces several behavioral challenges:
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class Behavior {
         <<interface>>
@@ -2015,10 +2015,10 @@ Order execution follows a consistent pattern—validate, pathfind, execute, comp
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class Order {
         <<abstract>>
@@ -2835,10 +2835,10 @@ Hardcoded values force recompilation for every change. Designers can't tweak set
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class DataManager {
         +LoadWeaponDefinitions(path)
@@ -3214,10 +3214,10 @@ Game engines demand maximum performance, typically achieved in C++ or Rust. Modd
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class ScriptEngine {
         +Initialize()
@@ -3390,10 +3390,10 @@ Mods often modify the same content, creating dependencies that must be resolved.
 
 ```mermaid
 classDiagram
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     class ModManager {
         +LoadMod(path)

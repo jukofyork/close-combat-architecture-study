@@ -58,10 +58,10 @@ flowchart LR
     
     L1 --> L2 --> L3 --> L4
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class L1,L2,L3,L4 medium
     class L1A,L1B,L1C,L1D,L2A,L2B,L2C,L2D,L3A,L3B,L3C,L3D,L4A,L4B,L4C,L4D light
@@ -123,10 +123,10 @@ flowchart TB
     D3 --> M3 --> R3
     D4 --> M4 --> R4
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class Data medium
     class Managers light
@@ -149,10 +149,10 @@ flowchart TD
     ROOT --> N["Nationalities.xml<br/>Faction definitions"]
     ROOT --> SA["SoldierActions.txt<br/>State transitions"]
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class ROOT dark
     class S,W,V,SQ,E,EF,N,SA light
@@ -332,10 +332,10 @@ flowchart TB
     O1 --> O2
     O1 --> O3
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class Input light
     class Processing medium
@@ -568,10 +568,10 @@ flowchart TB
     
     QMLLayer --> CPPLayer
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class QMLLayer light
     class CPPLayer medium
@@ -993,10 +993,10 @@ flowchart BT
     
     Beginner --> Intermediate --> Advanced --> Expert
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class Beginner light
     class Intermediate medium
@@ -1029,10 +1029,10 @@ flowchart LR
         SDL --> OC --> CCF
     end
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class SDL,SDL1,SDL2 light
     class OC,OC1,OC2 medium
@@ -1273,10 +1273,10 @@ flowchart TD
     docs --> docs_readme["README.md<br/>Documentation"]
     docs --> docs_changelog["CHANGELOG.md<br/>Version history"]
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class root dark
     class assets,data,maps,scenarios,scripts,ui,docs medium
@@ -1326,10 +1326,10 @@ flowchart TD
     B --> C["Security"]
     C --> A
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class A light
     class B medium
@@ -1607,10 +1607,10 @@ flowchart TB
     
     L4 --> L3 --> L2 --> L1
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class L4 dark
     class L3 medium

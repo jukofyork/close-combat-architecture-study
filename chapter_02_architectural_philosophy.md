@@ -64,10 +64,10 @@ flowchart LR
     OC -.->|balanced| B
     CCF -.->|positioned toward| B
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 ```
 
 ### 2.1.3 The Authenticity Paradox
@@ -111,10 +111,10 @@ flowchart TD
     O --> V
     O --> Sq
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 ```
 
 This structure reflects how we think about military units:
@@ -410,10 +410,10 @@ flowchart TD
     BS --> SYS1
     BS --> SYS2
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 ```
 
 **4. Three-Tier State Hierarchy**
@@ -539,10 +539,10 @@ flowchart TD
     
     note["High moddability and high determinism<br>rarely coexist without sophisticated architecture."]:::light
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 ```
 
 ---
@@ -744,10 +744,10 @@ flowchart TD
     CORE --> ENTITY
     ENTITY --> BEHAVIOR
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 ```
 
 ### 2.6.2 Context-Dependent Choices
@@ -823,10 +823,10 @@ flowchart TD
     SIM_YES --> RESULT
     SIM_NO --> RESULT
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 ```
 
 ---

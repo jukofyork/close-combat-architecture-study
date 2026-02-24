@@ -109,11 +109,11 @@ flowchart TD
         unused["Bits 23-63: Unused"]
     end
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
-    classDef unusedStyle fill:#d0d0d0,stroke:#808080,stroke-width:1px,stroke-dasharray: 5 5
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
+    classDef unusedStyle fill:#d0d0d0,stroke:#808080,stroke-width:1px,stroke-dasharray: 5 5,color:#000
     
     class bit0,bit1 light
     class bit2,bit3,bit5,bit7,bit8 medium
@@ -181,10 +181,10 @@ flowchart LR
     
     StateRepresentation --> HexValue
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:2px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:2px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:2px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:2px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class reloadBits dark
     class crawlBits medium
@@ -898,10 +898,10 @@ flowchart TB
     RS -->|"Determines"| Gameplay
     HS -->|"Triggers"| Visuals
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class RS light
     class HS medium
@@ -1337,10 +1337,10 @@ flowchart TB
     B -->|"Queries"| F
     G -->|"Updates"| V
     
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
     
     class P dark
     class B medium

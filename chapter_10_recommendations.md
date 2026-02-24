@@ -146,8 +146,8 @@ flowchart TB
         end
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class HybridArchitecture,CoreSim,EntityDef,SimDepth subgraph
     class CS1,CS2,CS3,CS4,ED1,ED2,ED3,ED4,SD1,SD2,SD3 default
 ```
@@ -184,8 +184,8 @@ flowchart TD
         Cap1 --- Cap2 --- Cap3
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class Hierarchy,Bitfield subgraph
     class Phase,Behavior,Gesture,Cap1,Cap2,Cap3 default
 ```
@@ -576,10 +576,10 @@ flowchart TD
     ASSETS --> IMAGES
     ASSETS --> AUDIO
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef root fill:#d0d0d0,stroke:#000,stroke-width:2px
-    classDef folder fill:#e0e0e0,stroke:#333,stroke-width:1px
-    classDef file fill:#fff,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef root fill:#d0d0d0,stroke:#000,stroke-width:2px,color:#000
+    classDef folder fill:#e0e0e0,stroke:#333,stroke-width:1px,color:#000
+    classDef file fill:#fff,stroke:#333,stroke-width:1px,color:#000
     class ROOT root
     class MOD,DATA,SCRIPTS,MAPS,ASSETS,UNITS,WEAPONS,VEHICLES,AI,BEHAVIORS,IMAGES,AUDIO folder
     class META,DEPS file
@@ -871,8 +871,8 @@ flowchart TB
         INPUT -->|Creates| MSG
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef layer fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef layer fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class CoreLayer,DataLayer,SystemsLayer,PresentationLayer layer
     class SIM,MSG,STATE,JSON,LUA,TMUX,AI,COM,PF,PHY,RENDER,INPUT,UI default
 ```
@@ -988,10 +988,10 @@ flowchart TD
     ASSETS --> AUDIO
     ASSETS --> FONTS
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef root fill:#d0d0d0,stroke:#000,stroke-width:2px
-    classDef folder fill:#e0e0e0,stroke:#333,stroke-width:1px
-    classDef file fill:#fff,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef root fill:#d0d0d0,stroke:#000,stroke-width:2px,color:#000
+    classDef folder fill:#e0e0e0,stroke:#333,stroke-width:1px,color:#000
+    classDef file fill:#fff,stroke:#333,stroke-width:1px,color:#000
 
     class ROOT root
     class SRC,CORE,SIM,AI_DIR,GFX,INP,NET,INC,DATA,UNITS,WEAPONS,BEHAVIORS,SCENARIOS,SCRIPTS,AI_SCRIPTS,BEHAVIOR_SCRIPTS,MAPS,ASSETS,IMAGES,AUDIO,FONTS,MODS,DOCS,TESTS folder

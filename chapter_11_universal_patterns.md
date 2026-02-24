@@ -85,7 +85,7 @@ classDiagram
     Squad ..> Order : distributes
     Order ..> Soldier : executes on
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
 ```
 
 **Key Elements:**
@@ -196,7 +196,7 @@ classDiagram
     Soldier "0..1" --> "1" WeaponSystem : assigned to
     Vehicle --> WeaponSystem : contains
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
 ```
 
 **Key Elements:**
@@ -327,7 +327,7 @@ classDiagram
     Component <|-- Mobility
     Component <|-- Renderable
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
 ```
 
 **Key Elements:**
@@ -439,8 +439,8 @@ flowchart TB
     B1 --> G1
     G1 --> G2
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class StateModel,Example subgraph
 ```
 
@@ -543,7 +543,7 @@ sequenceDiagram
     Unit->>CurrentOrder: Stop()
 ```
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
 
 **Key Elements:**
 1. **FIFO queue**: Orders processed in sequence
@@ -642,7 +642,7 @@ classDiagram
     StanceSystem --> Stance
     StanceSystem --> StanceModifiers
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
 ```
 
 **Key Elements:**
@@ -775,8 +775,8 @@ flowchart TB
     IM --> T3
     IM --> T4
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class MoraleSystem,CascadeEffects,BehavioralThresholds subgraph
 ```
 
@@ -887,8 +887,8 @@ flowchart TB
     B -->|System Translation| A
     A -->|Animation| G
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef layer fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef layer fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class CommandAbstraction layer
 ```
 
@@ -983,8 +983,8 @@ flowchart TB
     M -->|Results in| IND[Individual destinations
     for each member]
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class FormationSystem subgraph
 ```
 
@@ -1098,8 +1098,8 @@ flowchart TB
         Removes: Moving]
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class PrerequisiteExample,ActionRequirements subgraph
 ```
 
@@ -1217,8 +1217,8 @@ flowchart TB
         B -->|End reached| F
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class LOSSystem,AccumulatedOpacity subgraph
 ```
 
@@ -1336,8 +1336,8 @@ flowchart TB
         Player intent preserved]
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class ThreatLoop subgraph
 ```
 
@@ -1461,8 +1461,8 @@ flowchart TB
         Protection: Variable]
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class CoverSystem,CoverTypes subgraph
 ```
 
@@ -1572,8 +1572,8 @@ flowchart TB
         L --> Q2
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class SpatialPartitioning,TileImplementation subgraph
 ```
 
@@ -1778,8 +1778,8 @@ flowchart TB
     R --> S
     S --> V
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class DeterministicSim subgraph
 ```
 
@@ -1886,8 +1886,8 @@ flowchart TB
         E1 --> E2 --> E3 --> E4 --> E5 --> E6
     end
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class HotReloadSystem,ExampleWeaponStats subgraph
 ```
 
@@ -2073,8 +2073,8 @@ flowchart TB
     P16 --> P15
     P3 --> P17
 
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
-    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     class EntityPatterns,StatePatterns,CommandPatterns,PerceptionPatterns,SystemPatterns subgraph
 ```
 

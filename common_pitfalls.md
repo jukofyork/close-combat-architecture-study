@@ -1711,9 +1711,9 @@ flowchart TD
         sounds --> explosion["explosion.ogg Raw binary"]
     end
 
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef folder fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef file fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef folder fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef file fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
     class root,weapons,units,ai,maps,sounds folder
     class pistol,sniper,aggressive,level1,explosion file
 ```
@@ -1743,9 +1743,9 @@ flowchart TD
         sounds2 --> explosion2["explosion.ogg Binary assets acceptable"]
     end
 
-    classDef default fill:#fff,stroke:#000,stroke-width:1px
-    classDef folder fill:#d0d0d0,stroke:#333,stroke-width:1px
-    classDef file fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
+    classDef folder fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
+    classDef file fill:#f0f0f0,stroke:#333,stroke-width:1px,color:#000
     class root,weapons2,units2,ai2,maps2,sounds2 folder
     class pistol2,sniper2,aggressive2,level2,explosion2 file
 ```
