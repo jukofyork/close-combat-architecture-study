@@ -1697,7 +1697,6 @@ Different systems use different modding interfaces—JSON for weapons, XML for u
 ```mermaid
 flowchart TD
     subgraph Inconsistent["Inconsistent Mod API Formats"]
-        direction TB
         root["mods/"] --> weapons["weapons/"]
         root --> units["units/"]
         root --> ai["ai/"]
@@ -1729,7 +1728,6 @@ Standardize on one format:
 ```mermaid
 flowchart TD
     subgraph Standardized["Standardized YAML API"]
-        direction TB
         root["mods/"] --> weapons2["weapons/"]
         root --> units2["units/"]
         root --> ai2["ai/"]

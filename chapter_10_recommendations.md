@@ -124,22 +124,22 @@ Tank {
 
 ```mermaid
 flowchart TB
-    subgraph HybridArchitecture["Hybrid Architecture"]
-        subgraph CoreSim["Core Simulation"]
+    subgraph HybridArchitecture["HYBRID ARCHITECTURE"]
+        subgraph CoreSim["CORE SIMULATION (OpenCombat patterns)"]
             CS1[Deterministic game loop]
             CS2[Message-driven state updates]
             CS3[Server-authoritative<br>even for single-player]
             CS4[Fixed timestep physics]
         end
 
-        subgraph EntityDef["Entity Definitions"]
+        subgraph EntityDef["ENTITY DEFINITIONS (CloseCombatFree patterns)"]
             ED1[JSON/YAML data files]
             ED2[Lua scripting for behaviors]
             ED3[Hot reload for rapid iteration]
             ED4[Component composition<br>over inheritance]
         end
 
-        subgraph SimDepth["Simulation Depth"]
+        subgraph SimDepth["SIMULATION DEPTH (OpenCombat-SDL patterns)"]
             SD1[Bitfield capability tracking]
             SD2[Automatic prerequisite resolution]
             SD3[Rich state interactions]
@@ -833,9 +833,8 @@ The three Close Combat clones share a common architectural foundation. Here's ho
 ```mermaid
 flowchart TB
     subgraph "Reference Architecture"
-        direction TB
 
-        subgraph CoreLayer["Core Layer (Performance)"]
+        subgraph CoreLayer["Core Layer (Performance)"
             SIM[Deterministic Simulation]
             MSG[Message Bus]
             STATE[Centralized BattleState]

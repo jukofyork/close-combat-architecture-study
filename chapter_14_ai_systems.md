@@ -53,14 +53,14 @@ flowchart TB
     classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
-    subgraph STRATEGIC_AI["Strategic AI"]
+    subgraph STRATEGIC_AI["STRATEGIC AI (Hours)"]
         S1[Objective prioritization]
         S2[Resource allocation]
         S3[Reinforcement decisions]
         S4[Retreat triggers]
     end
 
-    subgraph TACTICAL_AI["Tactical AI"]
+    subgraph TACTICAL_AI["TACTICAL AI (Minutes)"]
         T1[Squad coordination]
         T2[Formation selection]
         T3[Fire and maneuver]
@@ -74,7 +74,7 @@ flowchart TB
         U4[Self-preservation]
     end
 
-    subgraph SYSTEM_AI["System AI"]
+    subgraph SYSTEM_AI["SYSTEM AI (Milliseconds)"]
         SY1[Animation states]
         SY2[Weapon cycling]
         SY3[Collision response]
@@ -324,20 +324,20 @@ flowchart TB
     classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
-    subgraph PHASE["Phase"]
+    subgraph PHASE["PHASE (Global)"]
         P1["Placement - Pre-battle setup"]
         P2["Battle - Active combat"]
         P3["End - Post-battle resolution"]
     end
 
-    subgraph BEHAVIOR["Behavior"]
+    subgraph BEHAVIOR["BEHAVIOR (Tactical - Seconds)"]
         B1["Movement: MoveTo, MoveFastTo, SneakTo, DriveTo"]
         B2["Combat: Idle, Defend, Hide, SuppressFire"]
         B3["Engagement: EngageSoldier"]
         B4["Terminal: Dead, Unconscious"]
     end
 
-    subgraph GESTURE["Gesture"]
+    subgraph GESTURE["GESTURE (Physical - Milliseconds)"]
         G1["Idle"]
         G2["Reloading(duration, weapon_class)"]
         G3["Aiming(duration, weapon_class)"]
@@ -503,20 +503,20 @@ Real soldiers communicate threats and observations. AI systems model this throug
 
 ```mermaid
 flowchart TB
-    subgraph MODEL1["Model 1: Perfect Shared Knowledge"]
+    subgraph MODEL1["MODEL 1: Perfect Shared Knowledge (Unrealistic)"]
         A1[Soldier A] <---> B1[Soldier B]
         B1 <---> C1[Soldier C]
         A1 <---> C1
         SM1[(Shared Memory)]
     end
 
-    subgraph MODEL2["Model 2: Communication Range Limited"]
+    subgraph MODEL2["MODEL 2: Communication Range Limited (Realistic)"]
         A2[Soldier A<br>Sees] <-.->|Within 50m| B2[Soldier B<br>Range]
         B2 <-.->|Within 50m| C2[Soldier C<br>Knows]
         note["Only share within range"]
     end
 
-    subgraph MODEL3["Model 3: Chain of Command"]
+    subgraph MODEL3["MODEL 3: Chain of Command (Hierarchical)"]
         L[Leader<br>Knows all squad sightings]
         A3[Soldier A]
         B3[Soldier B]

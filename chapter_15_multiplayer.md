@@ -126,22 +126,21 @@ flowchart TB
     classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
-    subgraph Security["Security Architecture"]
-        direction TB
+    subgraph Security["SECURITY ARCHITECTURE"]
 
-        subgraph Client["Client"]
+        subgraph Client["CLIENT (Dumb Terminal)"]
             C1["Can only SEND commands"]
             C2["Can only RECEIVE state updates"]
             C3["Cannot modify game state directly"]
         end
 
-        subgraph Server["Server"]
+        subgraph Server["SERVER (Authority)"]
             S1["Validates ALL commands"]
             S2["Computes ALL state changes"]
             S3["Is source of truth for game state"]
         end
 
-        subgraph Network["Network"]
+        subgraph Network["NETWORK (Encrypted)"]
             N1["Commands authenticated"]
             N2["State updates signed"]
             N3["Replay verification possible"]
@@ -439,8 +438,7 @@ flowchart TB
     classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
-    subgraph CS["Client-Server Architecture"]
-        direction TB
+    subgraph CS["CLIENT-SERVER ARCHITECTURE"]
 
         Server["SERVER\n(Authority)"]
 
@@ -478,8 +476,7 @@ flowchart TB
     classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
-    subgraph P2P["Peer-to-Peer Architecture"]
-        direction TB
+    subgraph P2P["PEER-TO-PEER ARCHITECTURE"]
 
         PeerA["Peer A\n(Host/Auth)"]
         PeerB["Peer B"]
@@ -518,8 +515,7 @@ flowchart LR
     classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
-    subgraph Relay["Relay Server"]
-        direction LR
+    subgraph Relay["RELAY SERVER MODEL"]
 
         ClientA["Client A\n(Host)"]
         RelayServer["Relay Server\n(No logic)"]
@@ -1242,25 +1238,21 @@ flowchart TD
     classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
-    subgraph Decision["Decision Matrix"]
-        direction TB
+    subgraph Decision["DECISION MATRIX: Multiplayer Architecture"]
 
         Q["Question: What type of multiplayer?"]
 
         subgraph Competitive["Competitive PvP"]
-            direction TB
             Comp1["Deterministic + Authoritative Server"]
             Comp2["OpenCombat approach\nFixed timestep\nMessage-based sync\nServer validation"]
         end
 
         subgraph Cooperative["Cooperative PvE"]
-            direction TB
             Coop1["Deterministic or non-deterministic"]
             Coop2["Either approach works\nNon-deterministic is easier\nDeterministic enables replay"]
         end
 
         subgraph Casual["Casual/Social"]
-            direction TB
             Cas1["Non-deterministic"]
             Cas2["State snapshots\nEvent replication\nSimpler implementation"]
         end
@@ -1349,7 +1341,6 @@ flowchart TB
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     subgraph Current["OpenCombat-SDL"]
-        direction TB
 
         subgraph World["World Class"]
             W1["Direct state modification"]
@@ -1376,15 +1367,13 @@ flowchart TB
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
     subgraph Target["OpenCombat-SDL Multiplayer"]
-        direction LR
 
-        subgraph Server["Server"]
-            S1["Authoritative\nSimulation"]
+        subgraph Server["SERVER"]
+            S1["Authoritative
             S2["Message-driven"]
         end
 
-        subgraph Client["Client"]
-            direction TB
+        subgraph Client["CLIENT"]
             C1["Predicted State"]
             C2["Reconciliation"]
             C3["Render State\n(Interpolated)"]
