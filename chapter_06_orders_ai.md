@@ -6,7 +6,8 @@ Tactical wargames transform player commands into unit movement through layered a
 
 ```mermaid
 flowchart TB
-    subgraph Hierarchy["COMMAND ABSTRACTION HIERARCHY"]
+    subgraph Hierarchy["Command Abstraction"]
+        TITLE["COMMAND ABSTRACTION HIERARCHY"]:::dark
         direction TB
         
         PI["PLAYER INTENT<br/>'Take that hill!'"]
@@ -228,7 +229,7 @@ function UpdateSoldierBehavior(soldier, world)
 
 ```mermaid
 flowchart LR
-    subgraph Matrix["BEHAVIOR TRANSITION MATRIX"]
+    subgraph Matrix["Behavior Transition"]
         direction TB
         
         header["From/To | MoveTo | Defend | Engage | Hide"]
@@ -358,20 +359,20 @@ Tactical wargames rely on military command structures. How orders move from play
 
 ```mermaid
 flowchart TB
-    subgraph Models["COMMAND CHAIN MODELS"]
+    subgraph Models["Command Chain Models"]
         direction TB
         
-        subgraph ModelA["MODEL A: Direct Control (OpenCombat-SDL, CloseCombatFree)"]
+        subgraph ModelA["Model A: Direct Control"]
             direction LR
             P1["Player"] --> U1["Unit"] --> S1["Soldier"]
         end
         
-        subgraph ModelB["MODEL B: Delegated Control (OpenCombat)"]
+        subgraph ModelB["Model B: Delegated Control"]
             direction LR
             P2["Player"] --> L2["Squad Leader"] --> AI2["AI System"] --> S2["Soldier"]
         end
         
-        subgraph ModelC["MODEL C: Hierarchical (Theoretical)"]
+        subgraph ModelC["Model C: Hierarchical"]
             direction LR
             P3["Player"] --> C3["Company Commander"] --> L3["Squad Leader"] --> S3["Soldier"]
         end
@@ -471,10 +472,10 @@ Stance systems show unit posture and tactical intent to players and AI. The thre
 
 ```mermaid
 flowchart TB
-    subgraph Stance["STANCE DIMENSIONS"]
+    subgraph Stance["Stance Dimensions"]
         direction TB
         
-        subgraph BodyPosture["BODY POSTURE (Physical)"]
+        subgraph BodyPosture["Body Posture"]
             direction TB
             standing["Standing<br/>- Fast movement<br/>- Good visibility<br/>- High exposure"]
             crouching["Crouching<br/>- Balanced<br/>- Medium cover<br/>- Good accuracy"]
@@ -482,7 +483,7 @@ flowchart TB
             standing --> crouching --> prone
         end
         
-        subgraph CombatStance["COMBAT STANCE (Tactical)"]
+        subgraph CombatStance["Combat Stance"]
             direction TB
             aggressive["Aggressive<br/>- Engage on sight<br/>- Advance while firing"]
             defensive["Defensive<br/>- Hold position<br/>- Return fire only"]
@@ -490,13 +491,13 @@ flowchart TB
             aggressive --> defensive --> ambush
         end
         
-        subgraph Movement["MOVEMENT STANCE"]
+        subgraph Movement["Movement Stance"]
             move["Move<br/>Normal speed"]
             fast["Move Fast<br/>Sprint, loud"]
             sneak["Sneak<br/>Slow, silent"]
         end
         
-        subgraph Alertness["ALERTNESS LEVEL"]
+        subgraph Alertness["Alertness Level"]
             relaxed["Relaxed"]
             cautious["Cautious"]
             alert["Alert"]
@@ -631,7 +632,7 @@ The core AI design choice in tactical games comes down to initiative: should uni
 
 ```mermaid
 flowchart LR
-    subgraph Spectrum["AI AUTONOMY SPECTRUM"]
+    subgraph Spectrum["AI Autonomy Spectrum"]
         direction LR
         
         subgraph None["NONE<br/>Pure Obedience"]
@@ -639,22 +640,22 @@ flowchart LR
             n1["Player"] --> n2["AI"]
         end
         
-        subgraph Reactive["REACTIVE<br/>Return Fire"]
+        subgraph Reactive["Reactive<br/>Return Fire"]
             direction TB
             r1["Player"] --> r2["AI"]
         end
         
-        subgraph Tactical["TACTICAL<br/>Flank/Suppress"]
+        subgraph Tactical["Tactical<br/>Flank/Suppress"]
             direction TB
             t1["Player"] --> t2["AI"]
         end
         
-        subgraph Strategic["STRATEGIC<br/>Squad Coord"]
+        subgraph Strategic["Strategic<br/>Squad Coord"]
             direction TB
             s1["Player"] --> s2["AI"]
         end
         
-        subgraph Full["FULL<br/>Full Auto"]
+        subgraph Full["Full<br/>Full Auto"]
             direction TB
             f1["Player"] --> f2["AI"]
         end

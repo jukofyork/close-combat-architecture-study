@@ -124,22 +124,22 @@ Tank {
 
 ```mermaid
 flowchart TB
-    subgraph HybridArchitecture["HYBRID ARCHITECTURE"]
-        subgraph CoreSim["CORE SIMULATION (OpenCombat patterns)"]
+    subgraph HybridArchitecture["Hybrid Architecture"]
+        subgraph CoreSim["Core Simulation"]
             CS1[Deterministic game loop]
             CS2[Message-driven state updates]
             CS3[Server-authoritative<br>even for single-player]
             CS4[Fixed timestep physics]
         end
 
-        subgraph EntityDef["ENTITY DEFINITIONS (CloseCombatFree patterns)"]
+        subgraph EntityDef["Entity Definitions"]
             ED1[JSON/YAML data files]
             ED2[Lua scripting for behaviors]
             ED3[Hot reload for rapid iteration]
             ED4[Component composition<br>over inheritance]
         end
 
-        subgraph SimDepth["SIMULATION DEPTH (OpenCombat-SDL patterns)"]
+        subgraph SimDepth["Simulation Depth"]
             SD1[Bitfield capability tracking]
             SD2[Automatic prerequisite resolution]
             SD3[Rich state interactions]

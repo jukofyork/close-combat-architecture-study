@@ -789,17 +789,17 @@ flowchart TD
     classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px,color:#000
     classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px,color:#000
 
-    subgraph Layer1["ENTITY STORAGE - Contiguous arrays"]
+    subgraph Layer1["Entity Storage - Contiguous arrays"]
         L1A["soldiers: Vec<Soldier>"]
         L1B["vehicles: Vec<Vehicle>"]
     end
 
-    subgraph Layer2["COMPONENT SYSTEM - Composition"]
+    subgraph Layer2["Component System - Composition"]
         L2A["Entity = ID + ComponentMask"]
         L2B["Component = Plain data struct"]
     end
 
-    subgraph Layer3["SCRIPTABLE BEHAVIORS - Modding"]
+    subgraph Layer3["Scriptable Behaviors - Modding"]
         L3A["role: Sniper -> behavior: sniper_ai.lua"]
         L3B["onEvent: callback from script"]
     end

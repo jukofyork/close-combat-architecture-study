@@ -1008,7 +1008,7 @@ flowchart BT
 
 ```mermaid
 flowchart LR
-    subgraph COMP["MODDING COMPLEXITY VS EXPRESSIVENESS"]
+    subgraph COMP["Complexity vs Expressiveness"]
         direction LR
         
         subgraph SDL["OpenCombat-SDL<br/>(XML only)"]
