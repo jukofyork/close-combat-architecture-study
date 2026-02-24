@@ -48,12 +48,10 @@ The three implementations in this book occupy different positions on this spectr
 ```mermaid
 flowchart LR
     subgraph Spectrum[Authenticity vs Playability Spectrum]
-        direction LR
         A[Authenticity] --> B[Playability]
     end
     
     subgraph Implementations
-        direction LR
         OCS[OpenCombat-SDL<br>Deep simulation focus]:::medium
         OC[OpenCombat<br>Balanced approach]:::light
         CCF[CloseCombatFree<br>Accessibility focus]:::default
@@ -735,7 +733,6 @@ Modern game development combines elements from all three approaches:
 ```mermaid
 flowchart TD
     subgraph RECOMMENDED_HYBRID["Recommended Hybrid Architecture"]
-        direction TB
         CORE["CORE SIMULATION<br>Systems-oriented (OpenCombat-style)<br>- Deterministic<br>- Type-safe<br>- Server-authoritative"]:::dark
         ENTITY["ENTITY DEFINITION<br>Component composition (CloseCombatFree-style)<br>- JSON/YAML/QML for content<br>- Hot-reload capable<br>- Modder-accessible"]:::medium
         BEHAVIOR["BEHAVIOR SYSTEM<br>Scriptable components (OpenCombat-SDL + scripting)<br>- Lua/Wren for AI behaviors<br>- Data-driven action definitions<br>- Automatic prerequisite chaining"]:::light
