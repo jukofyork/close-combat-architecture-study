@@ -54,9 +54,9 @@ flowchart LR
     
     subgraph Implementations
         direction LR
-        OCS[OpenCombat-SDL<br>Deep simulation focus]:::sdl
-        OC[OpenCombat<br>Balanced approach]:::oc
-        CCF[CloseCombatFree<br>Accessibility focus]:::ccf
+        OCS[OpenCombat-SDL<br>Deep simulation focus]:::medium
+        OC[OpenCombat<br>Balanced approach]:::light
+        CCF[CloseCombatFree<br>Accessibility focus]:::default
     end
     
     OCS -.->|positioned toward| A
@@ -64,9 +64,10 @@ flowchart LR
     OC -.->|balanced| B
     CCF -.->|positioned toward| B
     
-    classDef sdl fill:#f9f,stroke:#333,stroke-width:2px
-    classDef oc fill:#ffe0b2,stroke:#333,stroke-width:2px
-    classDef ccf fill:#e1bee7,stroke:#333,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 ```
 
 ### 2.1.3 The Authenticity Paradox
@@ -101,14 +102,19 @@ The game world is a collection of objects, each with its own state and rules. A 
 
 ```mermaid
 flowchart TD
-    O[Object<br>Base class: position, orders, health]
-    S[Soldier]
-    V[Vehicle]
-    Sq[Squad]
+    O[Object<br>Base class: position, orders, health]:::medium
+    S[Soldier]:::light
+    V[Vehicle]:::light
+    Sq[Squad]:::light
     
     O --> S
     O --> V
     O --> Sq
+    
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 ```
 
 This structure reflects how we think about military units:
@@ -397,12 +403,17 @@ Systems query state, compute changes, and send messages instead of mutating dire
 
 ```mermaid
 flowchart TD
-    BS["BattleState<br>soldiers: Vec&lt;Soldier&gt; [contiguous]<br>vehicles: Vec&lt;Vehicle&gt; [contiguous]<br>squads: HashMap&lt;Uuid, Squad&gt; [lookup]"]
-    SYS1["Systems<br>- AI<br>- Combat"]
-    SYS2["Systems<br>- Move<br>- Render"]
+    BS["BattleState<br>soldiers: Vec<Soldier> [contiguous]<br>vehicles: Vec<Vehicle> [contiguous]<br>squads: HashMap<Uuid, Squad> [lookup]"]:::medium
+    SYS1["Systems<br>- AI<br>- Combat"]:::light
+    SYS2["Systems<br>- Move<br>- Render"]:::light
     
     BS --> SYS1
     BS --> SYS2
+    
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 ```
 
 **4. Three-Tier State Hierarchy**
@@ -512,19 +523,26 @@ Deterministic simulation enables multiplayer and replays. Type safety prevents s
 
 ```mermaid
 flowchart TD
-    M[MODDABILITY]
-    D[DETERMINISM]
-    CCF[CloseCombatFree]
-    OCS[OpenCombat-SDL]
-    OC[OpenCombat]
+    M[MODDABILITY]:::dark
+    D[DETERMINISM]:::dark
+    CCF[CloseCombatFree]:::light
+    OCS[OpenCombat-SDL]:::medium
+    OC[OpenCombat]:::default
     
     M --- CCF
     M --- OC
     D --- OCS
     D --- OC
     OCS --- CCF
+    OC --- M
+    OC --- D
     
-    note["High moddability and high determinism<br>rarely coexist without sophisticated architecture."]
+    note["High moddability and high determinism<br>rarely coexist without sophisticated architecture."]:::light
+    
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 ```
 
 ---
@@ -717,12 +735,19 @@ Modern game development combines elements from all three approaches:
 ```mermaid
 flowchart TD
     subgraph RECOMMENDED_HYBRID["Recommended Hybrid Architecture"]
-        CORE["CORE SIMULATION<br>Systems-oriented (OpenCombat-style)<br>- Deterministic<br>- Type-safe<br>- Server-authoritative"]
-        ENTITY["ENTITY DEFINITION<br>Component composition (CloseCombatFree-style)<br>- JSON/YAML/QML for content<br>- Hot-reload capable<br>- Modder-accessible"]
-        BEHAVIOR["BEHAVIOR SYSTEM<br>Scriptable components (OpenCombat-SDL + scripting)<br>- Lua/Wren for AI behaviors<br>- Data-driven action definitions<br>- Automatic prerequisite chaining"]
+        direction TB
+        CORE["CORE SIMULATION<br>Systems-oriented (OpenCombat-style)<br>- Deterministic<br>- Type-safe<br>- Server-authoritative"]:::dark
+        ENTITY["ENTITY DEFINITION<br>Component composition (CloseCombatFree-style)<br>- JSON/YAML/QML for content<br>- Hot-reload capable<br>- Modder-accessible"]:::medium
+        BEHAVIOR["BEHAVIOR SYSTEM<br>Scriptable components (OpenCombat-SDL + scripting)<br>- Lua/Wren for AI behaviors<br>- Data-driven action definitions<br>- Automatic prerequisite chaining"]:::light
     end
     
-    CORE --> ENTITY --> BEHAVIOR
+    CORE --> ENTITY
+    ENTITY --> BEHAVIOR
+    
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 ```
 
 ### 2.6.2 Context-Dependent Choices
@@ -772,17 +797,17 @@ Use the best approach for each task:
 
 ```mermaid
 flowchart TD
-    START([Start: New Close Combat Clone Project])
-    MP{Multiplayer required?}
-    MP_YES["Systems-oriented core<br>(OpenCombat-style)<br>- Message-driven state updates<br>- Server-authoritative<br>- Type-safe indices"]
-    MP_NO["Flexible choice<br>- OOP or component-based<br>approaches work"]
-    MOD{Modding community desired?}
-    MOD_YES["Declarative content<br>(CloseCombatFree-style)<br>- JSON/YAML entity definitions<br>- Lua scripting for behaviors<br>- Hot-reload support"]
-    MOD_NO["Data-driven approach suffices<br>- XML/JSON configuration<br>- Hardcoded behaviors work"]
-    SIM{Deep simulation required?}
-    SIM_YES["Bitfield with automatic<br>prerequisite chaining<br>(OpenCombat-SDL style<br>state management)"]
-    SIM_NO[Simple state hierarchy works]
-    RESULT([Result: Hybrid architecture<br>optimized for your project])
+    START([Start: New Close Combat Clone Project]):::dark
+    MP{Multiplayer required?}:::medium
+    MP_YES["Systems-oriented core<br>(OpenCombat-style)<br>- Message-driven state updates<br>- Server-authoritative<br>- Type-safe indices"]:::light
+    MP_NO["Flexible choice<br>- OOP or component-based<br>approaches work"]:::default
+    MOD{Modding community desired?}:::medium
+    MOD_YES["Declarative content<br>(CloseCombatFree-style)<br>- JSON/YAML entity definitions<br>- Lua scripting for behaviors<br>- Hot-reload support"]:::light
+    MOD_NO["Data-driven approach suffices<br>- XML/JSON configuration<br>- Hardcoded behaviors work"]:::default
+    SIM{Deep simulation required?}:::medium
+    SIM_YES["Bitfield with automatic<br>prerequisite chaining<br>(OpenCombat-SDL style<br>state management)"]:::light
+    SIM_NO[Simple state hierarchy works]:::default
+    RESULT([Result: Hybrid architecture<br>optimized for your project]):::dark
     
     START --> MP
     MP -->|YES| MP_YES
@@ -797,6 +822,11 @@ flowchart TD
     SIM -->|NO| SIM_NO
     SIM_YES --> RESULT
     SIM_NO --> RESULT
+    
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 ```
 
 ---

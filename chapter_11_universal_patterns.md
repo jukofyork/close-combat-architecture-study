@@ -84,6 +84,8 @@ classDiagram
     Soldier --> Squad : belongs to
     Squad ..> Order : distributes
     Order ..> Soldier : executes on
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
 ```
 
 **Key Elements:**
@@ -193,6 +195,8 @@ classDiagram
     CrewSlot "0..1" --> "1" Soldier : occupied by
     Soldier "0..1" --> "1" WeaponSystem : assigned to
     Vehicle --> WeaponSystem : contains
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
 ```
 
 **Key Elements:**
@@ -322,6 +326,8 @@ classDiagram
     Component <|-- Weapon
     Component <|-- Mobility
     Component <|-- Renderable
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
 ```
 
 **Key Elements:**
@@ -404,7 +410,7 @@ Without clear separation, state management becomes tangled code full of scattere
 
 ```mermaid
 flowchart TB
-    subgraph "Three-Tier State Model"
+    subgraph StateModel["Three-Tier State Model"]
         P[Phase State
         Game Level
         Minutes to Hours]
@@ -419,10 +425,10 @@ flowchart TB
     P -->|Contains| B
     B -->|Executes via| G
 
-    subgraph "Example: Attacking"
+    subgraph Example["Example: Attacking"]
         P1[Phase: Battle]
         B1[Behavior: EngageTarget
-        Target: Enemy #3]
+        Target: Enemy 3]
         G1[Gesture: Aiming
         Completion: Frame 245]
         G2[Gesture: Firing
@@ -432,6 +438,10 @@ flowchart TB
     P1 --> B1
     B1 --> G1
     G1 --> G2
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class StateModel,Example subgraph
 ```
 
 **Key Elements:**
@@ -533,6 +543,8 @@ sequenceDiagram
     Unit->>CurrentOrder: Stop()
 ```
 
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+
 **Key Elements:**
 1. **FIFO queue**: Orders processed in sequence
 2. **Current order pointer**: Active order being executed
@@ -629,6 +641,8 @@ classDiagram
 
     StanceSystem --> Stance
     StanceSystem --> StanceModifiers
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
 ```
 
 **Key Elements:**
@@ -716,7 +730,7 @@ Without morale, combat becomes too predictable and unrealistic.
 
 ```mermaid
 flowchart TB
-    subgraph "Morale System"
+    subgraph MoraleSystem["Morale System"]
         IM[Individual Morale
         0-100 scale
         Affected by:]
@@ -735,7 +749,7 @@ flowchart TB
         Green recruit]
     end
 
-    subgraph "Cascade Effects"
+    subgraph CascadeEffects["Cascade Effects"]
         SM[Squad Morale
         Aggregated from members]
 
@@ -743,17 +757,27 @@ flowchart TB
         SM -.->|Affects| IM
     end
 
-    subgraph "Behavioral Thresholds"
-        T1["> 80: Confident<br>Normal operation"]
-        T2["50-80: Cautious<br>Seek cover more"]
-        T3["20-50: Suppressed<br>Reduced accuracy<br>May refuse orders"]
-        T4["< 20: Panic<br>Flee or freeze<br>AI takes over"]
+    subgraph BehavioralThresholds["Behavioral Thresholds"]
+        T1[80+: Confident
+        Normal operation]
+        T2[50-80: Cautious
+        Seek cover more]
+        T3[20-50: Suppressed
+        Reduced accuracy
+        May refuse orders]
+        T4[Under 20: Panic
+        Flee or freeze
+        AI takes over]
     end
 
     IM --> T1
     IM --> T2
     IM --> T3
     IM --> T4
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class MoraleSystem,CascadeEffects,BehavioralThresholds subgraph
 ```
 
 **Key Elements:**
@@ -833,9 +857,9 @@ Players issue tactical commands like "Move to that building," "Defend this posit
 
 ```mermaid
 flowchart TB
-    subgraph "Command Abstraction Layers"
+    subgraph CommandAbstraction["Command Abstraction Layers"]
         P[Player Intent
-        "Take that hill!"]
+        Take that hill!]
         O[Order
         Strategic Command
         - MoveTo(Position)
@@ -863,17 +887,9 @@ flowchart TB
     B -->|System Translation| A
     A -->|Animation| G
 
-    classDef player fill:#ffcccc,stroke:#333,stroke-width:2px,color:#000
-    classDef order fill:#ffffcc,stroke:#333,stroke-width:2px,color:#000
-    classDef behavior fill:#ccffcc,stroke:#333,stroke-width:2px,color:#000
-    classDef action fill:#ccccff,stroke:#333,stroke-width:2px,color:#000
-    classDef gesture fill:#ffccff,stroke:#333,stroke-width:2px,color:#000
-
-    class P player
-    class O order
-    class B behavior
-    class A action
-    class G gesture
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef layer fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class CommandAbstraction layer
 ```
 
 **Key Elements:**
@@ -944,7 +960,7 @@ Independent pathfinding for each squad member creates problems:
 
 ```mermaid
 flowchart TB
-    subgraph "Formation System"
+    subgraph FormationSystem["Formation System"]
         L[Leader/Point Man
         Does actual pathfinding]
         F[Formation Geometry
@@ -966,6 +982,10 @@ flowchart TB
     POS -->|Used by| M
     M -->|Results in| IND[Individual destinations
     for each member]
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class FormationSystem subgraph
 ```
 
 **Key Elements:**
@@ -1044,7 +1064,7 @@ Soldiers cannot fire while prone, reloading, or moving. Without automatic prereq
 
 ```mermaid
 flowchart TB
-    subgraph "Prerequisite Chain Example"
+    subgraph PrerequisiteExample["Prerequisite Chain Example"]
         A[Goal: Fire at Enemy]
         B{Can Fire?
         Check: Standing?
@@ -1066,7 +1086,7 @@ flowchart TB
         E --> F
     end
 
-    subgraph "Action Requirements"
+    subgraph ActionRequirements["Action Requirements"]
         R1[StandingFire requires:
         - Standing state
         - Reloaded state]
@@ -1077,6 +1097,10 @@ flowchart TB
         - (none)
         Removes: Moving]
     end
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class PrerequisiteExample,ActionRequirements subgraph
 ```
 
 **Key Elements:**
@@ -1159,7 +1183,7 @@ Tactical games need accurate visibility calculations to answer:
 
 ```mermaid
 flowchart TB
-    subgraph "Line of Sight System"
+    subgraph LOSSystem["Line of Sight System"]
         Q[Query: Can A see B?]
 
         Q --> D[Distance Check
@@ -1176,7 +1200,7 @@ flowchart TB
         M -->|Pass| V[Visible!]
     end
 
-    subgraph "Accumulated Opacity"
+    subgraph AccumulatedOpacity["Accumulated Opacity"]
         A[Start: 0.0 opacity]
         B[Sample terrain
         Each point adds opacity]
@@ -1192,6 +1216,10 @@ flowchart TB
         E --> B
         B -->|End reached| F
     end
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class LOSSystem,AccumulatedOpacity subgraph
 ```
 
 **Key Elements:**
@@ -1277,7 +1305,7 @@ Without autonomous threat response:
 
 ```mermaid
 flowchart TB
-    subgraph "Threat Assessment Loop"
+    subgraph ThreatLoop["Threat Assessment Loop"]
         S[Scan for threats
         Regular interval]
 
@@ -1307,6 +1335,10 @@ flowchart TB
         D1 -->|None| E4[Continue Order
         Player intent preserved]
     end
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class ThreatLoop subgraph
 ```
 
 **Key Elements:**
@@ -1385,7 +1417,7 @@ Tactical combat depends on cover:
 
 ```mermaid
 flowchart TB
-    subgraph "Cover System"
+    subgraph CoverSystem["Cover System"]
         Q[Need Cover
         Under fire or moving]
 
@@ -1407,7 +1439,7 @@ flowchart TB
         Or stay if current is good]
     end
 
-    subgraph "Cover Types"
+    subgraph CoverTypes["Cover Types"]
         C1[Hard Cover
         Buildings, walls
         Blocks fire completely
@@ -1428,6 +1460,10 @@ flowchart TB
         Better visibility
         Protection: Variable]
     end
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class CoverSystem,CoverTypes subgraph
 ```
 
 **Key Elements:**
@@ -1499,7 +1535,7 @@ Brute-force O(N) queries become impractical. Checking every entity for "enemies 
 
 ```mermaid
 flowchart TB
-    subgraph "Spatial Partitioning"
+    subgraph SpatialPartitioning["Spatial Partitioning"]
         G[Grid/Tile Approach
         Uniform cells
         O(1) insertion
@@ -1516,7 +1552,7 @@ flowchart TB
         Good for uneven distribution]
     end
 
-    subgraph "Tile-Based Implementation"
+    subgraph TileImplementation["Tile-Based Implementation"]
         W[World Grid
         10x10 pixel tiles]
 
@@ -1535,6 +1571,10 @@ flowchart TB
         L --> I
         L --> Q2
     end
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class SpatialPartitioning,TileImplementation subgraph
 ```
 
 **Key Elements:**
@@ -1629,7 +1669,7 @@ sequenceDiagram
     Bus->>World: Forward(WeaponFired)
     World->>World: SpawnBullet()
 
-    Note over Soldier,World: Soldier doesn't know about Audio, UI, or World
+    Note over Soldier,World: Soldier does not know about Audio, UI, or World
 ```
 
 **Key Elements:**
@@ -1705,7 +1745,7 @@ All clients in a multiplayer game must see exactly the same game state.
 
 ```mermaid
 flowchart TB
-    subgraph "Deterministic Simulation"
+    subgraph DeterministicSim["Deterministic Simulation"]
         I[Initial State
         Same for all clients]
 
@@ -1737,6 +1777,10 @@ flowchart TB
     F --> S
     R --> S
     S --> V
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class DeterministicSim subgraph
 ```
 
 **Key Elements:**
@@ -1808,7 +1852,7 @@ This kills iteration speed and creative flow.
 
 ```mermaid
 flowchart TB
-    subgraph "Hot Reload System"
+    subgraph HotReloadSystem["Hot Reload System"]
         W[File Watcher
         Monitor directories
         Detect changes]
@@ -1830,17 +1874,21 @@ flowchart TB
         - Notify user]
     end
 
-    subgraph "Example: Weapon Stats"
+    subgraph ExampleWeaponStats["Example: Weapon Stats"]
         E1[Edit weapons.json
         Save file]
         E2[File watcher detects]
         E3[Validate JSON]
         E4[Update WeaponManager]
         E5[Existing weapons updated]
-        E6[See changes immediately!]
+        E6[See changes immediately]
 
         E1 --> E2 --> E3 --> E4 --> E5 --> E6
     end
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class HotReloadSystem,ExampleWeaponStats subgraph
 ```
 
 **Key Elements:**
@@ -1976,32 +2024,32 @@ This hybrid approach combines the best elements: OpenCombat-SDL's simulation dep
 
 ```mermaid
 flowchart TB
-    subgraph "Entity Patterns"
+    subgraph EntityPatterns["Entity Patterns"]
         P1[Soldier/Squad Aggregate]
         P2[Weapon Team]
         P3[Component Composition]
     end
 
-    subgraph "State Patterns"
+    subgraph StatePatterns["State Patterns"]
         P4[State Hierarchy]
         P5[Order Queue]
         P6[Stance System]
         P7[Morale Cascade]
     end
 
-    subgraph "Command Patterns"
+    subgraph CommandPatterns["Command Patterns"]
         P8[Command Abstraction]
         P9[Formation Control]
         P10[Prerequisite Chain]
     end
 
-    subgraph "Perception Patterns"
+    subgraph PerceptionPatterns["Perception Patterns"]
         P11[Line of Sight]
         P12[Threat Assessment]
         P13[Cover Evaluation]
     end
 
-    subgraph "System Patterns"
+    subgraph SystemPatterns["System Patterns"]
         P14[Spatial Partitioning]
         P15[Message Bus]
         P16[Deterministic Simulation]
@@ -2024,6 +2072,10 @@ flowchart TB
     P15 --> P8
     P16 --> P15
     P3 --> P17
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
+    class EntityPatterns,StatePatterns,CommandPatterns,PerceptionPatterns,SystemPatterns subgraph
 ```
 
 ### Pattern Combinations That Work Well

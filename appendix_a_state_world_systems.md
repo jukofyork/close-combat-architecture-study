@@ -109,16 +109,16 @@ flowchart TD
         unused["Bits 23-63: Unused"]
     end
     
-    classDef posture fill:#f9f,stroke:#333,stroke-width:2px
-    classDef movement fill:#ff9,stroke:#333,stroke-width:2px
-    classDef combat fill:#9f9,stroke:#333,stroke-width:2px
-    classDef status fill:#f99,stroke:#333,stroke-width:2px
-    classDef unusedStyle fill:#ccc,stroke:#666,stroke-width:2px,stroke-dasharray: 5 5
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    classDef unusedStyle fill:#d0d0d0,stroke:#808080,stroke-width:1px,stroke-dasharray: 5 5
     
-    class bit0,bit1 posture
-    class bit2,bit3,bit5,bit7,bit8 movement
-    class bit4,bit19,bit20,bit21 combat
-    class bit9,bit10,bit11,bit12,bit13,bit14,bit15,bit16,bit17,bit18,bit22 status
+    class bit0,bit1 light
+    class bit2,bit3,bit5,bit7,bit8 medium
+    class bit4,bit19,bit20,bit21 dark
+    class bit9,bit10,bit11,bit12,bit13,bit14,bit15,bit16,bit17,bit18,bit22 light
     class unused unusedStyle
 ```
 
@@ -181,16 +181,15 @@ flowchart LR
     
     StateRepresentation --> HexValue
     
-    classDef reloadStyle fill:#9f9,stroke:#333,stroke-width:3px
-    classDef crawlStyle fill:#ff9,stroke:#333,stroke-width:3px
-    classDef proneStyle fill:#f9f,stroke:#333,stroke-width:3px
-    classDef hexStyle fill:#f99,stroke:#333,stroke-width:2px
-    classDef defaultStyle fill:#fff,stroke:#333
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:2px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:2px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
     
-    class reloadBits reloadStyle
-    class crawlBits crawlStyle
-    class proneBits proneStyle
-    class hex hexStyle
+    class reloadBits dark
+    class crawlBits medium
+    class proneBits light
+    class hex medium
 ```
 
 ### A.2.2 Three-Layer State Hierarchy
@@ -899,11 +898,13 @@ flowchart TB
     RS -->|"Determines"| Gameplay
     HS -->|"Triggers"| Visuals
     
-    classDef runtime fill:#f9f,stroke:#333,stroke-width:2px
-    classDef health fill:#9f9,stroke:#333,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
     
-    class RS runtime
-    class HS health
+    class RS light
+    class HS medium
 ```
 
 **Runtime Status Values:**
@@ -1336,17 +1337,16 @@ flowchart TB
     B -->|"Queries"| F
     G -->|"Updates"| V
     
-    classDef phase fill:#f99,stroke:#333,stroke-width:2px
-    classDef behavior fill:#9f9,stroke:#333,stroke-width:2px
-    classDef gesture fill:#99f,stroke:#333,stroke-width:2px
-    classDef flags fill:#ff9,stroke:#333,stroke-width:2px
-    classDef visual fill:#f9f,stroke:#333,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
     
-    class P phase
-    class B behavior
-    class G gesture
-    class F flags
-    class V visual
+    class P dark
+    class B medium
+    class G light
+    class F medium
+    class V light
 ```
 
 **Core Components:**

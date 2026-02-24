@@ -223,16 +223,23 @@ We built a hybrid AI system:
 
 ```mermaid
 flowchart TD
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+
     Root[Selector: CombatBehavior] --> Survival[Sequence: Survival]
     Root --> Engagement[Sequence: Engagement]
     Root --> ExecuteOrder[Action: ExecuteCurrentOrder]
-    
+
     Survival --> UnderFire[Condition: IsUnderFire]
     Survival --> FindCover[Action: FindCover]
     Survival --> MoveToCover[Action: MoveToCover]
-    
+
     Engagement --> HasTarget[Condition: HasValidTarget]
     Engagement --> Engage[Action: EngageTarget]
+
+    class Root,Survival,Engagement medium
+    class UnderFire,FindCover,MoveToCover,HasTarget,Engage,ExecuteOrder light
 ```
 
 ## Consequences

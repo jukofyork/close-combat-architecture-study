@@ -45,49 +45,84 @@ This appendix analyzes the file formats and data hierarchies used by three Close
 ### C.2.1 Directory Structure
 
 ```mermaid
-mindmap
-  root((OpenCombat-SDL))
-    config
-      Soldiers.xml
-      Weapons.xml
-      Vehicles.xml
-      Squads.xml
-      Terrain.xml
-      Effects.xml
-      SoundEffects.xml
-      Nationalities.xml
-      SoldierAnimations.xml
-      BazookaAnimations.xml
-      MachineGunAnimations.xml
-      SoldierDeaths.xml
-      Icons.xml
-      CombatUI.xml
-      Colors.xml
-      ColorModifiers.xml
-      Elements.xml
-      ContextMenuWidgets.xml
-      WeaponIcons.xml
-    maps
-      Acqueville
-        Acqueville.xml
-        Acqueville.buildings.xml
-    graphics
-      Soldiers
-        Rifle
-        Rifle Kneeling
-        Prone
-        Walking
-        Running
-        Standing Deaths
-        Prone Burning
-        Dead
-      Vehicles
-      Effects
-      Terrain
-      UI
-    sounds
-      Effects
-    src
+flowchart TD
+    subgraph ROOT["OpenCombat-SDL Root Directory"]
+        root["OpenCombat-SDL"]
+    end
+
+    subgraph CONFIG["config/ - Configuration Files"]
+        config_soldiers["Soldiers.xml"]
+        config_weapons["Weapons.xml"]
+        config_vehicles["Vehicles.xml"]
+        config_squads["Squads.xml"]
+        config_terrain["Terrain.xml"]
+        config_effects["Effects.xml"]
+        config_sound["SoundEffects.xml"]
+        config_natl["Nationalities.xml"]
+        config_soldier_anim["SoldierAnimations.xml"]
+        config_bazooka["BazookaAnimations.xml"]
+        config_mg["MachineGunAnimations.xml"]
+        config_deaths["SoldierDeaths.xml"]
+        config_icons["Icons.xml"]
+        config_ui["CombatUI.xml"]
+        config_colors["Colors.xml"]
+        config_mods["ColorModifiers.xml"]
+        config_elems["Elements.xml"]
+        config_menu["ContextMenuWidgets.xml"]
+        config_wicons["WeaponIcons.xml"]
+    end
+
+    subgraph MAPS["maps/ - Map Data"]
+        acqueville["Acqueville/"]
+        acq_map["Acqueville.xml"]
+        acq_buildings["Acqueville.buildings.xml"]
+    end
+
+    subgraph GRAPHICS["graphics/ - Assets"]
+        gfx_soldiers["Soldiers/"]
+        gfx_vehicles["Vehicles/"]
+        gfx_effects["Effects/"]
+        gfx_terrain["Terrain/"]
+        gfx_ui["UI/"]
+    end
+
+    subgraph SOLDIERS["Soldier Animation States"]
+        anim_rifle["Rifle"]
+        anim_kneel["Rifle Kneeling"]
+        anim_prone["Prone"]
+        anim_walk["Walking"]
+        anim_run["Running"]
+        anim_death_stand["Standing Deaths"]
+        anim_prone_burn["Prone Burning"]
+        anim_dead["Dead"]
+    end
+
+    subgraph SOUNDS["sounds/"]
+        snd_effects["Effects/"]
+    end
+
+    subgraph SRC["src/"]
+        src_code["Source Code"]
+    end
+
+    root --> CONFIG
+    root --> MAPS
+    root --> GRAPHICS
+    root --> SOUNDS
+    root --> SRC
+
+    acqueville --> acq_map
+    acqueville --> acq_buildings
+
+    gfx_soldiers --> SOLDIERS
+
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class root dark
+    class CONFIG,MAPS,GRAPHICS,SOUNDS,SRC,SOLDIERS medium
 ```
 
 ### C.2.2 XML File Specifications
@@ -331,8 +366,12 @@ flowchart LR
         ex3["ui_game_donut_fat_green.6.7.tga<br>UI element<br>pivot at (6, 7)"]
     end
     
-    style Pattern fill:#f9f,stroke:#333,stroke-width:2px
-    style Examples fill:#bbf,stroke:#333,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class Pattern,Examples medium
 ```
 
 #### C.2.3.2 Animation File Organization
@@ -340,19 +379,42 @@ flowchart LR
 Animations are stored in directional subdirectories:
 
 ```mermaid
-mindmap
-  root((graphics/Effects))
-    bazooka_n["bazooka_n<br>(North-facing)"]
-    bazooka_ne["bazooka_ne<br>(Northeast-facing)"]
-    bazooka_e["bazooka_e"]
-    bazooka_se["bazooka_se"]
-    bazooka_s["bazooka_s"]
-    bazooka_sw["bazooka_sw"]
-    bazooka_w["bazooka_w"]
-    bazooka_nw["bazooka_nw"]
-    rifle_n["rifle_n"]
-    rifle_ne["rifle_ne"]
-    muzzle_n["muzzle_n"]
+flowchart TD
+    subgraph ROOT["graphics/Effects Directory"]
+        root["Effects/"]
+    end
+
+    subgraph BAZOOKA["Bazooka Animations"]
+        b_n["bazooka_n<br>(North-facing)"]
+        b_ne["bazooka_ne<br>(Northeast-facing)"]
+        b_e["bazooka_e"]
+        b_se["bazooka_se"]
+        b_s["bazooka_s"]
+        b_sw["bazooka_sw"]
+        b_w["bazooka_w"]
+        b_nw["bazooka_nw"]
+    end
+
+    subgraph RIFLE["Rifle Animations"]
+        r_n["rifle_n"]
+        r_ne["rifle_ne"]
+    end
+
+    subgraph OTHER["Other Effects"]
+        m_n["muzzle_n"]
+    end
+
+    root --> BAZOOKA
+    root --> RIFLE
+    root --> OTHER
+
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class root dark
+    class BAZOOKA,RIFLE,OTHER medium
 ```
 
 ### C.2.4 Hardcoded vs Configurable Elements
@@ -392,72 +454,128 @@ The OpenCombat-SDL project includes documentation (`docs/MODDING_ARCHITECTURE_ID
 ### C.3.1 Directory Structure
 
 ```mermaid
-mindmap
-  root((OpenCombat))
-    Cargo.toml
-    oc_core
-      Cargo.toml
-    oc_launcher
-      Cargo.toml
-    battle_core
-      Cargo.toml
-    battle_server
-      Cargo.toml
-    battle_gui
-      Cargo.toml
-    battle_tools
-      Cargo.toml
-    examples
-      Cargo.toml
-    assets
-      demo1_deployment.json
-      demo1_deployment2.json
-      demo2_deployment.json
-      demo2_deployment2.json
-      map1_deployment.json
-    resources
-      soldiers.png
-      soldiers__HD.png
-      vehicles.png
-      vehicles__HD.png
-      explosions.png
-      explosions__HD.png
-      cannon_blasts.png
-      cannon_blasts__HD.png
-      flags.xcf
-      ui.xcf
-      soldiers.xcf
-      vehicles.xcf
-      weapon_riffle.xcf
-      explosions.xcf
-      audio
-        MauserRiffleFire2.ogg
-        MauserRiffleFire3.ogg
-        MauserRiffleReload1.ogg
-        MosinNagantReload1.ogg
-        MosinNagantReload2.ogg
-        Mg34x7.ogg
-        BrenMark2x1.ogg
-        BrenMark2x8.ogg
-        BrenMark2x10.ogg
-        MaleDie5.ogg
-        MaleDie8.ogg
-        BulletMetalmpact1.wav
-        Clac1.ogg
-      maps
-        map1
-          map1.tmx
-          map1.png
-          interiors.png
-          terrain.tsx
-          trees_64x64.tsx
-          trees_32x32.tsx
-        map2
-          map2.tmx
-        Demo1
-          Demo1.tmx
-        Demo2
-          Demo2.tmx
+flowchart TD
+    subgraph ROOT["OpenCombat Project Root"]
+        root["OpenCombat"]
+        root_cargo["Cargo.toml"]
+    end
+
+    subgraph WORKSPACE["Workspace Crates"]
+        oc_core["oc_core/"]
+        oc_launcher["oc_launcher/"]
+        battle_core["battle_core/"]
+        battle_server["battle_server/"]
+        battle_gui["battle_gui/"]
+        battle_tools["battle_tools/"]
+        examples["examples/"]
+    end
+
+    subgraph CRATE_CONFIGS["Crate Configurations"]
+        core_cargo["Cargo.toml"]
+        launch_cargo["Cargo.toml"]
+        battle_cargo["Cargo.toml"]
+        server_cargo["Cargo.toml"]
+        gui_cargo["Cargo.toml"]
+        tools_cargo["Cargo.toml"]
+        ex_cargo["Cargo.toml"]
+    end
+
+    subgraph ASSETS["assets/ - Deployment Files"]
+        demo1["demo1_deployment.json"]
+        demo1_2["demo1_deployment2.json"]
+        demo2["demo2_deployment.json"]
+        demo2_2["demo2_deployment2.json"]
+        map1_dep["map1_deployment.json"]
+    end
+
+    subgraph RESOURCES["resources/ - Game Assets"]
+        sprites["Sprites"]
+        audio["audio/"]
+        maps["maps/"]
+    end
+
+    subgraph SPRITES["Sprite Files"]
+        spr_soldiers["soldiers.png"]
+        spr_soldiers_hd["soldiers__HD.png"]
+        spr_vehicles["vehicles.png"]
+        spr_vehicles_hd["vehicles__HD.png"]
+        spr_explosions["explosions.png"]
+        spr_explosions_hd["explosions__HD.png"]
+        spr_cannon["cannon_blasts.png"]
+        spr_cannon_hd["cannon_blasts__HD.png"]
+        spr_flags["flags.xcf"]
+        spr_ui["ui.xcf"]
+        spr_soldier_src["soldiers.xcf"]
+        spr_vehicle_src["vehicles.xcf"]
+        spr_weapon_src["weapon_riffle.xcf"]
+        spr_expl_src["explosions.xcf"]
+    end
+
+    subgraph AUDIO_FILES["Audio Files"]
+        snd_mauser1["MauserRiffleFire2.ogg"]
+        snd_mauser2["MauserRiffleFire3.ogg"]
+        snd_mauser_r1["MauserRiffleReload1.ogg"]
+        snd_mosin_r1["MosinNagantReload1.ogg"]
+        snd_mosin_r2["MosinNagantReload2.ogg"]
+        snd_mg34["Mg34x7.ogg"]
+        snd_bren1["BrenMark2x1.ogg"]
+        snd_bren8["BrenMark2x8.ogg"]
+        snd_bren10["BrenMark2x10.ogg"]
+        snd_die5["MaleDie5.ogg"]
+        snd_die8["MaleDie8.ogg"]
+        snd_impact["BulletMetalmpact1.wav"]
+        snd_clac["Clac1.ogg"]
+    end
+
+    subgraph MAP_FILES["Map Files"]
+        map1["map1/"]
+        map2["map2/"]
+        demo1_map["Demo1/"]
+        demo2_map["Demo2/"]
+    end
+
+    subgraph MAP1_CONTENT["map1 Contents"]
+        m1_tmx["map1.tmx"]
+        m1_png["map1.png"]
+        m1_int["interiors.png"]
+        m1_terrain["terrain.tsx"]
+        m1_trees64["trees_64x64.tsx"]
+        m1_trees32["trees_32x32.tsx"]
+    end
+
+    root --> root_cargo
+    root --> WORKSPACE
+    root --> ASSETS
+    root --> RESOURCES
+
+    oc_core --> core_cargo
+    oc_launcher --> launch_cargo
+    battle_core --> battle_cargo
+    battle_server --> server_cargo
+    battle_gui --> gui_cargo
+    battle_tools --> tools_cargo
+    examples --> ex_cargo
+
+    RESOURCES --> sprites
+    RESOURCES --> audio
+    RESOURCES --> maps
+
+    sprites --> SPRITES
+    audio --> AUDIO_FILES
+    maps --> MAP_FILES
+
+    map1 --> MAP1_CONTENT
+    map2 --> map2_tmx["map2.tmx"]
+    demo1_map --> d1_tmx["Demo1.tmx"]
+    demo2_map --> d2_tmx["Demo2.tmx"]
+
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class root dark
+    class WORKSPACE,ASSETS,RESOURCES medium
 ```
 
 ### C.3.2 JSON Deployment Format
@@ -734,112 +852,214 @@ image = "0.24.7"       # Image processing
 ### C.4.1 Directory Structure
 
 ```mermaid
-mindmap
-  root((closecombatfree))
-    closecombatfree.pro
-    config
-    config_old
-    developer.docconf
-    user.docconf
-    ccf_icon.png
-    qml
-      main.qml
-      campaigns
-        CampaignList.qml
-        CampaignMapList.qml
-        CampaignDescriptionGui.qml
-      effects
-        Effect.qml
-        GunFireEffect.qml
-        Shadow.qml
-        VehicleExhaust.qml
-        VehicleExplosion.qml
-      gui
-        DefenceSphere.qml
-        OrderMarker.qml
-        PopUpArrow.qml
-        RubberBand.qml
-        SimpleInfoBox.qml
-        UnitSelectionBox.qml
-        ZoomBox.qml
-        ZoomButton.qml
-        menus
-          AboutMenu.qml
-          BottomMenu.qml
-          ContextMenu.qml
-          OptionsMenu.qml
-          PreferencesMenu.qml
-          PreferencesMenu2.qml
-          PreferencesSingleTextInputEntry.qml
-          RosterMenu.qml
-          SoldierMenu.qml
-          StatusMessageMenu.qml
-          TopMenu.qml
-        menuEntries
-          CardMenuEntry.qml
-          ContextMenuEntry.qml
-          LoadGameEntries.qml
-          MenuEntry.qml
-          PreferencesCheckboxEntry.qml
-          PreferencesScreenSizeEntry.qml
-          RosterMenuEntry.qml
-          ScenarioMenuEntry.qml
-          StatusMessageMenuEntry.qml
-      maps
-        MapCluster.qml
-        props
-          Prop.qml
-          PropCluster.qml
-          PropRectangle.qml
-      menus
-        CampaignMenu.qml
-        LoadGameMenu.qml
-        MainMenu.qml
-        SavedGamesMenu.qml
-        ScenarioMenu.qml
-      scenarios
-        Scenario.qml
-      units
-        Unit.qml
-        tanks
-          Hull.qml
-          Tank.qml
-          Turret.qml
-          TurretImage.qml
-      weather
-        Weather.qml
-    maps
-      Map_tst1.qml
-      Map_tst2.qml
-      Map_tst3.qml
-      Map_tst4.qml
-      props
-        HouseBasic_tst.qml
-        Tree_tst.qml
-    units
-      tanks
-        tests
-          Tank_tst1.qml
-          Tank_tst1_hull.qml
-          Tank_tst1_turret.qml
-          Tank_tst2.qml
-          Tank_tst2_turret.qml
-          Tank_tst3.qml
-          Tank_tst3_hull.qml
-    scenarios
-      Scenario_tst1.qml
-      Scenario_tst2.qml
-      Scenario_tst3.qml
-      Scenario_tst4.qml
-    campaigns
-      Campaign_tst1.qml
-    saves
-      temp_save1.qml
-      temp_save2.qml
-      temp_save3.qml
-      temp_save4.qml
-    editor
-      ScenarioEditor.qml
+flowchart TD
+    subgraph ROOT["closecombatfree Root"]
+        root["closecombatfree"]
+        proj_file["closecombatfree.pro"]
+    end
+
+    subgraph CONFIG["Configuration Files"]
+        cfg_config["config"]
+        cfg_old["config_old"]
+        cfg_dev["developer.docconf"]
+        cfg_user["user.docconf"]
+        cfg_icon["ccf_icon.png"]
+    end
+
+    subgraph QML["qml/ - Application Code"]
+        qml_main["main.qml"]
+        qml_campaigns["campaigns/"]
+        qml_effects["effects/"]
+        qml_gui["gui/"]
+        qml_maps["maps/"]
+        qml_menus["menus/"]
+        qml_scenarios["scenarios/"]
+        qml_units["units/"]
+        qml_weather["weather/"]
+    end
+
+    subgraph CAMPAIGNS["Campaign Components"]
+        camp_list["CampaignList.qml"]
+        camp_map["CampaignMapList.qml"]
+        camp_desc["CampaignDescriptionGui.qml"]
+    end
+
+    subgraph EFFECTS["Effect Components"]
+        eff_effect["Effect.qml"]
+        eff_gun["GunFireEffect.qml"]
+        eff_shadow["Shadow.qml"]
+        eff_exhaust["VehicleExhaust.qml"]
+        eff_explode["VehicleExplosion.qml"]
+    end
+
+    subgraph GUI["GUI Components"]
+        gui_defence["DefenceSphere.qml"]
+        gui_order["OrderMarker.qml"]
+        gui_popup["PopUpArrow.qml"]
+        gui_rubber["RubberBand.qml"]
+        gui_info["SimpleInfoBox.qml"]
+        gui_select["UnitSelectionBox.qml"]
+        gui_zoom["ZoomBox.qml"]
+        gui_zbtn["ZoomButton.qml"]
+        gui_menus["menus/"]
+        gui_entries["menuEntries/"]
+    end
+
+    subgraph GUIMENUS["GUI Menus"]
+        menu_about["AboutMenu.qml"]
+        menu_bottom["BottomMenu.qml"]
+        menu_ctx["ContextMenu.qml"]
+        menu_opts["OptionsMenu.qml"]
+        menu_prefs["PreferencesMenu.qml"]
+        menu_prefs2["PreferencesMenu2.qml"]
+        menu_text["PreferencesSingleTextInputEntry.qml"]
+        menu_roster["RosterMenu.qml"]
+        menu_soldier["SoldierMenu.qml"]
+        menu_status["StatusMessageMenu.qml"]
+        menu_top["TopMenu.qml"]
+    end
+
+    submenu_entry1["CardMenuEntry.qml"]
+    submenu_entry2["ContextMenuEntry.qml"]
+    submenu_entry3["LoadGameEntries.qml"]
+    submenu_entry4["MenuEntry.qml"]
+    submenu_entry5["PreferencesCheckboxEntry.qml"]
+    submenu_entry6["PreferencesScreenSizeEntry.qml"]
+    submenu_entry7["RosterMenuEntry.qml"]
+    submenu_entry8["ScenarioMenuEntry.qml"]
+    submenu_entry9["StatusMessageMenuEntry.qml"]
+
+    subgraph MAPS["Maps"]
+        map_cluster["MapCluster.qml"]
+        map_props["props/"]
+    end
+
+    subgraph PROPS["Map Props"]
+        prop_qml["Prop.qml"]
+        prop_cluster["PropCluster.qml"]
+        prop_rect["PropRectangle.qml"]
+    end
+
+    subgraph MENUS["Application Menus"]
+        app_campaign["CampaignMenu.qml"]
+        app_load["LoadGameMenu.qml"]
+        app_main["MainMenu.qml"]
+        app_saved["SavedGamesMenu.qml"]
+        app_scenario["ScenarioMenu.qml"]
+    end
+
+    subgraph SCENARIOS["Scenarios"]
+        scene_qml["Scenario.qml"]
+    end
+
+    subgraph UNITS["Units"]
+        unit_qml["Unit.qml"]
+        unit_tanks["tanks/"]
+    end
+
+    subgraph TANKS["Tank Components"]
+        tank_hull["Hull.qml"]
+        tank_tank["Tank.qml"]
+        tank_turret["Turret.qml"]
+        tank_timg["TurretImage.qml"]
+    end
+
+    subgraph WEATHER["Weather"]
+        weather_qml["Weather.qml"]
+    end
+
+    subgraph MAPFILES["Map Files"]
+        map_tst1["Map_tst1.qml"]
+        map_tst2["Map_tst2.qml"]
+        map_tst3["Map_tst3.qml"]
+        map_tst4["Map_tst4.qml"]
+        map_props_dir["props/"]
+    end
+
+    subgraph MAPPROPS["Map Props"]
+        prop_house["HouseBasic_tst.qml"]
+        prop_tree["Tree_tst.qml"]
+    end
+
+    subgraph UNITTESTS["Unit Test Files"]
+        test_tank1["Tank_tst1.qml"]
+        test_tank1_hull["Tank_tst1_hull.qml"]
+        test_tank1_turret["Tank_tst1_turret.qml"]
+        test_tank2["Tank_tst2.qml"]
+        test_tank2_turret["Tank_tst2_turret.qml"]
+        test_tank3["Tank_tst3.qml"]
+        test_tank3_hull["Tank_tst3_hull.qml"]
+    end
+
+    subgraph SCENEFILES["Scenario Files"]
+        scene_tst1["Scenario_tst1.qml"]
+        scene_tst2["Scenario_tst2.qml"]
+        scene_tst3["Scenario_tst3.qml"]
+        scene_tst4["Scenario_tst4.qml"]
+    end
+
+    subgraph CAMPAIGNFILES["Campaign Files"]
+        camp_tst1["Campaign_tst1.qml"]
+    end
+
+    subgraph SAVES["Save Files"]
+        save1["temp_save1.qml"]
+        save2["temp_save2.qml"]
+        save3["temp_save3.qml"]
+        save4["temp_save4.qml"]
+    end
+
+    subgraph EDITOR["Editor"]
+        editor_qml["ScenarioEditor.qml"]
+    end
+
+    root --> proj_file
+    root --> CONFIG
+    root --> QML
+    root --> MAPFILES
+    root --> UNITTESTS
+    root --> SCENEFILES
+    root --> CAMPAIGNFILES
+    root --> SAVES
+    root --> EDITOR
+
+    qml_main --> CAMPAIGNS
+    qml_effects --> EFFECTS
+    qml_gui --> GUI
+    qml_maps --> MAPS
+    qml_menus --> MENUS
+    qml_scenarios --> SCENARIOS
+    qml_units --> UNITS
+    qml_weather --> WEATHER
+
+    GUI --> gui_menus
+    gui_menus --> GUIMENUS
+    gui_entries --> submenu_entry1
+    gui_entries --> submenu_entry2
+    gui_entries --> submenu_entry3
+    gui_entries --> submenu_entry4
+    gui_entries --> submenu_entry5
+    gui_entries --> submenu_entry6
+    gui_entries --> submenu_entry7
+    gui_entries --> submenu_entry8
+    gui_entries --> submenu_entry9
+
+    MAPS --> map_props
+    map_props --> PROPS
+
+    UNITS --> unit_tanks
+    unit_tanks --> TANKS
+
+    MAPFILES --> map_props_dir
+    map_props_dir --> MAPPROPS
+
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class root dark
+    class CONFIG,QML,MAPFILES,UNITTESTS,SCENEFILES,CAMPAIGNFILES,SAVES,EDITOR medium
 ```
 
 ### C.4.2 QML Declarative Data
@@ -1200,14 +1420,21 @@ Based on the analysis of all three projects, here are recommendations for new Cl
 
 ```mermaid
 flowchart TD
-    A["Is data edited by non-programmers?"] -->|Yes| B["Use TMX maps or JSON with schema"]
-    A -->|No| C["Is performance critical?"]
-    C -->|Yes| D["Binary MessagePack FlatBuffers"]
-    C -->|No| E["Is hierarchical structure complex?"]
-    E -->|Yes| F["YAML or TOML"]
-    E -->|No| G["JSON simple universal support"]
+    A["Is data edited by non-programmers?"] -->|"Yes"| B["Use TMX maps or JSON with schema"]
+    A -->|"No"| C["Is performance critical?"]
+    C -->|"Yes"| D["Binary MessagePack/FlatBuffers"]
+    C -->|"No"| E["Is hierarchical structure complex?"]
+    E -->|"Yes"| F["YAML or TOML"]
+    E -->|"No"| G["JSON - simple universal support"]
     
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class A dark
+    class B,C,E medium
+    class D,F,G light
 ```
 
 ### C.6.2 Directory Organization
@@ -1215,44 +1442,109 @@ flowchart TD
 Recommended structure combining best practices:
 
 ```mermaid
-mindmap
-  root((GameRoot))
-    data
-      units
-        infantry.json
-        vehicles.json
-        weapons.json
-      factions
-        allies.json
-        axis.json
-      abilities.json
-    maps
-      normandy
-        map.tmx
-        terrain.png
-        metadata.json
-      stalingrad
-    scenarios
-      tutorial.json
-      campaign_mission_1.json
-      skirmish.json
-    config
-      settings.toml
-      keybindings.toml
-      video.toml
-    assets
-      sprites
-        infantry.png
-        vehicles
-      audio
-        weapons
-        voices
-        music
-      fonts
-    mods
-      user-installed mods
-    saves
-      binary save files
+flowchart TD
+    subgraph ROOT["GameRoot Directory"]
+        root["GameRoot"]
+    end
+
+    subgraph DATA["data/ - Game Data"]
+        data_units["units/"]
+        data_factions["factions/"]
+        data_abilities["abilities.json"]
+    end
+
+    subgraph UNITS["Unit Definitions"]
+        unit_inf["infantry.json"]
+        unit_veh["vehicles.json"]
+        unit_wep["weapons.json"]
+    end
+
+    subgraph FACTIONS["Faction Definitions"]
+        fac_allies["allies.json"]
+        fac_axis["axis.json"]
+    end
+
+    subgraph MAPS["maps/ - Map Files"]
+        map_normandy["normandy/"]
+        map_stalingrad["stalingrad/"]
+    end
+
+    subgraph NORMANDY["Normandy Map"]
+        n_map["map.tmx"]
+        n_terrain["terrain.png"]
+        n_meta["metadata.json"]
+    end
+
+    subgraph SCENARIOS["scenarios/ - Scenario Files"]
+        scen_tutorial["tutorial.json"]
+        scen_camp["campaign_mission_1.json"]
+        scen_skirmish["skirmish.json"]
+    end
+
+    subgraph CONFIG["config/ - Configuration"]
+        cfg_settings["settings.toml"]
+        cfg_keys["keybindings.toml"]
+        cfg_video["video.toml"]
+    end
+
+    subgraph ASSETS["assets/ - Game Assets"]
+        assets_sprites["sprites/"]
+        assets_audio["audio/"]
+        assets_fonts["fonts/"]
+    end
+
+    subgraph SPRITES["Sprite Files"]
+        spr_inf["infantry.png"]
+        spr_vehicles["vehicles/"]
+    end
+
+    subgraph AUDIO["Audio Files"]
+        audio_weap["weapons/"]
+        audio_voices["voices/"]
+        audio_music["music/"]
+    end
+
+    subgraph MODS["mods/ - User Mods"]
+        mods_dir["user-installed mods"]
+    end
+
+    subgraph SAVES["saves/ - Save Files"]
+        saves_bin["binary save files"]
+    end
+
+    root --> DATA
+    root --> MAPS
+    root --> SCENARIOS
+    root --> CONFIG
+    root --> ASSETS
+    root --> MODS
+    root --> SAVES
+
+    DATA --> data_units
+    DATA --> data_factions
+    DATA --> data_abilities
+
+    data_units --> UNITS
+    data_factions --> FACTIONS
+
+    MAPS --> map_normandy
+    MAPS --> map_stalingrad
+    map_normandy --> NORMANDY
+
+    ASSETS --> assets_sprites
+    ASSETS --> assets_audio
+    ASSETS --> assets_fonts
+
+    assets_sprites --> SPRITES
+    assets_audio --> AUDIO
+
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class root dark
+    class DATA,MAPS,SCENARIOS,CONFIG,ASSETS,MODS,SAVES medium
 ```
 
 ### C.6.3 Modding Support Architecture
@@ -1261,7 +1553,7 @@ mindmap
 
 ```mermaid
 flowchart TD
-    subgraph Priority["Mod Loading Priority"]
+    subgraph PRIORITY["Mod Loading Priority"]
         direction TB
         P1["1. User mod overrides"]
         P2["2. Official DLC/expansions"]
@@ -1270,24 +1562,60 @@ flowchart TD
     
     P1 --> P2 --> P3
     
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
-    classDef subgraph fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    class Priority subgraph
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class PRIORITY medium
+    class P1,P2,P3 light
 ```
 
 #### C.6.3.2 Mod Package Structure
 
 ```mermaid
-mindmap
-  root((mods))
-    my_mod
-      mod_info["mod.json Mod metadata"]
-      data
-        overrides["overrides - Replacement files"]
-      assets
-        custom["custom - New assets"]
-      scripts
-        extensions_js["extensions.js Optional scripting"]
+flowchart TD
+    subgraph ROOT["mods/ - Mod Directory"]
+        root["mods"]
+    end
+
+    subgraph MYMOD["my_mod/ - Individual Mod"]
+        mymod_root["my_mod"]
+        mod_info["mod.json<br>Mod metadata"]
+        mod_data["data/"]
+        mod_assets["assets/"]
+        mod_scripts["scripts/"]
+    end
+
+    subgraph OVERRIDES["data/ - Overrides"]
+        data_overrides["overrides/<br>Replacement files"]
+    end
+
+    subgraph CUSTOM["assets/ - Custom Assets"]
+        assets_custom["custom/<br>New assets"]
+    end
+
+    subgraph SCRIPTS["scripts/ - Extensions"]
+        scripts_ext["extensions.js<br>Optional scripting"]
+    end
+
+    root --> MYMOD
+    mymod_root --> mod_info
+    mymod_root --> mod_data
+    mymod_root --> mod_assets
+    mymod_root --> mod_scripts
+
+    mod_data --> OVERRIDES
+    mod_assets --> CUSTOM
+    mod_scripts --> SCRIPTS
+
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    class root,mymod_root dark
+    class MYMOD,OVERRIDES,CUSTOM,SCRIPTS medium
 ```
 
 **mod.json**:

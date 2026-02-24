@@ -1704,16 +1704,16 @@ flowchart TD
         root --> maps["maps/"]
         root --> sounds["sounds/"]
 
-        weapons --> pistol["pistol.json<br>JSON format"]
-        units --> sniper["sniper.xml<br>XML format"]
-        ai --> aggressive["aggressive.lua<br>Lua format"]
-        maps --> level1["level1.tmx<br>Tiled format"]
-        sounds --> explosion["explosion.ogg<br>Raw binary"]
+        weapons --> pistol["pistol.json JSON format"]
+        units --> sniper["sniper.xml XML format"]
+        ai --> aggressive["aggressive.lua Lua format"]
+        maps --> level1["level1.tmx Tiled format"]
+        sounds --> explosion["explosion.ogg Raw binary"]
     end
 
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
-    classDef folder fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef file fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef folder fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef file fill:#f0f0f0,stroke:#333,stroke-width:1px
     class root,weapons,units,ai,maps,sounds folder
     class pistol,sniper,aggressive,level1,explosion file
 ```
@@ -1736,16 +1736,16 @@ flowchart TD
         root --> maps2["maps/"]
         root --> sounds2["sounds/"]
 
-        weapons2 --> pistol2["pistol.yaml<br>YAML format"]
-        units2 --> sniper2["sniper.yaml<br>YAML format"]
-        ai2 --> aggressive2["aggressive.yaml<br>Behavior trees in YAML"]
-        maps2 --> level2["level1.yaml<br>Map data in YAML"]
-        sounds2 --> explosion2["explosion.ogg<br>Binary assets acceptable"]
+        weapons2 --> pistol2["pistol.yaml YAML format"]
+        units2 --> sniper2["sniper.yaml YAML format"]
+        ai2 --> aggressive2["aggressive.yaml Behavior trees in YAML"]
+        maps2 --> level2["level1.yaml Map data in YAML"]
+        sounds2 --> explosion2["explosion.ogg Binary assets acceptable"]
     end
 
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
-    classDef folder fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    classDef file fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef folder fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef file fill:#f0f0f0,stroke:#333,stroke-width:1px
     class root,weapons2,units2,ai2,maps2,sounds2 folder
     class pistol2,sniper2,aggressive2,level2,explosion2 file
 ```

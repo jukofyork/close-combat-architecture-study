@@ -48,10 +48,10 @@ Manages high-level battle planning:
 
 ```mermaid
 flowchart TB
-    classDef strategic fill:#ffebee,stroke:#333,stroke-width:2px,color:#000
-    classDef tactical fill:#e8f5e9,stroke:#333,stroke-width:2px,color:#000
-    classDef unit fill:#e3f2fd,stroke:#333,stroke-width:2px,color:#000
-    classDef system fill:#fff9c4,stroke:#333,stroke-width:2px,color:#000
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 
     subgraph STRATEGIC_AI["STRATEGIC AI (Hours)"]
         S1[Objective prioritization]
@@ -85,10 +85,10 @@ flowchart TB
     TACTICAL_AI --> UNIT_AI
     UNIT_AI --> SYSTEM_AI
 
-    class S1,S2,S3,S4 strategic
-    class T1,T2,T3,T4 tactical
-    class U1,U2,U3,U4 unit
-    class SY1,SY2,SY3,SY4 system
+    class S1,S2,S3,S4 dark
+    class T1,T2,T3,T4 medium
+    class U1,U2,U3,U4 light
+    class SY1,SY2,SY3,SY4 light
 ```
 
 ### 14.1.3 The Four Challenges of Tactical AI
@@ -125,10 +125,10 @@ For multiplayer and replay systems, AI must be predictable:
 
 ```mermaid
 flowchart TB
-    classDef rootNode fill:#e1f5fe,stroke:#333,stroke-width:3px,color:#000
-    classDef fairNode fill:#e8f5e9,stroke:#333,stroke-width:2px,color:#000
-    classDef perfNode fill:#fff3e0,stroke:#333,stroke-width:2px,color:#000
-    classDef detNode fill:#f3e5f5,stroke:#333,stroke-width:2px,color:#000
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 
     ROOT([BELIEVABLE AI]) --> FAIR
     ROOT --> PERFORMANT
@@ -143,10 +143,10 @@ flowchart TB
     DETERMINISTIC --> DET1[Same seed → same behavior]
     DETERMINISTIC --> DET2[For multiplayer synchronization]
 
-    class ROOT rootNode
-    class FAIR,FAIR1,FAIR2 fairNode
-    class PERFORMANT,PERF1,PERF2 perfNode
-    class DETERMINISTIC,DET1,DET2 detNode
+    class ROOT dark
+    class FAIR,FAIR1,FAIR2 medium
+    class PERFORMANT,PERF1,PERF2 light
+    class DETERMINISTIC,DET1,DET2 light
 ```
 
 **Constraint Definitions:**
@@ -319,9 +319,10 @@ fn update_feeling(soldier: &mut Soldier, world: &World) {
 **Behavior Hierarchy**:
 ```mermaid
 flowchart TB
-    classDef phaseNode fill:#e3f2fd,stroke:#333,stroke-width:2px,color:#000
-    classDef behaviorNode fill:#e8f5e9,stroke:#333,stroke-width:2px,color:#000
-    classDef gestureNode fill:#fff9c4,stroke:#333,stroke-width:2px,color:#000
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 
     subgraph PHASE["PHASE (Global)"]
         P1["Placement - Pre-battle setup"]
@@ -346,9 +347,9 @@ flowchart TB
     PHASE --> BEHAVIOR
     BEHAVIOR --> GESTURE
 
-    class P1,P2,P3 phaseNode
-    class B1,B2,B3,B4 behaviorNode
-    class G1,G2,G3,G4 gestureNode
+    class P1,P2,P3 dark
+    class B1,B2,B3,B4 medium
+    class G1,G2,G3,G4 light
 ```
 
 **AI Behaviors**:
@@ -1129,17 +1130,15 @@ class ClearObjective extends PrimitiveTask
 ### 14.4.7 Decision Architecture Selection Guide
 
 ```mermaid
-flowchart TD
-    classDef startNode fill:#e1f5fe,stroke:#333,stroke-width:2px,color:#000
-    classDef decisionNode fill:#fff9c4,stroke:#333,stroke-width:2px,color:#000
-    classDef fsmNode fill:#c8e6c9,stroke:#333,stroke-width:2px,color:#000
-    classDef planNode fill:#bbdefb,stroke:#333,stroke-width:2px,color:#000
-    classDef btNode fill:#ffe0b2,stroke:#333,stroke-width:2px,color:#000
-    classDef utilNode fill:#f8bbd0,stroke:#333,stroke-width:2px,color:#000
+flowchart TB
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 
     START([START: What do you need?]) --> Q1{Simple, discrete behaviors?}
 
-    Q1 -->|Yes| FSM[FSM<br>Fast, simple, predictable]
+    Q1 -->|Yes| FSM[FSM\nFast, simple, predictable]
     Q1 -->|No| Q2{Need multi-step planning?}
 
     Q2 -->|Yes| Q3{Actions reusable across goals?}
@@ -1148,17 +1147,14 @@ flowchart TD
     Q3 -->|Yes| GOAP[GOAP]
     Q3 -->|No| HTN[HTN]
 
-    Q4 -->|Yes| BT[BEHAVIOR TREE<br>Industry standard]
+    Q4 -->|Yes| BT[BEHAVIOR TREE\nIndustry standard]
     Q4 -->|No| Q5{Fuzzy scoring decisions?}
 
-    Q5 -->|Yes| UTILITY[UTILITY AI<br>Best for target selection]
+    Q5 -->|Yes| UTILITY[UTILITY AI\nBest for target selection]
 
-    class START startNode
-    class Q1,Q2,Q3,Q4,Q5 decisionNode
-    class FSM fsmNode
-    class GOAP,HTN planNode
-    class BT btNode
-    class UTILITY utilNode
+    class START dark
+    class Q1,Q2,Q3,Q4,Q5 medium
+    class FSM,GOAP,HTN,BT,UTILITY light
 ```
 
 ---
@@ -1873,16 +1869,17 @@ Based on analysis of three clones, a hybrid approach works best:
 
 ```mermaid
 flowchart TB
-    classDef mainNode fill:#e3f2fd,stroke:#333,stroke-width:2px,color:#000
-    classDef subNode fill:#f5f5f5,stroke:#333,stroke-width:1px,color:#000
-    classDef configNode fill:#fff3e0,stroke:#333,stroke-width:2px,color:#000
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
 
     subgraph CORE["AI Core Systems"]
         ROOT1([AIController])
-        P1[PerceptionSystem<br>LoS, hearing, memory]
-        D1[DecisionSystem<br>Behavior Tree or GOAP]
-        T1[TacticalSystem<br>Squad coordination]
-        E1[ExecutionSystem<br>Gesture/action timing]
+        P1[PerceptionSystem\nLoS, hearing, memory]
+        D1[DecisionSystem\nBehavior Tree or GOAP]
+        T1[TacticalSystem\nSquad coordination]
+        E1[ExecutionSystem\nGesture/action timing]
         ROOT1 --> P1
         ROOT1 --> D1
         ROOT1 --> T1
@@ -1903,9 +1900,9 @@ flowchart TB
         ROOT2 --> C5
     end
 
-    class ROOT1,ROOT2 mainNode
-    class P1,D1,T1,E1 subNode
-    class C1,C2,C3,C4,C5 subNode
+    class ROOT1,ROOT2 dark
+    class P1,D1,T1,E1 medium
+    class C1,C2,C3,C4,C5 light
 ```
 
 **Technology Stack Recommendations**:

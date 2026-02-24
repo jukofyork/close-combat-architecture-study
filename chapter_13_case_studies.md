@@ -580,10 +580,15 @@ Scenario {
 
 ```mermaid
 flowchart LR
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph ImplementationComplexity["Implementation Complexity"]
-        OCS["OpenCombat-SDL<br>High"]
-        OC["OpenCombat<br>Medium"]
-        CCF["CloseCombatFree<br>Low"]
+        OCS["OpenCombat-SDL\nHigh"]
+        OC["OpenCombat\nMedium"]
+        CCF["CloseCombatFree\nLow"]
     end
 
     subgraph Moddability["Moddability"]
@@ -595,6 +600,9 @@ flowchart LR
     OCS --> MOD_OCS
     OC --> MOD_OC
     CCF --> MOD_CCF
+
+    class OCS,OC,CCF medium
+    class MOD_OCS,MOD_OC,MOD_CCF light
 ```
 
 **Key Insights**:
@@ -1867,22 +1875,31 @@ end
 
 ```mermaid
 flowchart TD
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     Start["Need to add feature"]
 
-    Start --> Q1{"Does it need<br>complex logic?"}
+    Start --> Q1{"Does it need\ncomplex logic?"}
 
-    Q1 -->|Yes| Q2{"Performance<br>critical?"}
-    Q1 -->|No| UseData["Use JSON/YAML<br>data files"]
+    Q1 -->|Yes| Q2{"Performance\ncritical?"}
+    Q1 -->|No| UseData["Use JSON/YAML\ndata files"]
 
-    Q2 -->|Yes| UseCode["Use compiled<br>Rust/C++"]
-    Q2 -->|No| UseScript["Use Lua<br>scripts"]
+    Q2 -->|Yes| UseCode["Use compiled\nRust/C++"]
+    Q2 -->|No| UseScript["Use Lua\nscripts"]
 
-    UseData --> HotReload["Enable hot<br>reload"]
+    UseData --> HotReload["Enable hot\nreload"]
     UseScript --> HotReload
-    UseCode --> MessageBased["Use message<br>passing"]
+    UseCode --> MessageBased["Use message\npassing"]
 
-    HotReload --> Done["Feature ready<br>for modding!"]
+    HotReload --> Done["Feature ready\nfor modding!"]
     MessageBased --> Done
+
+    class Start,Done dark
+    class Q1,Q2 medium
+    class UseData,UseCode,UseScript,HotReload,MessageBased light
 ```
 
 ---

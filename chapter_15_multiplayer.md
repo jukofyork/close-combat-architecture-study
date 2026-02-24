@@ -121,29 +121,36 @@ Single-player games trust the client completely. Multiplayer games trust nothing
 
 ```mermaid
 flowchart TB
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph Security["SECURITY ARCHITECTURE"]
         direction TB
-        
+
         subgraph Client["CLIENT (Dumb Terminal)"]
             C1["Can only SEND commands"]
             C2["Can only RECEIVE state updates"]
             C3["Cannot modify game state directly"]
         end
-        
+
         subgraph Server["SERVER (Authority)"]
             S1["Validates ALL commands"]
             S2["Computes ALL state changes"]
             S3["Is source of truth for game state"]
         end
-        
+
         subgraph Network["NETWORK (Encrypted)"]
             N1["Commands authenticated"]
             N2["State updates signed"]
             N3["Replay verification possible"]
         end
     end
-    
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px
+
+    class C1,C2,C3 light
+    class S1,S2,S3 dark
+    class N1,N2,N3 medium
 ```
 
 This server-authoritative architecture eliminates all client-side cheating. The client cannot modify game state—it can only request actions that the server validates and executes.
@@ -427,25 +434,31 @@ The standard for competitive multiplayer:
 
 ```mermaid
 flowchart TB
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph CS["CLIENT-SERVER ARCHITECTURE"]
         direction TB
-        
-        Server["SERVER<br>(Authority)"]
-        
+
+        Server["SERVER\n(Authority)"]
+
         ClientA["Client A"]
         ClientB["Client B"]
         ClientC["Client C"]
-        
+
         Server <---> ClientA
         Server <---> ClientB
         Server <---> ClientC
-        
+
         ClientA ~~~ ClientB ~~~ ClientC
     end
-    
-    Note["Server: Validates all commands, computes all state<br>Clients: Send commands, receive state updates"]
-    
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px
+
+    Note["Server: Validates all commands, computes all state\nClients: Send commands, receive state updates"]
+
+    class Server dark
+    class ClientA,ClientB,ClientC light
 ```
 
 **Characteristics**:
@@ -460,21 +473,27 @@ Ideal for LAN or small-scale multiplayer:
 
 ```mermaid
 flowchart TB
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph P2P["PEER-TO-PEER ARCHITECTURE"]
         direction TB
-        
-        PeerA["Peer A<br>(Host/Auth)"]
+
+        PeerA["Peer A\n(Host/Auth)"]
         PeerB["Peer B"]
         PeerC["Peer C"]
-        
+
         PeerB <---> PeerA
         PeerA <---> PeerC
         PeerB -.->|"Direct"| PeerC
     end
-    
-    Note["All peers communicate directly<br>One peer acts as authoritative host<br>Host migration occurs if host disconnects"]
-    
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px
+
+    Note["All peers communicate directly\nOne peer acts as authoritative host\nHost migration occurs if host disconnects"]
+
+    class PeerA dark
+    class PeerB,PeerC light
 ```
 
 **Advantages**:
@@ -494,19 +513,25 @@ A compromise between client-server and P2P:
 
 ```mermaid
 flowchart LR
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph Relay["RELAY SERVER MODEL"]
         direction LR
-        
-        ClientA["Client A<br>(Host)"]
-        RelayServer["Relay Server<br>(No logic)"]
+
+        ClientA["Client A\n(Host)"]
+        RelayServer["Relay Server\n(No logic)"]
         ClientB["Client B"]
-        
+
         ClientA <---> RelayServer <---> ClientB
     end
-    
-    Note["Relay forwards packets but doesn't simulate<br>One client acts as authoritative host<br>Solves NAT traversal issues"]
-    
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px
+
+    Note["Relay forwards packets but doesn't simulate\nOne client acts as authoritative host\nSolves NAT traversal issues"]
+
+    class ClientA,ClientB light
+    class RelayServer medium
 ```
 
 **Use Cases**:
@@ -1212,35 +1237,42 @@ class GameClient {
 
 ```mermaid
 flowchart TD
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph Decision["DECISION MATRIX: Multiplayer Architecture"]
         direction TB
-        
+
         Q["Question: What type of multiplayer?"]
-        
+
         subgraph Competitive["Competitive PvP"]
             direction TB
             Comp1["Deterministic + Authoritative Server"]
-            Comp2["OpenCombat approach<br>Fixed timestep<br>Message-based sync<br>Server validation"]
+            Comp2["OpenCombat approach\nFixed timestep\nMessage-based sync\nServer validation"]
         end
-        
+
         subgraph Cooperative["Cooperative PvE"]
             direction TB
             Coop1["Deterministic or non-deterministic"]
-            Coop2["Either approach works<br>Non-deterministic is easier<br>Deterministic enables replay"]
+            Coop2["Either approach works\nNon-deterministic is easier\nDeterministic enables replay"]
         end
-        
+
         subgraph Casual["Casual/Social"]
             direction TB
             Cas1["Non-deterministic"]
-            Cas2["State snapshots<br>Event replication<br>Simpler implementation"]
+            Cas2["State snapshots\nEvent replication\nSimpler implementation"]
         end
-        
+
         Q --> Competitive
         Q --> Cooperative
         Q --> Casual
     end
-    
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px
+
+    class Q dark
+    class Comp1,Coop1,Cas1 medium
+    class Comp2,Coop2,Cas2 light
 ```
 
 ### 15.9.3 Testing Determinism
@@ -1311,49 +1343,60 @@ fn test_floating_point_consistency() {
 
 ```mermaid
 flowchart TB
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph Current["OpenCombat-SDL"]
         direction TB
-        
+
         subgraph World["World Class"]
             W1["Direct state modification"]
             W2["Floating-point positions"]
             W3["Platform RNG"]
             W4["Real-time updates"]
         end
-        
+
         Rendering["Rendering"]
-        
+
         World --> Rendering
     end
-    
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px
+
+    class W1,W2,W3,W4,Rendering light
 ```
 
 **Target Architecture** (Multiplayer):
 
 ```mermaid
 flowchart TB
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph Target["OpenCombat-SDL Multiplayer"]
         direction LR
-        
+
         subgraph Server["SERVER"]
-            S1["Authoritative<br>Simulation"]
+            S1["Authoritative\nSimulation"]
             S2["Message-driven"]
         end
-        
+
         subgraph Client["CLIENT"]
             direction TB
             C1["Predicted State"]
             C2["Reconciliation"]
-            C3["Render State<br>(Interpolated)"]
-            
+            C3["Render State\n(Interpolated)"]
+
             C1 --> C2 --> C3
         end
-        
+
         Server <-->|Network| Client
     end
-    
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px
+
+    class S1,S2 dark
+    class C1,C2,C3 light
 ```
 
 ### 15.10.2 State Management Modifications

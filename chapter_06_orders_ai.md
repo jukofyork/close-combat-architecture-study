@@ -9,22 +9,24 @@ flowchart TB
     subgraph Hierarchy["COMMAND ABSTRACTION HIERARCHY"]
         direction TB
         
-        PI["<b>PLAYER INTENT</b><br>'Take that hill!'"]
+        PI["PLAYER INTENT<br/>'Take that hill!'"]
         
-        ORDERS["<b>ORDERS (Strategic)</b><br>High-level objectives with intent<br>• Timescale: Minutes<br>• Authority: Player"]
+        ORDERS["ORDERS (Strategic)<br/>High-level objectives with intent<br/>- Timescale: Minutes<br/>- Authority: Player"]
         
-        BEHAVIORS["<b>BEHAVIORS (Tactical)</b><br>Reactive decision-making systems<br>• Timescale: Seconds<br>• Authority: AI/System"]
+        BEHAVIORS["BEHAVIORS (Tactical)<br/>Reactive decision-making systems<br/>- Timescale: Seconds<br/>- Authority: AI/System"]
         
-        ACTIONS["<b>ACTIONS (Physical)</b><br>Animation state machines<br>• Timescale: Milliseconds<br>• Authority: Animation System"]
+        ACTIONS["ACTIONS (Physical)<br/>Animation state machines<br/>- Timescale: Milliseconds<br/>- Authority: Animation System"]
         
         PI --> ORDERS --> BEHAVIORS --> ACTIONS
     end
     
-    style Hierarchy fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style PI fill:#e1f5fe,stroke:#01579b
-    style ORDERS fill:#fff3e0,stroke:#e65100
-    style BEHAVIORS fill:#f3e5f5,stroke:#4a148c
-    style ACTIONS fill:#e8f5e9,stroke:#1b5e20
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    
+    class PI dark
+    class ORDERS,BEHAVIORS,ACTIONS medium
 ```
 
 Close Combat clones implement this hierarchy in distinct ways, each balancing player control against AI autonomy.
@@ -226,26 +228,27 @@ function UpdateSoldierBehavior(soldier, world)
 
 ```mermaid
 flowchart LR
-    subgraph Matrix["Behavior Transition Matrix"]
+    subgraph Matrix["BEHAVIOR TRANSITION MATRIX"]
         direction TB
         
         header["From/To | MoveTo | Defend | Engage | Hide"]
         
-        row1["MoveTo | ✓ | ✓ | ✓* | ✓*"]
-        row2["Defend | ✓ | - | ✓ | ✓"]
-        row3["Engage | ✓* | ✓* | - | ✗"]
-        row4["Hide | ✓ | ✓ | ✓ | -"]
+        row1["MoveTo | Y | Y | Y* | Y*"]
+        row2["Defend | Y | - | Y | Y"]
+        row3["Engage | Y* | Y* | - | N"]
+        row4["Hide | Y | Y | Y | -"]
         
         note["* Only if enemy lost/no ammo"]
     end
     
-    style Matrix fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style header fill:#e3f2fd,stroke:#1565c0
-    style row1 fill:#ffffff,stroke:#999
-    style row2 fill:#f5f5f5,stroke:#333
-    style row3 fill:#ffffff,stroke:#999
-    style row4 fill:#f5f5f5,stroke:#333
-    style note fill:#fff8e1,stroke:#f57f17
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    
+    class header dark
+    class row1,row2,row3,row4 light
+    class note medium
 ```
 
 The matrix shows valid transitions between behaviors, blocking illogical changes like engaging enemies while actively hiding.
@@ -358,19 +361,19 @@ flowchart TB
     subgraph Models["COMMAND CHAIN MODELS"]
         direction TB
         
-        subgraph ModelA["MODEL A: Direct Control<br><i>(OpenCombat-SDL, CloseCombatFree)</i>"]
+        subgraph ModelA["MODEL A: Direct Control (OpenCombat-SDL, CloseCombatFree)"]
             direction LR
-            P1["👤 Player"] --> U1["📋 Unit"] --> S1["🎖️ Soldier"]
+            P1["Player"] --> U1["Unit"] --> S1["Soldier"]
         end
         
-        subgraph ModelB["MODEL B: Delegated Control<br><i>(OpenCombat)</i>"]
+        subgraph ModelB["MODEL B: Delegated Control (OpenCombat)"]
             direction LR
-            P2["👤 Player"] --> L2["🎖️ Squad<br>Leader"] --> AI2["🤖 AI<br>System"] --> S2["🎖️ Soldier"]
+            P2["Player"] --> L2["Squad Leader"] --> AI2["AI System"] --> S2["Soldier"]
         end
         
-        subgraph ModelC["MODEL C: Hierarchical<br><i>(Theoretical)</i>"]
+        subgraph ModelC["MODEL C: Hierarchical (Theoretical)"]
             direction LR
-            P3["👤 Player"] --> C3["⭐ Company<br>Commander"] --> L3["🎖️ Squad<br>Leader"] --> S3["🎖️ Soldier"]
+            P3["Player"] --> C3["Company Commander"] --> L3["Squad Leader"] --> S3["Soldier"]
         end
         
         ModelA --> ModelB --> ModelC
@@ -379,11 +382,14 @@ flowchart TB
     comms["Communication Range Limitations apply to all models"]
     Models --> comms
     
-    style Models fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style ModelA fill:#e8f5e9,stroke:#2e7d32
-    style ModelB fill:#e3f2fd,stroke:#1565c0
-    style ModelC fill:#fff3e0,stroke:#e65100
-    style comms fill:#ffebee,stroke:#c62828
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    
+    class Models,ModelA,ModelB,ModelC light
+    class P1,P2,P3,C3,L2,L3,S1,S2,S3,U1,AI2 medium
+    class comms dark
 ```
 
 ### 6.3.2 Squad Coordination Patterns
@@ -470,31 +476,31 @@ flowchart TB
         
         subgraph BodyPosture["BODY POSTURE (Physical)"]
             direction TB
-            standing["🧍 Standing<br>• Fast movement<br>• Good visibility<br>• High exposure"]
-            crouching["🧎 Crouching<br>• Balanced<br>• Medium cover<br>• Good accuracy"]
-            prone["🛏️ Prone<br>• Maximum cover<br>• Slow movement<br>• Best accuracy"]
+            standing["Standing<br/>- Fast movement<br/>- Good visibility<br/>- High exposure"]
+            crouching["Crouching<br/>- Balanced<br/>- Medium cover<br/>- Good accuracy"]
+            prone["Prone<br/>- Maximum cover<br/>- Slow movement<br/>- Best accuracy"]
             standing --> crouching --> prone
         end
         
         subgraph CombatStance["COMBAT STANCE (Tactical)"]
             direction TB
-            aggressive["⚔️ Aggressive<br>• Engage on sight<br>• Advance while firing"]
-            defensive["🛡️ Defensive<br>• Hold position<br>• Return fire only"]
-            ambush["👁️ Ambush<br>• Wait for optimal shot<br>• Hold fire until range"]
+            aggressive["Aggressive<br/>- Engage on sight<br/>- Advance while firing"]
+            defensive["Defensive<br/>- Hold position<br/>- Return fire only"]
+            ambush["Ambush<br/>- Wait for optimal shot<br/>- Hold fire until range"]
             aggressive --> defensive --> ambush
         end
         
         subgraph Movement["MOVEMENT STANCE"]
-            move["🚶 Move<br>Normal speed"]
-            fast["🏃 Move Fast<br>Sprint, loud"]
-            sneak["🐱 Sneak<br>Slow, silent"]
+            move["Move<br/>Normal speed"]
+            fast["Move Fast<br/>Sprint, loud"]
+            sneak["Sneak<br/>Slow, silent"]
         end
         
         subgraph Alertness["ALERTNESS LEVEL"]
-            relaxed["😴 Relaxed"]
-            cautious["👀 Cautious"]
-            alert["⚡ Alert"]
-            combat["🔥 Combat"]
+            relaxed["Relaxed"]
+            cautious["Cautious"]
+            alert["Alert"]
+            combat["Combat"]
             relaxed --> cautious --> alert --> combat
         end
         
@@ -502,11 +508,14 @@ flowchart TB
         Movement ~~~ Alertness
     end
     
-    style Stance fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style BodyPosture fill:#e3f2fd,stroke:#1565c0
-    style CombatStance fill:#fff3e0,stroke:#e65100
-    style Movement fill:#e8f5e9,stroke:#2e7d32
-    style Alertness fill:#f3e5f5,stroke:#7b1fa2
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    
+    class Stance light
+    class BodyPosture,CombatStance,Movement,Alertness medium
+    class standing,crouching,prone,aggressive,defensive,ambush,move,fast,sneak,relaxed,cautious,alert,combat light
 ```
 
 ### 6.4.2 OpenCombat-SDL: Implicit Stance
@@ -625,44 +634,46 @@ flowchart LR
     subgraph Spectrum["AI AUTONOMY SPECTRUM"]
         direction LR
         
-        subgraph None["NONE<br>Pure Obedience"]
+        subgraph None["NONE<br/>Pure Obedience"]
             direction TB
-            n1["👤"] --> n2["🤖"]
+            n1["Player"] --> n2["AI"]
         end
         
-        subgraph Reactive["REACTIVE<br>Return Fire"]
+        subgraph Reactive["REACTIVE<br/>Return Fire"]
             direction TB
-            r1["👤"] --> r2["🤖"]
+            r1["Player"] --> r2["AI"]
         end
         
-        subgraph Tactical["TACTICAL<br>Flank/Suppress"]
+        subgraph Tactical["TACTICAL<br/>Flank/Suppress"]
             direction TB
-            t1["👤"] --> t2["🤖"]
+            t1["Player"] --> t2["AI"]
         end
         
-        subgraph Strategic["STRATEGIC<br>Squad Coord"]
+        subgraph Strategic["STRATEGIC<br/>Squad Coord"]
             direction TB
-            s1["👤"] --> s2["🤖"]
+            s1["Player"] --> s2["AI"]
         end
         
-        subgraph Full["FULL<br>Full Auto"]
+        subgraph Full["FULL<br/>Full Auto"]
             direction TB
-            f1["👤"] --> f2["🤖"]
+            f1["Player"] --> f2["AI"]
         end
         
         None --> Reactive --> Tactical --> Strategic --> Full
     end
     
-    labels["OpenCombat-SDL → OpenCombat (baseline) → Ideal RTS Feature → Planned Feature → Not Desired"]
+    labels["OpenCombat-SDL to OpenCombat (baseline) to Ideal RTS Feature to Planned Feature to Not Desired"]
     Spectrum --> labels
     
-    style Spectrum fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style None fill:#ffebee,stroke:#c62828
-    style Reactive fill:#fff3e0,stroke:#e65100
-    style Tactical fill:#fffde7,stroke:#f9a825
-    style Strategic fill:#e8f5e9,stroke:#2e7d32
-    style Full fill:#f3e5f5,stroke:#7b1fa2
-    style labels fill:#e3f2fd,stroke:#1565c0
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+    
+    class Spectrum light
+    class None,Reactive,Tactical,Strategic,Full medium
+    class n1,n2,r1,r2,t1,t2,s1,s2,f1,f2 light
+    class labels dark
 ```
 
 ### 6.5.2 OpenCombat-SDL: Zero Autonomy (Pure Obedience)

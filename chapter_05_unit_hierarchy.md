@@ -34,9 +34,17 @@ OpenCombat-SDL follows traditional object-oriented design. Everything inherits f
 
 ```mermaid
 flowchart TD
-    Object["Object<br>Base class with position, orders, selection, health"] --> Soldier
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    Object["Object<br/>Base class with position, orders, selection, health"] --> Soldier
     Object --> Vehicle
     Object --> Squad
+
+    class Object dark
+    class Soldier,Vehicle,Squad light
 ```
 
 #### The "Squad as Object" Decision
@@ -67,12 +75,21 @@ A unified command interface emerged from inheritance:
 
 ```mermaid
 flowchart LR
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     A["Player gives order"] --> B["Squad::AddOrder()"]
     B --> C["Distributes to members"]
     C --> D["Order Queue"]
-    D --> E["Soldier #1"]
-    D --> F["Soldier #2"]
-    D --> G["Vehicle #1"]
+    D --> E["Soldier 1"]
+    D --> F["Soldier 2"]
+    D --> G["Vehicle 1"]
+
+    class A,D medium
+    class B,C light
+    class E,F,G light
 ```
 
 #### Aggregation: What a Squad "Has" vs "Is"
@@ -121,11 +138,19 @@ CloseCombatFree replaces deep inheritance with declarative composition using Qt'
 
 ```mermaid
 flowchart TD
-    Unit["Unit QML Component"] --> Hull["Hull.qml<br>Visual + collision"]
-    Unit --> Turret["Turret.qml<br>Rotating weapon mount"]
-    Unit --> Soldier1["Soldier {}<br>Crew member"]
-    Unit --> Soldier2["Soldier {}<br>Another crew member"]
-    Unit --> Effects["Effects.qml<br>Particles"]
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    Unit["Unit QML Component"] --> Hull["Hull.qml<br/>Visual + collision"]
+    Unit --> Turret["Turret.qml<br/>Rotating weapon mount"]
+    Unit --> Soldier1["Soldier<br/>Crew member"]
+    Unit --> Soldier2["Soldier<br/>Another crew member"]
+    Unit --> Effects["Effects.qml<br/>Particles"]
+
+    class Unit dark
+    class Hull,Turret,Soldier1,Soldier2,Effects light
 ```
 
 #### Composition in Practice
@@ -200,14 +225,23 @@ OpenCombat demonstrates modern data-oriented design:
 
 ```mermaid
 flowchart TD
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     subgraph BattleState["BattleState"]
-        BS1["soldiers: Vec&lt;Soldier&gt; [contiguous]"]
-        BS2["vehicles: Vec&lt;Vehicle&gt; [contiguous]"]
-        BS3["squads: HashMap&lt;Uuid, Squad&gt; [lookup]"]
+        BS1["soldiers: Vec<Soldier> [contiguous]"]
+        BS2["vehicles: Vec<Vehicle> [contiguous]"]
+        BS3["squads: HashMap<Uuid, Squad> [lookup]"]
     end
 
     BattleState --> Sys1["Systems: AI, Combat"]
     BattleState --> Sys2["Systems: Move, Render"]
+
+    class BattleState medium
+    class BS1,BS2,BS3 light
+    class Sys1,Sys2 light
 ```
 
 #### Type-Safe Indices Replace Pointers
@@ -427,15 +461,24 @@ Order of Battle (OOB) structures in tactical games follow this pattern:
 
 ```mermaid
 flowchart TD
-    Platoon["Platoon<br>15-40 soldiers"] --> Squad1["Squad 1<br>8-12 soldiers"]
-    Platoon --> Squad2["Squad 2<br>..."]
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    Platoon["Platoon<br/>15-40 soldiers"] --> Squad1["Squad 1<br/>8-12 soldiers"]
+    Platoon --> Squad2["Squad 2<br/>..."]
     Platoon --> VehicleSection["Vehicle Section"]
 
-    Squad1 --> TeamAlpha["Team Alpha<br>4 soldiers"]
-    Squad1 --> TeamBravo["Team Bravo<br>4 soldiers"]
+    Squad1 --> TeamAlpha["Team Alpha<br/>4 soldiers"]
+    Squad1 --> TeamBravo["Team Bravo<br/>4 soldiers"]
 
     VehicleSection --> Vehicle1["Vehicle 1 Tank"]
     VehicleSection --> Vehicle2["Vehicle 2 Tank"]
+
+    class Platoon dark
+    class Squad1,Squad2,VehicleSection medium
+    class TeamAlpha,TeamBravo,Vehicle1,Vehicle2 light
 ```
 
 The structure forms a tree, not an inheritance hierarchy.
@@ -543,7 +586,12 @@ Formation Line {
 
 ```mermaid
 flowchart TD
-    A["Player clicks 'Move to X'"] --> B["Squad receives MoveOrder"]
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    A["Player clicks Move to X"] --> B["Squad receives MoveOrder"]
     B --> C["Squad::HandleMoveOrder()"]
     C --> D["Calculate path for leader"]
     C --> E["Leader gets FollowPath order"]
@@ -552,6 +600,10 @@ flowchart TD
     E --> G
     F --> G
     G --> H["Physics system executes movement"]
+
+    class A dark
+    class B,C,D,E,F,G medium
+    class H light
 ```
 
 ### 5.5.2 Leadership Dynamics
@@ -599,11 +651,20 @@ Vehicles complicate command. Crew members are soldiers, but the vehicle function
 
 ```mermaid
 flowchart TD
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
     A["Player orders Tank Squad to move"] --> B["Squad orders each tank to move"]
     B --> C{"Tank checks: Do I have a driver?"}
     C -->|Yes| D["Calculate path and move"]
     C -->|No| E["Report immobilized"]
     D --> F["Driver soldier executes steering"]
+
+    class A dark
+    class B,C medium
+    class D,E,F light
 ```
 
 Command flows through the hierarchy, but execution depends on the crew's status.
@@ -723,23 +784,31 @@ Combine the strengths of all three systems:
 
 ```mermaid
 flowchart TD
-    subgraph Layer1["ENTITY STORAGE<br>Contiguous arrays - cache efficient"]
-        L1A["soldiers: Vec&lt;Soldier&gt;"]
-        L1B["vehicles: Vec&lt;Vehicle&gt;"]
+    classDef default fill:#fff,stroke:#000,stroke-width:1px
+    classDef light fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef medium fill:#d0d0d0,stroke:#333,stroke-width:1px
+    classDef dark fill:#b0b0b0,stroke:#000,stroke-width:2px
+
+    subgraph Layer1["ENTITY STORAGE - Contiguous arrays"]
+        L1A["soldiers: Vec<Soldier>"]
+        L1B["vehicles: Vec<Vehicle>"]
     end
 
-    subgraph Layer2["COMPONENT SYSTEM<br>Composition over inheritance"]
+    subgraph Layer2["COMPONENT SYSTEM - Composition"]
         L2A["Entity = ID + ComponentMask"]
         L2B["Component = Plain data struct"]
     end
 
-    subgraph Layer3["SCRIPTABLE BEHAVIORS<br>Modding without recompilation"]
-        L3A["role: 'Sniper' → behavior: 'sniper_ai.lua'"]
+    subgraph Layer3["SCRIPTABLE BEHAVIORS - Modding"]
+        L3A["role: Sniper -> behavior: sniper_ai.lua"]
         L3B["onEvent: callback from script"]
     end
 
     Layer1 --> Layer2
     Layer2 --> Layer3
+
+    class Layer1,Layer2,Layer3 medium
+    class L1A,L1B,L2A,L2B,L3A,L3B light
 ```
 
 ### 5.7.2 Type-Safe Indices

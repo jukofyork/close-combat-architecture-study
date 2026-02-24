@@ -146,8 +146,8 @@ flowchart TB
         end
     end
 
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
-    classDef subgraph fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
     class HybridArchitecture,CoreSim,EntityDef,SimDepth subgraph
     class CS1,CS2,CS3,CS4,ED1,ED2,ED3,ED4,SD1,SD2,SD3 default
 ```
@@ -184,8 +184,8 @@ flowchart TD
         Cap1 --- Cap2 --- Cap3
     end
 
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
-    classDef subgraph fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef subgraph fill:#d0d0d0,stroke:#333,stroke-width:1px
     class Hierarchy,Bitfield subgraph
     class Phase,Behavior,Gesture,Cap1,Cap2,Cap3 default
 ```
@@ -544,29 +544,45 @@ JSON or YAML handles structure, while Lua or Wren manages behavior. This setup s
 
 **Universal Pattern:**
 ```mermaid
-mindmap
-  root((mods/))
-    mod_name["mod_name/"]
-      mod.json["mod.json - Metadata"]
-      dependencies.json["dependencies.json - Required mods"]
-      data["data/"]
-        units["units/"]
-        weapons["weapons/"]
-        vehicles["vehicles/"]
-      scripts["scripts/"]
-        ai["ai/"]
-        behaviors["behaviors/"]
-      maps["maps/"]
-      assets["assets/"]
-        images["images/"]
-        audio["audio/"]
+flowchart TD
+    ROOT["mods/"]
+    MOD["mod_name/"]
+    META["mod.json - Metadata"]
+    DEPS["dependencies.json"]
+    DATA["data/"]
+    SCRIPTS["scripts/"]
+    MAPS["maps/"]
+    ASSETS["assets/"]
+    UNITS["units/"]
+    WEAPONS["weapons/"]
+    VEHICLES["vehicles/"]
+    AI["ai/"]
+    BEHAVIORS["behaviors/"]
+    IMAGES["images/"]
+    AUDIO["audio/"]
 
-    classDef rootNode fill:#fff3e0,stroke:#e65100,stroke-width:3px
-    classDef folderNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    classDef fileNode fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
-    class root rootNode
-    class mod_name,data,scripts,maps,assets,units,weapons,vehicles,ai,behaviors,images,audio folderNode
-    class mod.json,dependencies.json fileNode
+    ROOT --> MOD
+    MOD --> META
+    MOD --> DEPS
+    MOD --> DATA
+    MOD --> SCRIPTS
+    MOD --> MAPS
+    MOD --> ASSETS
+    DATA --> UNITS
+    DATA --> WEAPONS
+    DATA --> VEHICLES
+    SCRIPTS --> AI
+    SCRIPTS --> BEHAVIORS
+    ASSETS --> IMAGES
+    ASSETS --> AUDIO
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef root fill:#d0d0d0,stroke:#000,stroke-width:2px
+    classDef folder fill:#e0e0e0,stroke:#333,stroke-width:1px
+    classDef file fill:#fff,stroke:#333,stroke-width:1px
+    class ROOT root
+    class MOD,DATA,SCRIPTS,MAPS,ASSETS,UNITS,WEAPONS,VEHICLES,AI,BEHAVIORS,IMAGES,AUDIO folder
+    class META,DEPS file
 ```
 
 **Mod Metadata (mod.json):**
@@ -819,26 +835,26 @@ flowchart TB
     subgraph "Reference Architecture"
         direction TB
 
-        subgraph "Core Layer (Performance)"
+        subgraph CoreLayer["Core Layer (Performance)"]
             SIM[Deterministic Simulation]
             MSG[Message Bus]
             STATE[Centralized BattleState]
         end
 
-        subgraph "Data Layer (Modding)"
+        subgraph DataLayer["Data Layer (Modding)"]
             JSON[JSON/YAML Definitions]
             LUA[Lua Scripts]
             TMUX[Tiled Maps]
         end
 
-        subgraph "Systems Layer (Logic)"
+        subgraph SystemsLayer["Systems Layer (Logic)"]
             AI[AI System]
             COM[Combat System]
             PF[Pathfinding]
             PHY[Physics]
         end
 
-        subgraph "Presentation Layer (UI)"
+        subgraph PresentationLayer["Presentation Layer (UI)"]
             RENDER[Renderer]
             INPUT[Input Handler]
             UI[User Interface]
@@ -855,8 +871,8 @@ flowchart TB
         INPUT -->|Creates| MSG
     end
 
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
-    classDef layer fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef layer fill:#d0d0d0,stroke:#333,stroke-width:1px
     class CoreLayer,DataLayer,SystemsLayer,PresentationLayer layer
     class SIM,MSG,STATE,JSON,LUA,TMUX,AI,COM,PF,PHY,RENDER,INPUT,UI default
 ```
@@ -910,42 +926,76 @@ Build: qmake or Unity
 ### 10.4.4 Directory Structure
 
 ```mermaid
-mindmap
-  root((my-tactical-game/))
-    src["src/"]
-      core["core/ - Core systems"]
-      simulation["simulation/ - Game logic"]
-      ai["ai/ - Behavior trees, GOAP"]
-      graphics["graphics/ - Rendering"]
-      input["input/ - Input handling"]
-      network["network/ - Multiplayer"]
-      main.cpp["main.cpp"]
-    include["include/ - Public headers"]
-    data["data/"]
-      units["units/ - Unit definitions"]
-      weapons["weapons/ - Weapon data"]
-      behaviors["behaviors/ - AI behaviors"]
-      scenarios["scenarios/ - Mission definitions"]
-    scripts["scripts/"]
-      ai_scripts["ai/ - Lua AI scripts"]
-      behavior_scripts["behaviors/ - Unit behavior scripts"]
-    maps["maps/ - Tiled TMX files"]
-    assets["assets/"]
-      images["images/ - Sprites, textures"]
-      audio["audio/ - Sound effects, music"]
-      fonts["fonts/"]
-    mods["mods/ - Mods directory"]
-    docs["docs/ - Documentation"]
-    tests["tests/ - Unit tests"]
-    CMakeLists.txt["CMakeLists.txt - Build config"]
-    README.md["README.md"]
+flowchart TD
+    ROOT["my-tactical-game/"]
+    SRC["src/ - Core systems"]
+    CORE["core/"]
+    SIM["simulation/"]
+    AI_DIR["ai/"]
+    GFX["graphics/"]
+    INP["input/"]
+    NET["network/"]
+    MAIN["main.cpp"]
+    INC["include/ - Public headers"]
+    DATA["data/"]
+    UNITS["units/"]
+    WEAPONS["weapons/"]
+    BEHAVIORS["behaviors/"]
+    SCENARIOS["scenarios/"]
+    SCRIPTS["scripts/"]
+    AI_SCRIPTS["ai/ - Lua AI scripts"]
+    BEHAVIOR_SCRIPTS["behaviors/"]
+    MAPS["maps/ - Tiled TMX files"]
+    ASSETS["assets/"]
+    IMAGES["images/"]
+    AUDIO["audio/"]
+    FONTS["fonts/"]
+    MODS["mods/ - Mods directory"]
+    DOCS["docs/ - Documentation"]
+    TESTS["tests/ - Unit tests"]
+    CMAKE["CMakeLists.txt"]
+    README["README.md"]
 
-    classDef rootNode fill:#fff3e0,stroke:#e65100,stroke-width:3px
-    classDef folderNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    classDef fileNode fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
-    class root rootNode
-    class mod_name,src,include,data,scripts,maps,assets,mods,docs,tests,core,simulation,ai,graphics,input,network,units,weapons,behaviors,scenarios,ai_scripts,behavior_scripts,images,audio,fonts folderNode
-    class main.cpp,CMakeLists.txt,README.md fileNode
+    ROOT --> SRC
+    ROOT --> INC
+    ROOT --> DATA
+    ROOT --> SCRIPTS
+    ROOT --> MAPS
+    ROOT --> ASSETS
+    ROOT --> MODS
+    ROOT --> DOCS
+    ROOT --> TESTS
+    ROOT --> CMAKE
+    ROOT --> README
+
+    SRC --> CORE
+    SRC --> SIM
+    SRC --> AI_DIR
+    SRC --> GFX
+    SRC --> INP
+    SRC --> NET
+    SRC --> MAIN
+
+    DATA --> UNITS
+    DATA --> WEAPONS
+    DATA --> BEHAVIORS
+    DATA --> SCENARIOS
+
+    SCRIPTS --> AI_SCRIPTS
+    SCRIPTS --> BEHAVIOR_SCRIPTS
+
+    ASSETS --> IMAGES
+    ASSETS --> AUDIO
+    ASSETS --> FONTS
+
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef root fill:#d0d0d0,stroke:#000,stroke-width:2px
+    classDef folder fill:#e0e0e0,stroke:#333,stroke-width:1px
+    classDef file fill:#fff,stroke:#333,stroke-width:1px
+
+    class ROOT root
+    class SRC,CORE,SIM,AI_DIR,GFX,INP,NET,INC,DATA,UNITS,WEAPONS,BEHAVIORS,SCENARIOS,SCRIPTS,AI_SCRIPTS,BEHAVIOR_SCRIPTS,MAPS,ASSETS,IMAGES,AUDIO,FONTS,MODS,DOCS,TESTS folder
+    class MAIN,CMAKE,README file
 ```
 
 ## 10.5 Checklist for New Projects
