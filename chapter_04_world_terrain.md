@@ -176,10 +176,10 @@ All three games model terrain through three core attributes that shape tactical 
 
 ```mermaid
 flowchart TB
-    subgraph "Terrain Pillars"
-        C[Cover<br/>Protection from fire<br/>0-100% damage reduction]
-        H[Hindrance<br/>Movement cost<br/>Speed multiplier]
-        E[Elevation<br/>Line of sight<br/>Height in meters]
+    subgraph TerrainPillars["Terrain Pillars"]
+        C[Cover<br>Protection from fire<br>0-100% damage reduction]
+        H[Hindrance<br>Movement cost<br>Speed multiplier]
+        E[Elevation<br>Line of sight<br>Height in meters]
     end
 
     C -->|Determines| Survival["Where units survive fire"]

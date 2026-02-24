@@ -9,13 +9,13 @@ flowchart TB
     subgraph Hierarchy["COMMAND ABSTRACTION HIERARCHY"]
         direction TB
         
-        PI["<b>PLAYER INTENT</b><br/>'Take that hill!'"]
+        PI["<b>PLAYER INTENT</b><br>'Take that hill!'"]
         
-        ORDERS["<b>ORDERS (Strategic)</b><br/>High-level objectives with intent<br/>• Timescale: Minutes<br/>• Authority: Player"]
+        ORDERS["<b>ORDERS (Strategic)</b><br>High-level objectives with intent<br>• Timescale: Minutes<br>• Authority: Player"]
         
-        BEHAVIORS["<b>BEHAVIORS (Tactical)</b><br/>Reactive decision-making systems<br/>• Timescale: Seconds<br/>• Authority: AI/System"]
+        BEHAVIORS["<b>BEHAVIORS (Tactical)</b><br>Reactive decision-making systems<br>• Timescale: Seconds<br>• Authority: AI/System"]
         
-        ACTIONS["<b>ACTIONS (Physical)</b><br/>Animation state machines<br/>• Timescale: Milliseconds<br/>• Authority: Animation System"]
+        ACTIONS["<b>ACTIONS (Physical)</b><br>Animation state machines<br>• Timescale: Milliseconds<br>• Authority: Animation System"]
         
         PI --> ORDERS --> BEHAVIORS --> ACTIONS
     end
@@ -242,9 +242,9 @@ flowchart LR
     style Matrix fill:#f9f9f9,stroke:#333,stroke-width:2px
     style header fill:#e3f2fd,stroke:#1565c0
     style row1 fill:#ffffff,stroke:#999
-    style row2 fill:#f5f5f5,stroke:#999
+    style row2 fill:#f5f5f5,stroke:#333
     style row3 fill:#ffffff,stroke:#999
-    style row4 fill:#f5f5f5,stroke:#999
+    style row4 fill:#f5f5f5,stroke:#333
     style note fill:#fff8e1,stroke:#f57f17
 ```
 
@@ -358,19 +358,19 @@ flowchart TB
     subgraph Models["COMMAND CHAIN MODELS"]
         direction TB
         
-        subgraph ModelA["MODEL A: Direct Control<br/><i>(OpenCombat-SDL, CloseCombatFree)</i>"]
+        subgraph ModelA["MODEL A: Direct Control<br><i>(OpenCombat-SDL, CloseCombatFree)</i>"]
             direction LR
             P1["👤 Player"] --> U1["📋 Unit"] --> S1["🎖️ Soldier"]
         end
         
-        subgraph ModelB["MODEL B: Delegated Control<br/><i>(OpenCombat)</i>"]
+        subgraph ModelB["MODEL B: Delegated Control<br><i>(OpenCombat)</i>"]
             direction LR
-            P2["👤 Player"] --> L2["🎖️ Squad<br/>Leader"] --> AI2["🤖 AI<br/>System"] --> S2["🎖️ Soldier"]
+            P2["👤 Player"] --> L2["🎖️ Squad<br>Leader"] --> AI2["🤖 AI<br>System"] --> S2["🎖️ Soldier"]
         end
         
-        subgraph ModelC["MODEL C: Hierarchical<br/><i>(Theoretical)</i>"]
+        subgraph ModelC["MODEL C: Hierarchical<br><i>(Theoretical)</i>"]
             direction LR
-            P3["👤 Player"] --> C3["⭐ Company<br/>Commander"] --> L3["🎖️ Squad<br/>Leader"] --> S3["🎖️ Soldier"]
+            P3["👤 Player"] --> C3["⭐ Company<br>Commander"] --> L3["🎖️ Squad<br>Leader"] --> S3["🎖️ Soldier"]
         end
         
         ModelA --> ModelB --> ModelC
@@ -470,24 +470,24 @@ flowchart TB
         
         subgraph BodyPosture["BODY POSTURE (Physical)"]
             direction TB
-            standing["🧍 Standing<br/>• Fast movement<br/>• Good visibility<br/>• High exposure"]
-            crouching["🧎 Crouching<br/>• Balanced<br/>• Medium cover<br/>• Good accuracy"]
-            prone["🛏️ Prone<br/>• Maximum cover<br/>• Slow movement<br/>• Best accuracy"]
+            standing["🧍 Standing<br>• Fast movement<br>• Good visibility<br>• High exposure"]
+            crouching["🧎 Crouching<br>• Balanced<br>• Medium cover<br>• Good accuracy"]
+            prone["🛏️ Prone<br>• Maximum cover<br>• Slow movement<br>• Best accuracy"]
             standing --> crouching --> prone
         end
         
         subgraph CombatStance["COMBAT STANCE (Tactical)"]
             direction TB
-            aggressive["⚔️ Aggressive<br/>• Engage on sight<br/>• Advance while firing"]
-            defensive["🛡️ Defensive<br/>• Hold position<br/>• Return fire only"]
-            ambush["👁️ Ambush<br/>• Wait for optimal shot<br/>• Hold fire until range"]
+            aggressive["⚔️ Aggressive<br>• Engage on sight<br>• Advance while firing"]
+            defensive["🛡️ Defensive<br>• Hold position<br>• Return fire only"]
+            ambush["👁️ Ambush<br>• Wait for optimal shot<br>• Hold fire until range"]
             aggressive --> defensive --> ambush
         end
         
         subgraph Movement["MOVEMENT STANCE"]
-            move["🚶 Move<br/>Normal speed"]
-            fast["🏃 Move Fast<br/>Sprint, loud"]
-            sneak["🐱 Sneak<br/>Slow, silent"]
+            move["🚶 Move<br>Normal speed"]
+            fast["🏃 Move Fast<br>Sprint, loud"]
+            sneak["🐱 Sneak<br>Slow, silent"]
         end
         
         subgraph Alertness["ALERTNESS LEVEL"]
@@ -625,27 +625,27 @@ flowchart LR
     subgraph Spectrum["AI AUTONOMY SPECTRUM"]
         direction LR
         
-        subgraph None["NONE<br/>Pure Obedience"]
+        subgraph None["NONE<br>Pure Obedience"]
             direction TB
             n1["👤"] --> n2["🤖"]
         end
         
-        subgraph Reactive["REACTIVE<br/>Return Fire"]
+        subgraph Reactive["REACTIVE<br>Return Fire"]
             direction TB
             r1["👤"] --> r2["🤖"]
         end
         
-        subgraph Tactical["TACTICAL<br/>Flank/Suppress"]
+        subgraph Tactical["TACTICAL<br>Flank/Suppress"]
             direction TB
             t1["👤"] --> t2["🤖"]
         end
         
-        subgraph Strategic["STRATEGIC<br/>Squad Coord"]
+        subgraph Strategic["STRATEGIC<br>Squad Coord"]
             direction TB
             s1["👤"] --> s2["🤖"]
         end
         
-        subgraph Full["FULL<br/>Full Auto"]
+        subgraph Full["FULL<br>Full Auto"]
             direction TB
             f1["👤"] --> f2["🤖"]
         end

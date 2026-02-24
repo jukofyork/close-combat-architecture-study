@@ -72,47 +72,54 @@ OpenCombat-SDL represents all unit states in a **64-bit bitfield**. This compact
 **Bitfield Layout:**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#0288d1', 'secondaryColor': '#fff3e0', 'tertiaryColor': '#e8f5e9'}}}%%
-block-beta
-    columns 9
-    bit0["Bit 0: Standing<br/>(St)"]
-    bit1["Bit 1: Prone<br/>(Pro)"]
-    bit2["Bit 2: Stopped<br/>(Sto)"]
-    bit3["Bit 3: Moving<br/>(Mov)"]
-    bit4["Bit 4: Firing<br/>(Fir)"]
-    bit5["Bit 5: Walking<br/>(Wal)"]
-    bit6["Bit 6: Weapon Safe<br/>(WS)"]
-    bit7["Bit 7: Crawling<br/>(Cra)"]
-    bit8["Bit 8: Running<br/>(Run)"]
+flowchart TD
+    subgraph Bitfield["64-bit State Bitfield Layout"]
+        direction LR
+        bit0["Bit 0: Standing<br>(St)"]
+        bit1["Bit 1: Prone<br>(Pro)"]
+        bit2["Bit 2: Stopped<br>(Sto)"]
+        bit3["Bit 3: Moving<br>(Mov)"]
+        bit4["Bit 4: Firing<br>(Fir)"]
+        bit5["Bit 5: Walking<br>(Wal)"]
+        bit6["Bit 6: Weapon Safe<br>(WS)"]
+        bit7["Bit 7: Crawling<br>(Cra)"]
+        bit8["Bit 8: Running<br>(Run)"]
+    end
     
-    bit9["Bit 9: Reload<br/>(Rld)"]
-    bit10["Bit 10: Dying (DyB)"]
-    bit11["Bit 11: Dying (DyB)"]
-    bit12["Bit 12: Dying Forward<br/>(DyF)"]
-    bit13["Bit 13: Dead<br/>(D)"]
-    bit14["Bit 14: Reloading<br/>(Rld)"]
-    bit15["Bit 15: Out of Ammo<br/>(OOA)"]
-    bit16["Bit 16: No Targets<br/>(NoT)"]
-    bit17["Bit 17: Finding Cover<br/>(FCov)"]
-    bit18["Bit 18: Following<br/>(Fol)"]
+    subgraph Row2["Bits 9-18"]
+        direction LR
+        bit9["Bit 9: Reload<br>(Rld)"]
+        bit10["Bit 10: Dying (DyB)"]
+        bit11["Bit 11: Dying (DyB)"]
+        bit12["Bit 12: Dying Forward<br>(DyF)"]
+        bit13["Bit 13: Dead<br>(D)"]
+        bit14["Bit 14: Reloading<br>(Rld)"]
+        bit15["Bit 15: Out of Ammo<br>(OOA)"]
+        bit16["Bit 16: No Targets<br>(NoT)"]
+        bit17["Bit 17: Finding Cover<br>(FCov)"]
+        bit18["Bit 18: Following<br>(Fol)"]
+    end
     
-    bit19["Bit 19: Firing in Formation<br/>(FIF)"]
-    bit20["Bit 20: Defending<br/>(Def)"]
-    bit21["Bit 21: Ambushing<br/>(Amb)"]
-    bit22["Bit 22: Waiting<br/>(Wait)"]
-    unused["Bits 23-63: Unused"]
+    subgraph Row3["Bits 19-22 + Unused"]
+        direction LR
+        bit19["Bit 19: Firing in Formation<br>(FIF)"]
+        bit20["Bit 20: Defending<br>(Def)"]
+        bit21["Bit 21: Ambushing<br>(Amb)"]
+        bit22["Bit 22: Waiting<br>(Wait)"]
+        unused["Bits 23-63: Unused"]
+    end
     
-    classDef posture fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    classDef movement fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-    classDef combat fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
-    classDef status fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef unused fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,stroke-dasharray: 5 5
+    classDef posture fill:#f9f,stroke:#333,stroke-width:2px
+    classDef movement fill:#ff9,stroke:#333,stroke-width:2px
+    classDef combat fill:#9f9,stroke:#333,stroke-width:2px
+    classDef status fill:#f99,stroke:#333,stroke-width:2px
+    classDef unusedStyle fill:#ccc,stroke:#666,stroke-width:2px,stroke-dasharray: 5 5
     
     class bit0,bit1 posture
     class bit2,bit3,bit5,bit7,bit8 movement
     class bit4,bit19,bit20,bit21 combat
     class bit9,bit10,bit11,bit12,bit13,bit14,bit15,bit16,bit17,bit18,bit22 status
-    class unused unused
+    class unused unusedStyle
 ```
 
 **Pseudocode - State Operations:**
@@ -148,7 +155,6 @@ class State:
 A soldier who is prone, crawling, and reloading:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
 flowchart LR
     subgraph StateRepresentation["State Bitfield"]
         direction LR
@@ -160,9 +166,9 @@ flowchart LR
     
     subgraph ActiveStates["Active States"]
         direction TB
-        reload["🔃 Reload<br/>(Bit 14)"]
-        crawl["🏃 Crawling<br/>(Bit 7)"]
-        prone["🛡️ Prone<br/>(Bit 1)"]
+        reload["Reload<br>(Bit 14)"]
+        crawl["Crawling<br>(Bit 7)"]
+        prone["Prone<br>(Bit 1)"]
     end
     
     subgraph HexValue["Hexadecimal Value"]
@@ -175,12 +181,16 @@ flowchart LR
     
     StateRepresentation --> HexValue
     
-    style reloadBits fill:#e8f5e9,stroke:#388e3c,stroke-width:3px
-    style crawlBits fill:#fff3e0,stroke:#f57c00,stroke-width:3px
-    style proneBits fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
-    style hex fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    style StateRepresentation fill:#fafafa,stroke:#424242
-    style ActiveStates fill:#fafafa,stroke:#424242
+    classDef reloadStyle fill:#9f9,stroke:#333,stroke-width:3px
+    classDef crawlStyle fill:#ff9,stroke:#333,stroke-width:3px
+    classDef proneStyle fill:#f9f,stroke:#333,stroke-width:3px
+    classDef hexStyle fill:#f99,stroke:#333,stroke-width:2px
+    classDef defaultStyle fill:#fff,stroke:#333
+    
+    class reloadBits reloadStyle
+    class crawlBits crawlStyle
+    class proneBits proneStyle
+    class hex hexStyle
 ```
 
 ### A.2.2 Three-Layer State Hierarchy
@@ -189,18 +199,18 @@ OpenCombat-SDL organizes states into three conceptual layers, though stored as a
 
 ```mermaid
 flowchart TB
-    subgraph "OpenCombat-SDL State Layers"
-        P[Posture States<br/>Standing, Prone]
-        M[Movement States<br/>Stopped, Moving, Walking, Running, Crawling]
-        C[Combat States<br/>Firing, Reloading, Reloaded, OutOfAmmo]
-        B[Behavior States<br/>Defending, Ambushing, FindingCover]
-        T[Terminal States<br/>Dead, Dying variants]
+    subgraph SDL["OpenCombat-SDL State Layers"]
+        P["Posture States<br>Standing, Prone"]
+        M["Movement States<br>Stopped, Moving, Walking, Running, Crawling"]
+        C["Combat States<br>Firing, Reloading, Reloaded, OutOfAmmo"]
+        B["Behavior States<br>Defending, Ambushing, FindingCover"]
+        T["Terminal States<br>Dead, Dying variants"]
     end
     
-    P -->|Combined with| M
-    M -->|Combined with| C
-    C -->|Combined with| B
-    B -->|Transition to| T
+    P -->|"Combined with"| M
+    M -->|"Combined with"| C
+    C -->|"Combined with"| B
+    B -->|"Transition to"| T
 ```
 
 **Valid State Combinations:**
@@ -281,20 +291,20 @@ OpenCombat-SDL uses a **tile-based world** with multiple data layers for spatial
 
 ```mermaid
 flowchart TB
-    subgraph "World Grid Structure"
-        T[Tiles<br/>10x10 pixels]
-        MT[Mega-Tiles<br/>12x12 tiles<br/>120x120 pixels]
-        E[Elements<br/>Terrain types]
-        EL[Elevation<br/>Height map]
-        O[Objects<br/>Unit positions]
-        B[Buildings<br/>Structure data]
+    subgraph WorldGrid["World Grid Structure"]
+        T["Tiles<br>10x10 pixels"]
+        MT["Mega-Tiles<br>12x12 tiles<br>120x120 pixels"]
+        E["Elements<br>Terrain types"]
+        EL["Elevation<br>Height map"]
+        O["Objects<br>Unit positions"]
+        B["Buildings<br>Structure data"]
     end
     
-    MT -->|Contains| T
-    T -->|References| E
-    T -->|Has| EL
-    T -->|Contains| O
-    T -->|Part of| B
+    MT -->|"Contains"| T
+    T -->|"References"| E
+    T -->|"Has"| EL
+    T -->|"Contains"| O
+    T -->|"Part of"| B
 ```
 
 **Parallel Array Storage:**
@@ -490,14 +500,14 @@ OpenCombat organizes state into three tiers by timescale and authority. This str
 
 ```mermaid
 flowchart TB
-    subgraph "OpenCombat Three-Tier State Model"
-        P[Phase State<br/>Game-Level<br/>Minutes to Hours<br/>Enum: Placement, Battle, End]
-        B[Behavior State<br/>Tactical-Level<br/>Seconds to Minutes<br/>Enum: MoveTo, Defend, EngageSoldier, Hide]
-        G[Gesture State<br/>Immediate<br/>Milliseconds to Seconds<br/>Enum: Idle, Reloading, Aiming, Firing]
+    subgraph OpenCombat["OpenCombat Three-Tier State Model"]
+        P["Phase State<br>Game-Level<br>Minutes to Hours<br>Enum: Placement, Battle, End"]
+        B["Behavior State<br>Tactical-Level<br>Seconds to Minutes<br>Enum: MoveTo, Defend, EngageSoldier, Hide"]
+        G["Gesture State<br>Immediate<br>Milliseconds to Seconds<br>Enum: Idle, Reloading, Aiming, Firing"]
     end
     
-    P -->|Contains| B
-    B -->|Contains| G
+    P -->|"Contains"| B
+    B -->|"Contains"| G
 ```
 
 **Tier 1: Phase State**
@@ -881,16 +891,19 @@ CloseCombatFree divides state into two categories, each with clear responsibilit
 
 ```mermaid
 flowchart TB
-    subgraph "CloseCombatFree Dual-State Architecture"
-        RS[Runtime Status<br/>QString unitStatus<br/>Transient Operations]
-        HS[Health State<br/>QML State system<br/>Persistent Condition]
+    subgraph CCF["CloseCombatFree Dual-State Architecture"]
+        RS["Runtime Status<br>QString unitStatus<br>Transient Operations"]
+        HS["Health State<br>QML State system<br>Persistent Condition"]
     end
     
-    RS -->|Determines| Gameplay
-    HS -->|Triggers| Visuals
+    RS -->|"Determines"| Gameplay
+    HS -->|"Triggers"| Visuals
     
-    style RS fill:#f99
-    style HS fill:#9f9
+    classDef runtime fill:#f9f,stroke:#333,stroke-width:2px
+    classDef health fill:#9f9,stroke:#333,stroke-width:2px
+    
+    class RS runtime
+    class HS health
 ```
 
 **Runtime Status Values:**
@@ -981,14 +994,14 @@ CloseCombatFree structures the world in three hierarchical layers:
 
 ```mermaid
 flowchart TB
-    subgraph "CloseCombatFree World Hierarchy"
-        S[Scenario<br/>CcfQmlBaseScenario<br/>Game loop, units, input]
-        M[Map<br/>CcfQmlBaseMap<br/>Background, elevation, props]
-        P[Props<br/>QML Items<br/>Trees, buildings, cover]
+    subgraph CCFWorld["CloseCombatFree World Hierarchy"]
+        S["Scenario<br>CcfQmlBaseScenario<br>Game loop, units, input"]
+        M["Map<br>CcfQmlBaseMap<br>Background, elevation, props"]
+        P["Props<br>QML Items<br>Trees, buildings, cover"]
     end
     
-    S -->|Contains| M
-    M -->|Contains| P
+    S -->|"Contains"| M
+    M -->|"Contains"| P
 ```
 
 **Scenario Tier:**
@@ -1233,24 +1246,24 @@ Prop {
 
 ```mermaid
 flowchart LR
-    subgraph "Bitfield (OpenCombat-SDL)"
-        B1[64-bit integer]
-        B2[Orthogonal bits]
-        B3[Fast AND/OR ops]
+    subgraph Bitfield["Bitfield (OpenCombat-SDL)"]
+        B1["64-bit integer"]
+        B2["Orthogonal bits"]
+        B3["Fast AND/OR ops"]
         B1 --> B2 --> B3
     end
     
-    subgraph "Hierarchical (OpenCombat)"
-        H1[Phase → Behavior → Gesture]
-        H2[Event sourcing]
-        H3[Message passing]
+    subgraph Hierarchical["Hierarchical (OpenCombat)"]
+        H1["Phase - Behavior - Gesture"]
+        H2["Event sourcing"]
+        H3["Message passing"]
         H1 --> H2 --> H3
     end
     
-    subgraph "Dual-State (CloseCombatFree)"
-        D1[Runtime: QString]
-        D2[Health: QML State]
-        D3[Declarative UI]
+    subgraph DualState["Dual-State (CloseCombatFree)"]
+        D1["Runtime: QString"]
+        D2["Health: QML State"]
+        D3["Declarative UI"]
         D1 --> D2 --> D3
     end
 ```
@@ -1310,24 +1323,30 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph "Recommended State System for New Projects"
-        P[Phase: Enum<br/>Global game state]
-        B[Behavior: Component-based<br/>Modular, scriptable]
-        G[Gesture: Enum + Timer<br/>Temporal actions]
-        F[Capability Flags: Bitfield<br/>Orthogonal traits]
-        V[Visual State: Declarative<br/>UI presentation layer]
+    subgraph Recommended["Recommended State System for New Projects"]
+        P["Phase: Enum<br>Global game state"]
+        B["Behavior: Component-based<br>Modular, scriptable"]
+        G["Gesture: Enum + Timer<br>Temporal actions"]
+        F["Capability Flags: Bitfield<br>Orthogonal traits"]
+        V["Visual State: Declarative<br>UI presentation layer"]
     end
     
-    P -->|Contains| B
-    B -->|Drives| G
-    B -->|Queries| F
-    G -->|Updates| V
+    P -->|"Contains"| B
+    B -->|"Drives"| G
+    B -->|"Queries"| F
+    G -->|"Updates"| V
     
-    style P fill:#f99
-    style B fill:#9f9
-    style G fill:#99f
-    style F fill:#ff9
-    style V fill:#fbf
+    classDef phase fill:#f99,stroke:#333,stroke-width:2px
+    classDef behavior fill:#9f9,stroke:#333,stroke-width:2px
+    classDef gesture fill:#99f,stroke:#333,stroke-width:2px
+    classDef flags fill:#ff9,stroke:#333,stroke-width:2px
+    classDef visual fill:#f9f,stroke:#333,stroke-width:2px
+    
+    class P phase
+    class B behavior
+    class G gesture
+    class F flags
+    class V visual
 ```
 
 **Core Components:**

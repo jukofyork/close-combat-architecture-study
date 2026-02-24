@@ -2169,12 +2169,8 @@ Multiplayer games require all clients to see identical game states, but floating
 flowchart TB
     subgraph "Fixed Timestep Simulation"
         T[Timer]
-        S[Simulation Step
-        Update all systems
-        at fixed DT]
-        I[Input Processing
-        All inputs from
-        buffer]
+        S[Simulation Step<br>Update all systems<br>at fixed DT]
+        I[Input Processing<br>All inputs from<br>buffer]
     end
 
     subgraph "Client-Server Model"
@@ -2189,12 +2185,9 @@ flowchart TB
     end
 
     subgraph "State Verification"
-        H[Hash State
-        CRC or similar]
-        V[Compare Hashes
-        Across clients]
-        R[Resync if
-        Mismatch]
+        H[Hash State<br>CRC or similar]
+        V[Compare Hashes<br>Across clients]
+        R[Resync if<br>Mismatch]
     end
 
     T --> S
@@ -2307,35 +2300,21 @@ Naive O(N) spatial queries scale poorly. Checking 500 units requires 250,000 com
 ```mermaid
 flowchart TB
     subgraph "Spatial Partitioning Options"
-        G[Uniform Grid
-        Fixed cell size
-        O(1) insertion
-        O(k) query]
+        G[Uniform Grid<br>Fixed cell size<br>O(1) insertion<br>O(k) query]
 
-        Q[Quadtree
-        Adaptive subdivision
-        O(log n) operations
-        Good for uneven distribution]
+        Q[Quadtree<br>Adaptive subdivision<br>O(log n) operations<br>Good for uneven distribution]
 
-        H[Spatial Hash
-        Hash map buckets
-        Good for sparse worlds]
+        H[Spatial Hash<br>Hash map buckets<br>Good for sparse worlds]
     end
 
     subgraph "Grid Implementation"
-        W[World Grid
-        Cell size = 100m]
+        W[World Grid<br>Cell size = 100m]
 
-        C[Cell Array
-        Linked lists per cell]
+        C[Cell Array<br>Linked lists per cell]
 
-        I[Insertion
-        Hash position to cell
-        Add to list]
+        I[Insertion<br>Hash position to cell<br>Add to list]
 
-        Q2[Query Radius
-        Calculate cell range
-        Check all in range]
+        Q2[Query Radius<br>Calculate cell range<br>Check all in range]
     end
 
     W --> C
@@ -2519,29 +2498,17 @@ Systems that read and write to the same state create race conditions. Partial up
 ```mermaid
 flowchart TB
     subgraph "Double Buffer System"
-        R[Read Buffer
-        Current State
-        Frame N]
+        R[Read Buffer<br>Current State<br>Frame N]
 
-        W[Write Buffer
-        Next State
-        Frame N+1]
+        W[Write Buffer<br>Next State<br>Frame N+1]
 
-        S[Swap Buffers
-        Atomic exchange
-        pointers]
+        S[Swap Buffers<br>Atomic exchange<br>pointers]
     end
 
     subgraph "Update Cycle"
-        U1[System 1 Update
-        Read from R
-        Write to W]
-        U2[System 2 Update
-        Read from R
-        Write to W]
-        U3[System 3 Update
-        Read from R
-        Write to W]
+        U1[System 1 Update<br>Read from R<br>Write to W]
+        U2[System 2 Update<br>Read from R<br>Write to W]
+        U3[System 3 Update<br>Read from R<br>Write to W]
     end
 
     R --> U1
@@ -2651,10 +2618,8 @@ flowchart TB
     subgraph "Game Loop"
         S[Start]
         I[Process Input]
-        SIM[Fixed Timestep Simulation
-        Multiple steps if needed]
-        R[Render
-        Interpolate if behind]
+        SIM[Fixed Timestep Simulation<br>Multiple steps if needed]
+        R[Render<br>Interpolate if behind]
         V[Wait for next frame]
     end
 
@@ -3020,38 +2985,22 @@ The traditional cycle—edit, recompile, restart, navigate, test—takes minutes
 ```mermaid
 flowchart TB
     subgraph "Hot Reload System"
-        W[File Watcher
-        Monitors directories
-        Uses OS-level notifications]
+        W[File Watcher<br>Monitors directories<br>Uses OS-level notifications]
 
-        V[Validation
-        Parses new file
-        Checks schema
-        Handles errors]
+        V[Validation<br>Parses new file<br>Checks schema<br>Handles errors]
 
-        H[Hot Apply
-        Updates game state
-        Refreshes entities
-        Preserves running state]
+        H[Hot Apply<br>Updates game state<br>Refreshes entities<br>Preserves running state]
 
-        F[Fallback
-        On error:
-        Logs issue
-        Keeps old version
-        Notifies user]
+        F[Fallback<br>On error:<br>Logs issue<br>Keeps old version<br>Notifies user]
     end
 
     subgraph "Example Flow"
-        E1[Edit weapons.json
-        Save file]
+        E1[Edit weapons.json<br>Save file]
         E2[File watcher detects change]
-        E3[Validate JSON
-        Check schema]
-        E4[Update WeaponManager
-        Hot-swap definitions]
+        E3[Validate JSON<br>Check schema]
+        E4[Update WeaponManager<br>Hot-swap definitions]
         E5[Existing weapons update with new stats]
-        E6[Test immediately
-        No restart needed]
+        E6[Test immediately<br>No restart needed]
     end
 
     E1 --> E2 --> E3 --> E4 --> E5 --> E6
@@ -3749,27 +3698,27 @@ For a new Close Combat clone, follow this implementation order:
 ```mermaid
 flowchart LR
     subgraph "Priority 1: Foundation"
-        P1[Factory<br/>Entity creation]
-        P2[Component<br/>Composition]
-        P3[Update Method<br/>Game loop]
+        P1[Factory<br>Entity creation]
+        P2[Component<br>Composition]
+        P3[Update Method<br>Game loop]
     end
 
     subgraph "Priority 2: Core Gameplay"
-        P4[Command<br/>Orders]
-        P5[State<br/>Unit states]
-        P6[Observer<br/>Events]
+        P4[Command<br>Orders]
+        P5[State<br>Unit states]
+        P6[Observer<br>Events]
     end
 
     subgraph "Priority 3: Advanced"
-        P7[Spatial Partitioning<br/>Performance]
-        P8[Strategy<br/>AI]
-        P9[Template Method<br/>Order execution]
+        P7[Spatial Partitioning<br>Performance]
+        P8[Strategy<br>AI]
+        P9[Template Method<br>Order execution]
     end
 
     subgraph "Priority 4: Polish"
-        P10[Deterministic Lockstep<br/>Multiplayer]
-        P11[Data-Driven<br/>Modding]
-        P12[Hot Reload<br/>Iteration]
+        P10[Deterministic Lockstep<br>Multiplayer]
+        P11[Data-Driven<br>Modding]
+        P12[Hot Reload<br>Iteration]
     end
 
     P1 --> P4 --> P7 --> P10

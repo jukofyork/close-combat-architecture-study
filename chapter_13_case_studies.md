@@ -580,13 +580,13 @@ Scenario {
 
 ```mermaid
 flowchart LR
-    subgraph "Implementation Complexity"
-        OCS["OpenCombat-SDL<br/>High"]
-        OC["OpenCombat<br/>Medium"]
-        CCF["CloseCombatFree<br/>Low"]
+    subgraph ImplementationComplexity["Implementation Complexity"]
+        OCS["OpenCombat-SDL<br>High"]
+        OC["OpenCombat<br>Medium"]
+        CCF["CloseCombatFree<br>Low"]
     end
 
-    subgraph "Moddability"
+    subgraph Moddability["Moddability"]
         MOD_OCS["Limited"]
         MOD_OC["Excellent"]
         MOD_CCF["Maximum"]
@@ -1867,29 +1867,21 @@ end
 
 ```mermaid
 flowchart TD
-    Start[Need to add feature]
+    Start["Need to add feature"]
 
-    Start --> Q1{Does it need
-    complex logic?}
+    Start --> Q1{"Does it need<br>complex logic?"}
 
-    Q1 -->|Yes| Q2{Performance
-    critical?}
-    Q1 -->|No| UseData[Use JSON/YAML
-    data files]
+    Q1 -->|Yes| Q2{"Performance<br>critical?"}
+    Q1 -->|No| UseData["Use JSON/YAML<br>data files"]
 
-    Q2 -->|Yes| UseCode[Use compiled
-    Rust/C++]
-    Q2 -->|No| UseScript[Use Lua
-    scripts]
+    Q2 -->|Yes| UseCode["Use compiled<br>Rust/C++"]
+    Q2 -->|No| UseScript["Use Lua<br>scripts"]
 
-    UseData --> HotReload[Enable hot
-    reload]
+    UseData --> HotReload["Enable hot<br>reload"]
     UseScript --> HotReload
-    UseCode --> MessageBased[Use message
-    passing]
+    UseCode --> MessageBased["Use message<br>passing"]
 
-    HotReload --> Done[Feature ready
-    for modding!]
+    HotReload --> Done["Feature ready<br>for modding!"]
     MessageBased --> Done
 ```
 

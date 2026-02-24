@@ -54,9 +54,9 @@ flowchart LR
     
     subgraph Implementations
         direction LR
-        OCS[OpenCombat-SDL<br/>Deep simulation focus]:::sdl
-        OC[OpenCombat<br/>Balanced approach]:::oc
-        CCF[CloseCombatFree<br/>Accessibility focus]:::ccf
+        OCS[OpenCombat-SDL<br>Deep simulation focus]:::sdl
+        OC[OpenCombat<br>Balanced approach]:::oc
+        CCF[CloseCombatFree<br>Accessibility focus]:::ccf
     end
     
     OCS -.->|positioned toward| A
@@ -64,9 +64,9 @@ flowchart LR
     OC -.->|balanced| B
     CCF -.->|positioned toward| B
     
-    classDef sdl fill:#e1f5fe
-    classDef oc fill:#fff3e0
-    classDef ccf fill:#f3e5f5
+    classDef sdl fill:#f9f,stroke:#333,stroke-width:2px
+    classDef oc fill:#ffe0b2,stroke:#333,stroke-width:2px
+    classDef ccf fill:#e1bee7,stroke:#333,stroke-width:2px
 ```
 
 ### 2.1.3 The Authenticity Paradox
@@ -101,7 +101,7 @@ The game world is a collection of objects, each with its own state and rules. A 
 
 ```mermaid
 flowchart TD
-    O[Object<br/><i>Base class: position, orders, health</i>]
+    O[Object<br>Base class: position, orders, health]
     S[Soldier]
     V[Vehicle]
     Sq[Squad]
@@ -397,9 +397,9 @@ Systems query state, compute changes, and send messages instead of mutating dire
 
 ```mermaid
 flowchart TD
-    BS[BattleState<br/>soldiers: Vec&lt;Soldier&gt; [contiguous]<br/>vehicles: Vec&lt;Vehicle&gt; [contiguous]<br/>squads: HashMap&lt;Uuid, Squad&gt; [lookup]]
-    SYS1[Systems<br/>- AI<br/>- Combat]
-    SYS2[Systems<br/>- Move<br/>- Render]
+    BS[BattleState<br>soldiers: Vec<Soldier> [contiguous]<br>vehicles: Vec<Vehicle> [contiguous]<br>squads: HashMap<Uuid, Squad> [lookup]]
+    SYS1[Systems<br>- AI<br>- Combat]
+    SYS2[Systems<br>- Move<br>- Render]
     
     BS --> SYS1
     BS --> SYS2
@@ -524,7 +524,7 @@ flowchart TD
     D --- OC
     OCS --- CCF
     
-    note["High moddability and high determinism<br/>rarely coexist without sophisticated architecture."]
+    note["High moddability and high determinism<br>rarely coexist without sophisticated architecture."]
 ```
 
 ---
@@ -717,9 +717,9 @@ Modern game development combines elements from all three approaches:
 ```mermaid
 flowchart TD
     subgraph RECOMMENDED_HYBRID["Recommended Hybrid Architecture"]
-        CORE[CORE SIMULATION<br/>Systems-oriented (OpenCombat-style)<br/>- Deterministic<br/>- Type-safe<br/>- Server-authoritative]
-        ENTITY[ENTITY DEFINITION<br/>Component composition (CloseCombatFree-style)<br/>- JSON/YAML/QML for content<br/>- Hot-reload capable<br/>- Modder-accessible]
-        BEHAVIOR[BEHAVIOR SYSTEM<br/>Scriptable components (OpenCombat-SDL + scripting)<br/>- Lua/Wren for AI behaviors<br/>- Data-driven action definitions<br/>- Automatic prerequisite chaining]
+        CORE[CORE SIMULATION<br>Systems-oriented (OpenCombat-style)<br>- Deterministic<br>- Type-safe<br>- Server-authoritative]
+        ENTITY[ENTITY DEFINITION<br>Component composition (CloseCombatFree-style)<br>- JSON/YAML/QML for content<br>- Hot-reload capable<br>- Modder-accessible]
+        BEHAVIOR[BEHAVIOR SYSTEM<br>Scriptable components (OpenCombat-SDL + scripting)<br>- Lua/Wren for AI behaviors<br>- Data-driven action definitions<br>- Automatic prerequisite chaining]
     end
     
     CORE --> ENTITY --> BEHAVIOR
@@ -774,15 +774,15 @@ Use the best approach for each task:
 flowchart TD
     START([Start: New Close Combat Clone Project])
     MP{Multiplayer required?}
-    MP_YES[Systems-oriented core<br/>(OpenCombat-style)<br/>- Message-driven state updates<br/>- Server-authoritative<br/>- Type-safe indices]
-    MP_NO[Flexible choice<br/>- OOP or component-based<br/>approaches work]
+    MP_YES[Systems-oriented core<br>(OpenCombat-style)<br>- Message-driven state updates<br>- Server-authoritative<br>- Type-safe indices]
+    MP_NO[Flexible choice<br>- OOP or component-based<br>approaches work]
     MOD{Modding community desired?}
-    MOD_YES[Declarative content<br/>(CloseCombatFree-style)<br/>- JSON/YAML entity definitions<br/>- Lua scripting for behaviors<br/>- Hot-reload support]
-    MOD_NO[Data-driven approach suffices<br/>- XML/JSON configuration<br/>- Hardcoded behaviors work]
+    MOD_YES[Declarative content<br>(CloseCombatFree-style)<br>- JSON/YAML entity definitions<br>- Lua scripting for behaviors<br>- Hot-reload support]
+    MOD_NO[Data-driven approach suffices<br>- XML/JSON configuration<br>- Hardcoded behaviors work]
     SIM{Deep simulation required?}
-    SIM_YES[Bitfield with automatic<br/>prerequisite chaining<br/>(OpenCombat-SDL style<br/>state management)]
+    SIM_YES[Bitfield with automatic<br>prerequisite chaining<br>(OpenCombat-SDL style<br>state management)]
     SIM_NO[Simple state hierarchy works]
-    RESULT([Result: Hybrid architecture<br/>optimized for your project])
+    RESULT([Result: Hybrid architecture<br>optimized for your project])
     
     START --> MP
     MP -->|YES| MP_YES

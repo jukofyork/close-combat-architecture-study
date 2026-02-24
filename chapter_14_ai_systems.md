@@ -48,6 +48,11 @@ Manages high-level battle planning:
 
 ```mermaid
 flowchart TB
+    classDef strategic fill:#ffebee,stroke:#333,stroke-width:2px,color:#000
+    classDef tactical fill:#e8f5e9,stroke:#333,stroke-width:2px,color:#000
+    classDef unit fill:#e3f2fd,stroke:#333,stroke-width:2px,color:#000
+    classDef system fill:#fff9c4,stroke:#333,stroke-width:2px,color:#000
+
     subgraph STRATEGIC_AI["STRATEGIC AI (Hours)"]
         S1[Objective prioritization]
         S2[Resource allocation]
@@ -79,6 +84,11 @@ flowchart TB
     STRATEGIC_AI --> TACTICAL_AI
     TACTICAL_AI --> UNIT_AI
     UNIT_AI --> SYSTEM_AI
+
+    class S1,S2,S3,S4 strategic
+    class T1,T2,T3,T4 tactical
+    class U1,U2,U3,U4 unit
+    class SY1,SY2,SY3,SY4 system
 ```
 
 ### 14.1.3 The Four Challenges of Tactical AI
@@ -114,20 +124,29 @@ For multiplayer and replay systems, AI must be predictable:
 - Floating-point operations remain consistent
 
 ```mermaid
-mindmap
-  root((BELIEVABLE AI))
-    FAIR
-      ::icon(fa-scale-balanced)
-      Same information access
-      Same accuracy rules
-    PERFORMANT
-      ::icon(fa-gauge-high)
-      Completes decisions within frame budget
-      Efficient algorithms
-    DETERMINISTIC
-      ::icon(fa-shuffle)
-      Same seed → same behavior
-      For multiplayer synchronization
+flowchart TB
+    classDef rootNode fill:#e1f5fe,stroke:#333,stroke-width:3px,color:#000
+    classDef fairNode fill:#e8f5e9,stroke:#333,stroke-width:2px,color:#000
+    classDef perfNode fill:#fff3e0,stroke:#333,stroke-width:2px,color:#000
+    classDef detNode fill:#f3e5f5,stroke:#333,stroke-width:2px,color:#000
+
+    ROOT([BELIEVABLE AI]) --> FAIR
+    ROOT --> PERFORMANT
+    ROOT --> DETERMINISTIC
+
+    FAIR --> FAIR1[Same information access]
+    FAIR --> FAIR2[Same accuracy rules]
+
+    PERFORMANT --> PERF1[Completes decisions within frame budget]
+    PERFORMANT --> PERF2[Efficient algorithms]
+
+    DETERMINISTIC --> DET1[Same seed → same behavior]
+    DETERMINISTIC --> DET2[For multiplayer synchronization]
+
+    class ROOT rootNode
+    class FAIR,FAIR1,FAIR2 fairNode
+    class PERFORMANT,PERF1,PERF2 perfNode
+    class DETERMINISTIC,DET1,DET2 detNode
 ```
 
 **Constraint Definitions:**
@@ -300,28 +319,36 @@ fn update_feeling(soldier: &mut Soldier, world: &World) {
 **Behavior Hierarchy**:
 ```mermaid
 flowchart TB
+    classDef phaseNode fill:#e3f2fd,stroke:#333,stroke-width:2px,color:#000
+    classDef behaviorNode fill:#e8f5e9,stroke:#333,stroke-width:2px,color:#000
+    classDef gestureNode fill:#fff9c4,stroke:#333,stroke-width:2px,color:#000
+
     subgraph PHASE["PHASE (Global)"]
-        P1["🎯 Placement - Pre-battle setup"]
-        P2["⚔️ Battle - Active combat"]
-        P3["🏁 End - Post-battle resolution"]
+        P1["Placement - Pre-battle setup"]
+        P2["Battle - Active combat"]
+        P3["End - Post-battle resolution"]
     end
 
     subgraph BEHAVIOR["BEHAVIOR (Tactical - Seconds)"]
-        B1["🏃 Movement: MoveTo, MoveFastTo, SneakTo, DriveTo"]
-        B2["🛡️ Combat: Idle, Defend, Hide, SuppressFire"]
-        B3["🎯 Engagement: EngageSoldier"]
-        B4["💀 Terminal: Dead, Unconscious"]
+        B1["Movement: MoveTo, MoveFastTo, SneakTo, DriveTo"]
+        B2["Combat: Idle, Defend, Hide, SuppressFire"]
+        B3["Engagement: EngageSoldier"]
+        B4["Terminal: Dead, Unconscious"]
     end
 
     subgraph GESTURE["GESTURE (Physical - Milliseconds)"]
-        G1["⏸️ Idle"]
-        G2["🔄 Reloading(duration, weapon_class)"]
-        G3["🎯 Aiming(duration, weapon_class)"]
-        G4["💥 Firing(duration, weapon_class)"]
+        G1["Idle"]
+        G2["Reloading(duration, weapon_class)"]
+        G3["Aiming(duration, weapon_class)"]
+        G4["Firing(duration, weapon_class)"]
     end
 
     PHASE --> BEHAVIOR
     BEHAVIOR --> GESTURE
+
+    class P1,P2,P3 phaseNode
+    class B1,B2,B3,B4 behaviorNode
+    class G1,G2,G3,G4 gestureNode
 ```
 
 **AI Behaviors**:
@@ -483,13 +510,13 @@ flowchart TB
     end
 
     subgraph MODEL2["MODEL 2: Communication Range Limited (Realistic)"]
-        A2[Soldier A<br/>Sees] <-.->|Within 50m| B2[Soldier B<br/>Range]
-        B2 <-.->|Within 50m| C2[Soldier C<br/>Knows]
+        A2[Soldier A<br>Sees] <-.->|Within 50m| B2[Soldier B<br>Range]
+        B2 <-.->|Within 50m| C2[Soldier C<br>Knows]
         note["Only share within range"]
     end
 
     subgraph MODEL3["MODEL 3: Chain of Command (Hierarchical)"]
-        L[Leader<br/>Knows all squad sightings]
+        L[Leader<br>Knows all squad sightings]
         A3[Soldier A]
         B3[Soldier B]
         C3[Soldier C]
@@ -497,9 +524,6 @@ flowchart TB
         L --> B3
         L --> C3
     end
-
-    MODEL1 ~~~ MODEL2
-    MODEL2 ~~~ MODEL3
 ```
 
 **Implementation Example**:
@@ -1106,9 +1130,16 @@ class ClearObjective extends PrimitiveTask
 
 ```mermaid
 flowchart TD
+    classDef startNode fill:#e1f5fe,stroke:#333,stroke-width:2px,color:#000
+    classDef decisionNode fill:#fff9c4,stroke:#333,stroke-width:2px,color:#000
+    classDef fsmNode fill:#c8e6c9,stroke:#333,stroke-width:2px,color:#000
+    classDef planNode fill:#bbdefb,stroke:#333,stroke-width:2px,color:#000
+    classDef btNode fill:#ffe0b2,stroke:#333,stroke-width:2px,color:#000
+    classDef utilNode fill:#f8bbd0,stroke:#333,stroke-width:2px,color:#000
+
     START([START: What do you need?]) --> Q1{Simple, discrete behaviors?}
 
-    Q1 -->|Yes| FSM[FSM<br/>Fast, simple, predictable]
+    Q1 -->|Yes| FSM[FSM<br>Fast, simple, predictable]
     Q1 -->|No| Q2{Need multi-step planning?}
 
     Q2 -->|Yes| Q3{Actions reusable across goals?}
@@ -1117,16 +1148,17 @@ flowchart TD
     Q3 -->|Yes| GOAP[GOAP]
     Q3 -->|No| HTN[HTN]
 
-    Q4 -->|Yes| BT[BEHAVIOR TREE<br/>Industry standard]
+    Q4 -->|Yes| BT[BEHAVIOR TREE<br>Industry standard]
     Q4 -->|No| Q5{Fuzzy scoring decisions?}
 
-    Q5 -->|Yes| UTILITY[UTILITY AI<br/>Best for target selection]
+    Q5 -->|Yes| UTILITY[UTILITY AI<br>Best for target selection]
 
-    style FSM fill:#90EE90
-    style GOAP fill:#87CEEB
-    style HTN fill:#87CEEB
-    style BT fill:#FFD700
-    style UTILITY fill:#FFB6C1
+    class START startNode
+    class Q1,Q2,Q3,Q4,Q5 decisionNode
+    class FSM fsmNode
+    class GOAP,HTN planNode
+    class BT btNode
+    class UTILITY utilNode
 ```
 
 ---
@@ -1840,19 +1872,40 @@ function Update()
 Based on analysis of three clones, a hybrid approach works best:
 
 ```mermaid
-mindmap
-  root((AIController))
-    PerceptionSystem["PerceptionSystem - LoS, hearing, memory"]
-    DecisionSystem["DecisionSystem - Behavior Tree or GOAP"]
-    TacticalSystem["TacticalSystem - Squad coordination"]
-    ExecutionSystem["ExecutionSystem - Gesture/action timing"]
-  
-  root2((AIBehaviorConfig))
-    perception_ranges["perception_ranges"]
-    reaction_times["reaction_times"]
-    cover_preferences["cover_preferences"]
-    threat_thresholds["threat_thresholds"]
-    tactical_weights["tactical_weights"]
+flowchart TB
+    classDef mainNode fill:#e3f2fd,stroke:#333,stroke-width:2px,color:#000
+    classDef subNode fill:#f5f5f5,stroke:#333,stroke-width:1px,color:#000
+    classDef configNode fill:#fff3e0,stroke:#333,stroke-width:2px,color:#000
+
+    subgraph CORE["AI Core Systems"]
+        ROOT1([AIController])
+        P1[PerceptionSystem<br>LoS, hearing, memory]
+        D1[DecisionSystem<br>Behavior Tree or GOAP]
+        T1[TacticalSystem<br>Squad coordination]
+        E1[ExecutionSystem<br>Gesture/action timing]
+        ROOT1 --> P1
+        ROOT1 --> D1
+        ROOT1 --> T1
+        ROOT1 --> E1
+    end
+
+    subgraph CONFIG["AI Configuration"]
+        ROOT2([AIBehaviorConfig])
+        C1[perception_ranges]
+        C2[reaction_times]
+        C3[cover_preferences]
+        C4[threat_thresholds]
+        C5[tactical_weights]
+        ROOT2 --> C1
+        ROOT2 --> C2
+        ROOT2 --> C3
+        ROOT2 --> C4
+        ROOT2 --> C5
+    end
+
+    class ROOT1,ROOT2 mainNode
+    class P1,D1,T1,E1 subNode
+    class C1,C2,C3,C4,C5 subNode
 ```
 
 **Technology Stack Recommendations**:

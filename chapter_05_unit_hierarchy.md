@@ -33,8 +33,8 @@ Each project answers these differently, reflecting its era and constraints.
 OpenCombat-SDL follows traditional object-oriented design. Everything inherits from a common base:
 
 ```mermaid
-graph TD
-    Object["Object<br/>Base class with position, orders, selection, health"] --> Soldier
+flowchart TD
+    Object["Object<br>Base class with position, orders, selection, health"] --> Soldier
     Object --> Vehicle
     Object --> Squad
 ```
@@ -120,12 +120,12 @@ class Vehicle : public Object {
 CloseCombatFree replaces deep inheritance with declarative composition using Qt's QML:
 
 ```mermaid
-graph TD
-    Unit["Unit QML Component"] --> Hull["Hull.qml<br/>Visual + collision"]
-    Unit --> Turret["Turret.qml<br/>Rotating weapon mount"]
-    Unit --> Soldier1["Soldier {}<br/>Crew member"]
-    Unit --> Soldier2["Soldier {}<br/>Another crew member"]
-    Unit --> Effects["Effects.qml<br/>Particles"]
+flowchart TD
+    Unit["Unit QML Component"] --> Hull["Hull.qml<br>Visual + collision"]
+    Unit --> Turret["Turret.qml<br>Rotating weapon mount"]
+    Unit --> Soldier1["Soldier {}<br>Crew member"]
+    Unit --> Soldier2["Soldier {}<br>Another crew member"]
+    Unit --> Effects["Effects.qml<br>Particles"]
 ```
 
 #### Composition in Practice
@@ -199,11 +199,11 @@ This approach requires no C++ code changes or recompilation, enabling pure data-
 OpenCombat demonstrates modern data-oriented design:
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph BattleState["BattleState"]
         BS1["soldiers: Vec<Soldier> [contiguous]"]
         BS2["vehicles: Vec<Vehicle> [contiguous]"]
-        BS3["squads: HashMap&lt;Uuid, Squad&gt; [lookup]"]
+        BS3["squads: HashMap<Uuid, Squad> [lookup]"]
     end
 
     BattleState --> Sys1["Systems: AI, Combat"]
@@ -426,13 +426,13 @@ BehaviorSystem {
 Order of Battle (OOB) structures in tactical games follow this pattern:
 
 ```mermaid
-graph TD
-    Platoon["Platoon<br/>15-40 soldiers"] --> Squad1["Squad 1<br/>8-12 soldiers"]
-    Platoon --> Squad2["Squad 2<br/>..."]
+flowchart TD
+    Platoon["Platoon<br>15-40 soldiers"] --> Squad1["Squad 1<br>8-12 soldiers"]
+    Platoon --> Squad2["Squad 2<br>..."]
     Platoon --> VehicleSection["Vehicle Section"]
 
-    Squad1 --> TeamAlpha["Team Alpha<br/>4 soldiers"]
-    Squad1 --> TeamBravo["Team Bravo<br/>4 soldiers"]
+    Squad1 --> TeamAlpha["Team Alpha<br>4 soldiers"]
+    Squad1 --> TeamBravo["Team Bravo<br>4 soldiers"]
 
     VehicleSection --> Vehicle1["Vehicle 1 Tank"]
     VehicleSection --> Vehicle2["Vehicle 2 Tank"]
@@ -721,20 +721,19 @@ This approach offers several advantages:
 
 Combine the strengths of all three systems:
 
-```
 ```mermaid
-graph TD
-    subgraph Layer1["ENTITY STORAGE<br/>Contiguous arrays - cache efficient"]
-        L1A["soldiers: Vec&lt;Soldier&gt;"]
-        L1B["vehicles: Vec&lt;Vehicle&gt;"]
+flowchart TD
+    subgraph Layer1["ENTITY STORAGE<br>Contiguous arrays - cache efficient"]
+        L1A["soldiers: Vec<Soldier>"]
+        L1B["vehicles: Vec<Vehicle>"]
     end
 
-    subgraph Layer2["COMPONENT SYSTEM<br/>Composition over inheritance"]
+    subgraph Layer2["COMPONENT SYSTEM<br>Composition over inheritance"]
         L2A["Entity = ID + ComponentMask"]
         L2B["Component = Plain data struct"]
     end
 
-    subgraph Layer3["SCRIPTABLE BEHAVIORS<br/>Modding without recompilation"]
+    subgraph Layer3["SCRIPTABLE BEHAVIORS<br>Modding without recompilation"]
         L3A["role: 'Sniper' → behavior: 'sniper_ai.lua'"]
         L3B["onEvent: callback from script"]
     end

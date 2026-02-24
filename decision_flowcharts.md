@@ -18,14 +18,14 @@ These flowcharts help architects navigate critical decisions covered in this boo
 flowchart TD
     Start([Start: State Management Decision])
 
-    Q1{Do you need<br/>multiplayer determinism?}
-    Q2{Do you need<br/>maximum moddability?}
-    Q3{Do you need automatic<br/>prerequisite chaining?}
+    Q1{Do you need<br>multiplayer determinism?}
+    Q2{Do you need<br>maximum moddability?}
+    Q3{Do you need automatic<br>prerequisite chaining?}
 
-    StateHierarchy[Use State Hierarchy<br/>Three-Tier: Phase→Behavior→Gesture]
-    DualState[Use Dual-State System<br/>Runtime + Visual Separation]
-    Bitfield[Use Bitfield System<br/>64-bit capability flags]
-    Hybrid[Use Hybrid Approach<br/>Hierarchy + Bitfield Overlay]
+    StateHierarchy[Use State Hierarchy<br>Three-Tier: Phase→Behavior→Gesture]
+    DualState[Use Dual-State System<br>Runtime + Visual Separation]
+    Bitfield[Use Bitfield System<br>64-bit capability flags]
+    Hybrid[Use Hybrid Approach<br>Hierarchy + Bitfield Overlay]
 
     Start --> Q1
 
@@ -38,10 +38,10 @@ flowchart TD
     Q3 -->|YES| Hybrid
     Q3 -->|NO| StateHierarchy
 
-    StateHierarchy -.->|See| Ch3[Chapter 3:<br/>State Machines]
+    StateHierarchy -.->|See| Ch3[Chapter 3:<br>State Machines]
     DualState -.->|See| Ch3
-    Bitfield -.->|See| Ch2[Chapter 2:<br/>Entity Systems]
-    Hybrid -.->|See| Ch10[Chapter 10:<br/>Recommendations]
+    Bitfield -.->|See| Ch2[Chapter 2:<br>Entity Systems]
+    Hybrid -.->|See| Ch10[Chapter 10:<br>Recommendations]
 ```
 
 ### Decision Criteria at Each Node
@@ -82,12 +82,12 @@ flowchart TD
 
     Q1{What's your primary priority?}
 
-    OOP[Use OOP Inheritance<br/>Deep class hierarchies]
-    Component[Use Component Composition<br/>Runtime capabilities]
-    ECS[Use Modified ECS<br/>Type-safe indices + contiguous storage]
+    OOP[Use OOP Inheritance<br>Deep class hierarchies]
+    Component[Use Component Composition<br>Runtime capabilities]
+    ECS[Use Modified ECS<br>Type-safe indices + contiguous storage]
 
     Q2{Scale: >1000 entities?}
-    Q3{Need maximum flexibility<br/>for novel unit types?}
+    Q3{Need maximum flexibility<br>for novel unit types?}
     Q4{Team size and expertise?}
 
     Start --> Q1
@@ -96,18 +96,18 @@ flowchart TD
     Q1 -->|Moddability| Q3
     Q1 -->|Performance + Flexibility| Q2
 
-    Q2 -->|YES| PureECS[Pure ECS<br/>Structure of Arrays]
+    Q2 -->|YES| PureECS[Pure ECS<br>Structure of Arrays]
     Q2 -->|NO| ECS
 
     Q3 -->|YES| Component
     Q3 -->|NO| Q4
 
-    Q4 -->|Small team,<br/>rapid prototyping| OOP
-    Q4 -->|Medium+ team,<br/>long-term project| ECS
+    Q4 -->|Small team,<br>rapid prototyping| OOP
+    Q4 -->|Medium+ team,<br>long-term project| ECS
 
     OOP -.->|See| Ch2
-    Component -.->|See| Ch6[Chapter 6:<br/>Moddability]
-    ECS -.->|See| Ch12[Chapter 12:<br/>Implementation]
+    Component -.->|See| Ch6[Chapter 6:<br>Moddability]
+    ECS -.->|See| Ch12[Chapter 12:<br>Implementation]
     PureECS -.->|See| Ch12
 ```
 
@@ -148,14 +148,14 @@ flowchart TD
     Start([Start: AI Architecture Decision])
 
     Q1{Unit complexity level?}
-    Q2{Need emergent behavior<br/>from simple rules?}
-    Q3{Need designer-authored<br/>behaviors without code?}
-    Q4{Need reactive<br/>threat response?}
+    Q2{Need emergent behavior<br>from simple rules?}
+    Q3{Need designer-authored<br>behaviors without code?}
+    Q4{Need reactive<br>threat response?}
 
-    StateMachine[Use State Machines<br/>Simple transitions]
-    GOAP[Use GOAP<br/>Goal-Oriented Action Planning]
-    BehaviorTree[Use Behavior Trees<br/>Hierarchical decisions]
-    Hybrid[Use Hybrid Approach<br/>Behavior Tree + GOAP + Scripts]
+    StateMachine[Use State Machines<br>Simple transitions]
+    GOAP[Use GOAP<br>Goal-Oriented Action Planning]
+    BehaviorTree[Use Behavior Trees<br>Hierarchical decisions]
+    Hybrid[Use Hybrid Approach<br>Behavior Tree + GOAP + Scripts]
 
     Start --> Q1
 
@@ -173,8 +173,8 @@ flowchart TD
     Q3 -->|YES| Hybrid
     Q3 -->|NO| BehaviorTree
 
-    StateMachine -.->|See| Ch4[Chapter 4:<br/>Command Systems]
-    GOAP -.->|See| Ch5[Chapter 5:<br/>World Simulation]
+    StateMachine -.->|See| Ch4[Chapter 4:<br>Command Systems]
+    GOAP -.->|See| Ch5[Chapter 5:<br>World Simulation]
     BehaviorTree -.->|See| Ch12
     Hybrid -.->|See| Ch10
 ```
@@ -221,14 +221,14 @@ flowchart TD
     Start([Start: Multiplayer Decision])
 
     Q1{Game type?}
-    Q2{Competitive or<br/>cooperative?}
-    Q3{Turn-based or<br/>real-time?}
+    Q2{Competitive or<br>cooperative?}
+    Q3{Turn-based or<br>real-time?}
     Q4{Acceptable latency?}
 
-    Deterministic[Deterministic Simulation<br/>Server-authoritative + Lockstep]
-    StateSync[State Synchronization<br/>Delta compression + Snapshots]
-    NonDeterministic[Non-Deterministic Acceptable<br/>Client-authoritative]
-    TurnBased[Turn-Based Synchronization<br/>Command validation]
+    Deterministic[Deterministic Simulation<br>Server-authoritative + Lockstep]
+    StateSync[State Synchronization<br>Delta compression + Snapshots]
+    NonDeterministic[Non-Deterministic Acceptable<br>Client-authoritative]
+    TurnBased[Turn-Based Synchronization<br>Command validation]
 
     Start --> Q1
 
@@ -246,8 +246,8 @@ flowchart TD
     Q4 -->|>100ms acceptable| NonDeterministic
 
     Deterministic -.->|See| Ch10
-    StateSync -.->|See| Ch8[Chapter 8:<br/>Networking]
-    NonDeterministic -.->|See| Ch1[Chapter 1:<br/>Executive Summary]
+    StateSync -.->|See| Ch8[Chapter 8:<br>Networking]
+    NonDeterministic -.->|See| Ch1[Chapter 1:<br>Executive Summary]
     TurnBased -.->|See| Ch8
 ```
 
@@ -292,10 +292,10 @@ flowchart TD
     Q2{Content complexity?}
     Q3{Development resources?}
 
-    JSONLua[JSON + Lua<br/>Data-driven + Scripting]
-    QML[Full Declarative<br/>QML-style runtime definitions]
-    Hardcoded[Hardcoded Acceptable<br/>No modding support]
-    Hybrid[Hybrid Commercial<br/>JSON + Lua + Hot Reload]
+    JSONLua[JSON + Lua<br>Data-driven + Scripting]
+    QML[Full Declarative<br>QML-style runtime definitions]
+    Hardcoded[Hardcoded Acceptable<br>No modding support]
+    Hybrid[Hybrid Commercial<br>JSON + Lua + Hot Reload]
 
     Start --> Q1
 
@@ -354,21 +354,21 @@ Trade-off: No community longevity.
 flowchart TD
     Start([Start New Project])
 
-    Q1{Single-player or<br/>multiplayer?}
+    Q1{Single-player or<br>multiplayer?}
     Q2{Scale: Max units?}
     Q3{Modding support?}
     Q4{Team size?}
 
-    MPType{Competitive<br/>multiplayer?}
+    MPType{Competitive<br>multiplayer?}
     ScaleCheck{>500 units?}
-    ModdingCheck{Deep modding<br/>required?}
+    ModdingCheck{Deep modding<br>required?}
     TeamCheck{>5 developers?}
 
-    Arch1[OpenCombat Pattern<br/>Deterministic + Server-auth]
-    Arch2[Hybrid Commercial<br/>Best of all three]
-    Arch3[OpenCombat-SDL Pattern<br/>Bitfield + OOP]
-    Arch4[CloseCombatFree Pattern<br/>Declarative + Component]
-    Arch5[Rapid Prototype<br/>Simple OOP + Data-driven]
+    Arch1[OpenCombat Pattern<br>Deterministic + Server-auth]
+    Arch2[Hybrid Commercial<br>Best of all three]
+    Arch3[OpenCombat-SDL Pattern<br>Bitfield + OOP]
+    Arch4[CloseCombatFree Pattern<br>Declarative + Component]
+    Arch5[Rapid Prototype<br>Simple OOP + Data-driven]
 
     Start --> Q1
 

@@ -315,21 +315,24 @@ Sprite files follow a strict naming pattern for automatic loading:
 ```mermaid
 flowchart LR
     subgraph Pattern["Sprite File Naming Pattern"]
-        name["[name]"]
-        offsetX["[offsetX]"]
-        offsetY["[offsetY]"]
-        width["[width]"]
-        height["[height]"]
+        name["name"]
+        offsetX["offsetX"]
+        offsetY["offsetY"]
+        width["width"]
+        height["height"]
         ext[".tga"]
     end
     
-    name ---|."| offsetX ---|."| offsetY ---|."| width ---|."| height ---|."| ext
+    name ---|"."| offsetX ---|"."| offsetY ---|"."| width ---|"."| height ---|"."| ext
     
     subgraph Examples["Examples"]
-        ex1["spr2596.39.33.tga<br/>Soldier sprite<br/>pivot at (39, 33)"]
-        ex2["panzer_IVG_turret.8.30.tga<br/>Turret sprite<br/>pivot at (8, 30)"]
-        ex3["ui_game_donut_fat_green.6.7.tga<br/>UI element<br/>pivot at (6, 7)"]
+        ex1["spr2596.39.33.tga<br>Soldier sprite<br>pivot at (39, 33)"]
+        ex2["panzer_IVG_turret.8.30.tga<br>Turret sprite<br>pivot at (8, 30)"]
+        ex3["ui_game_donut_fat_green.6.7.tga<br>UI element<br>pivot at (6, 7)"]
     end
+    
+    style Pattern fill:#f9f,stroke:#333,stroke-width:2px
+    style Examples fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 #### C.2.3.2 Animation File Organization
@@ -339,8 +342,8 @@ Animations are stored in directional subdirectories:
 ```mermaid
 mindmap
   root((graphics/Effects))
-    bazooka_n["bazooka_n<br/>(North-facing)"]
-    bazooka_ne["bazooka_ne<br/>(Northeast-facing)"]
+    bazooka_n["bazooka_n<br>(North-facing)"]
+    bazooka_ne["bazooka_ne<br>(Northeast-facing)"]
     bazooka_e["bazooka_e"]
     bazooka_se["bazooka_se"]
     bazooka_s["bazooka_s"]
@@ -1203,6 +1206,8 @@ flowchart TD
     C -->|No| E["Is hierarchical structure complex?"]
     E -->|Yes| F["YAML or TOML"]
     E -->|No| G["JSON simple universal support"]
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
 ```
 
 ### C.6.2 Directory Organization
@@ -1264,6 +1269,10 @@ flowchart TD
     end
     
     P1 --> P2 --> P3
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    classDef subgraph fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    class Priority subgraph
 ```
 
 #### C.6.3.2 Mod Package Structure
@@ -1272,13 +1281,13 @@ flowchart TD
 mindmap
   root((mods))
     my_mod
-      mod.json["mod.json Mod metadata"]
+      mod_info["mod.json Mod metadata"]
       data
-        overrides["overrides Replacement files"]
+        overrides["overrides - Replacement files"]
       assets
-        custom["custom New assets"]
+        custom["custom - New assets"]
       scripts
-        extensions.js["extensions.js Optional scripting"]
+        extensions_js["extensions.js Optional scripting"]
 ```
 
 **mod.json**:

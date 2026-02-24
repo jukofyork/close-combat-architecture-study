@@ -62,7 +62,7 @@ Without aggregation, code becomes tangled with manual synchronization.
 classDiagram
     class Squad {
         +Soldier* Leader
-        +vector~Soldier*~ Members
+        +"vector~Soldier*~" Members
         +Formation CurrentFormation
         +IssueOrder(Order)
         +DistributeOrder(Order)
@@ -744,14 +744,14 @@ flowchart TB
     end
 
     subgraph "Behavioral Thresholds"
-        T1[> 80: Confident
+        T1[""> 80: Confident""
         Normal operation]
-        T2[50-80: Cautious
+        T2["50-80: Cautious"
         Seek cover more]
-        T3[20-50: Suppressed
+        T3["20-50: Suppressed"
         Reduced accuracy
         May refuse orders]
-        T4[< 20: Panic
+        T4[""< 20: Panic""
         Flee or freeze
         AI takes over]
     end
@@ -869,11 +869,17 @@ flowchart TB
     B -->|System Translation| A
     A -->|Animation| G
 
-    style P fill:#f99
-    style O fill:#ff9
-    style B fill:#9f9
-    style A fill:#99f
-    style G fill:#f9f
+    classDef player fill:#ffcccc,stroke:#333,stroke-width:2px,color:#000
+    classDef order fill:#ffffcc,stroke:#333,stroke-width:2px,color:#000
+    classDef behavior fill:#ccffcc,stroke:#333,stroke-width:2px,color:#000
+    classDef action fill:#ccccff,stroke:#333,stroke-width:2px,color:#000
+    classDef gesture fill:#ffccff,stroke:#333,stroke-width:2px,color:#000
+
+    class P player
+    class O order
+    class B behavior
+    class A action
+    class G gesture
 ```
 
 **Key Elements:**

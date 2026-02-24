@@ -19,18 +19,22 @@ The three Close Combat clones take different approaches to entity modeling in ta
 ### B.1.2 Design Philosophy Comparison
 
 ```mermaid
-graph LR
-    A[Game Entities] --> B[Inheritance Approach]
-    A --> C[Composition Approach]
-    A --> D[ECS Approach]
+flowchart LR
+    A["Game Entities"] --> B["Inheritance Approach"]
+    A --> C["Composition Approach"]
+    A --> D["ECS Approach"]
 
-    B --> E[OpenCombat-SDL]
-    C --> F[CloseCombatFree]
-    D --> G[OpenCombat]
+    B --> E["OpenCombat-SDL"]
+    C --> F["CloseCombatFree"]
+    D --> G["OpenCombat"]
 
-    E --> H[IS-A Relationships]
-    F --> I[HAS-A Relationships]
-    G --> J[Data-Oriented]
+    E --> H["IS-A Relationships"]
+    F --> I["HAS-A Relationships"]
+    G --> J["Data-Oriented"]
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    classDef highlight fill:#bbf,stroke:#333,stroke-width:2px,color:#000
+    class A,B,C,D highlight
 ```
 
 **Inheritance Model (OpenCombat-SDL):**
@@ -424,26 +428,34 @@ OpenCombat uses a hybrid ECS architecture that embeds components with both data 
 #### Core Architecture
 
 ```mermaid
-graph TD
-    A[World] --> B[Entity Manager]
-    A --> C[Component Storage]
-    A --> D[System Registry]
+flowchart TD
+    A["World"] --> B["Entity Manager"]
+    A --> C["Component Storage"]
+    A --> D["System Registry"]
 
-    B --> E[SoldierIndex]
-    B --> F[VehicleIndex]
-    B --> G[SquadIndex]
+    B --> E["SoldierIndex"]
+    B --> F["VehicleIndex"]
+    B --> G["SquadIndex"]
 
-    C --> H[Identity Components]
-    C --> I[Position Components]
-    C --> J[State Machine Components]
-    C --> K[Combat Components]
-    C --> L[Mental Components]
-    C --> M[Equipment Components]
+    C --> H["Identity Components"]
+    C --> I["Position Components"]
+    C --> J["State Machine Components"]
+    C --> K["Combat Components"]
+    C --> L["Mental Components"]
+    C --> M["Equipment Components"]
 
-    D --> N[Movement System]
-    D --> O[Combat System]
-    D --> P[AI System]
-    D --> Q[Morale System]
+    D --> N["Movement System"]
+    D --> O["Combat System"]
+    D --> P["AI System"]
+    D --> Q["Morale System"]
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    classDef manager fill:#bbf,stroke:#333,stroke-width:2px,color:#000
+    classDef storage fill:#bfb,stroke:#333,stroke-width:2px,color:#000
+    classDef system fill:#fbf,stroke:#333,stroke-width:2px,color:#000
+    class B,E,F,G manager
+    class C,H,I,J,K,L,M storage
+    class D,N,O,P,Q system
 ```
 
 #### Type-Safe Index Wrappers
@@ -1049,23 +1061,31 @@ CloseCombatFree builds entities by assembling independent components instead of 
 #### Architecture Overview
 
 ```mermaid
-graph TD
-    A[Entity] --> B[Transform Component]
-    A --> C[Movement Component]
-    A --> D[Combat Component]
-    A --> E[Health Component]
-    A --> F[State Component]
-    A --> G[Equipment Component]
-    A --> H[AI Component]
+flowchart TD
+    A["Entity"] --> B["Transform Component"]
+    A --> C["Movement Component"]
+    A --> D["Combat Component"]
+    A --> E["Health Component"]
+    A --> F["State Component"]
+    A --> G["Equipment Component"]
+    A --> H["AI Component"]
 
-    I[Vehicle Entity] --> A
-    I --> J[Vehicle Component]
-    I --> K[Armor Component]
-    I --> L[Crew Component]
+    I["Vehicle Entity"] --> A
+    I --> J["Vehicle Component"]
+    I --> K["Armor Component"]
+    I --> L["Crew Component"]
 
-    M[Infantry Entity] --> A
-    M --> N[Personnel Component]
-    M --> O[Squad Component]
+    M["Infantry Entity"] --> A
+    M --> N["Personnel Component"]
+    M --> O["Squad Component"]
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    classDef base fill:#bbf,stroke:#333,stroke-width:2px,color:#000
+    classDef vehicle fill:#fbb,stroke:#333,stroke-width:2px,color:#000
+    classDef infantry fill:#bfb,stroke:#333,stroke-width:2px,color:#000
+    class A,B,C,D,E,F,G,H base
+    class I,J,K,L vehicle
+    class M,N,O infantry
 ```
 
 ### B.4.2 QML Property System
@@ -1728,7 +1748,12 @@ flowchart TB
     end
     A1 --> VT1
     B1 --> VT2
-    note["Memory scatters across the heap with pointer indirection"]
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    classDef instance fill:#bbf,stroke:#333,stroke-width:2px,color:#000
+    classDef vtable fill:#bfb,stroke:#333,stroke-width:2px,color:#000
+    class A1,B1 instance
+    class VT1,VT2 vtable
 ```
 
 **OpenCombat (ECS)**:
@@ -1739,7 +1764,10 @@ flowchart TB
         M2["suppress_A | suppress_B | suppress_C | suppress_D | ..."]
         M3["fear_A | fear_B | fear_C | fear_D | ..."]
     end
-    note["Contiguous memory blocks optimize cache performance"]
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    classDef data fill:#bbf,stroke:#333,stroke-width:2px,color:#000
+    class M1,M2,M3 data
 ```
 
 **CloseCombatFree (Component Composition)**:
@@ -1758,7 +1786,12 @@ flowchart TB
     H --> P1
     C --> P2
     M --> P3
-    note["Components draw from memory pools with stable pointers"]
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    classDef entity fill:#bbf,stroke:#333,stroke-width:2px,color:#000
+    classDef pool fill:#bfb,stroke:#333,stroke-width:2px,color:#000
+    class H,C,M entity
+    class P1,P2,P3 pool
 ```
 
 ### B.5.2 Access Patterns and Performance

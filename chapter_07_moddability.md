@@ -29,7 +29,7 @@ flowchart LR
         L1A["Change values"]
         L1B["Balance"]
         L1C["Timing"]
-        L1D["Difficulty: LOW<br/>Requires: XML/JSON"]
+        L1D["Difficulty: LOW<br>Requires: XML/JSON"]
     end
     
     subgraph L2["Content Addition"]
@@ -37,7 +37,7 @@ flowchart LR
         L2A["New units"]
         L2B["New maps"]
         L2C["New weapons"]
-        L2D["Difficulty: MED<br/>Requires: Assets"]
+        L2D["Difficulty: MED<br>Requires: Assets"]
     end
     
     subgraph L3["Mechanics Changes"]
@@ -45,7 +45,7 @@ flowchart LR
         L3A["New behaviors"]
         L3B["New systems"]
         L3C["New AI"]
-        L3D["Difficulty: HIGH<br/>Requires: Scripts"]
+        L3D["Difficulty: HIGH<br>Requires: Scripts"]
     end
     
     subgraph L4["Total Conversion"]
@@ -53,7 +53,7 @@ flowchart LR
         L4A["New genres"]
         L4B["New engines"]
         L4C["New rules"]
-        L4D["Difficulty: MAX<br/>Requires: Code"]
+        L4D["Difficulty: MAX<br>Requires: Code"]
     end
     
     L1 --> L2 --> L3 --> L4
@@ -115,9 +115,13 @@ flowchart TB
     D3 --> M3 --> R3
     D4 --> M4 --> R4
     
-    style Data fill:#e1f5fe
-    style Managers fill:#fff3e0
-    style Runtime fill:#e8f5e9
+    classDef dataStyle fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef managerStyle fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef runtimeStyle fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px,color:#000
+    
+    class Data dataStyle
+    class Managers managerStyle
+    class Runtime runtimeStyle
 ```
 
 ### 7.3.2 Data Files and Structure
@@ -311,9 +315,13 @@ flowchart TB
     O1 --> O2
     O1 --> O3
     
-    style Input fill:#e3f2fd
-    style Processing fill:#fff8e1
-    style Output fill:#f3e5f5
+    classDef inputStyle fill:#e3f2fd,stroke:#0d47a1,stroke-width:2px,color:#000
+    classDef processStyle fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef outputStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    
+    class Input inputStyle
+    class Processing processStyle
+    class Output outputStyle
 ```
 
 ### 7.4.2 JSON Deployment System
@@ -527,22 +535,25 @@ CloseCombatFree takes moddability further than any other clone by using QML (Qt 
 flowchart TB
     subgraph QMLLayer["QML Engine Layer"]
         direction LR
-        Q1[Units<br/>.qml]
-        Q2[Scenarios<br/>.qml]
-        Q3[Maps<br/>.qml]
+        Q1[Units<br>.qml]
+        Q2[Scenarios<br>.qml]
+        Q3[Maps<br>.qml]
     end
     
     subgraph CPPLayer["C++ Core Engine"]
         direction LR
-        C1[Physics<br/>System]
-        C2[Pathfind<br/>System]
-        C3[Combat<br/>System]
+        C1[Physics<br>System]
+        C2[Pathfind<br>System]
+        C3[Combat<br>System]
     end
     
     QMLLayer --> CPPLayer
     
-    style QMLLayer fill:#e8f5e9
-    style CPPLayer fill:#fff3e0
+    classDef qmlStyle fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px,color:#000
+    classDef cppStyle fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    
+    class QMLLayer qmlStyle
+    class CPPLayer cppStyle
 ```
 
 ### 7.5.2 QML-Based Unit Definitions
@@ -953,17 +964,22 @@ CloseCombatFree supports Level 3 modding (mechanics changes) through QML. Conten
 
 ```mermaid
 flowchart BT
-    Beginner["BEGINNER<br/>Parameter Tweaking<br/>Value tweaking<br/>(All engines)"]
-    Intermediate["INTERMEDIATE<br/>JSON/XML Editing<br/>Data editing<br/>(OpenCombat-SDL, OpenCombat)"]
-    Advanced["ADVANCED<br/>QML/JS Scripting<br/>Behavior scripting<br/>(CloseCombatFree)"]
-    Expert["EXPERT<br/>C++/Rust Coding<br/>Engine modification<br/>(All engines)"]
+    Beginner["BEGINNER<br>Parameter Tweaking<br>Value tweaking<br>(All engines)"]
+    Intermediate["INTERMEDIATE<br>JSON/XML Editing<br>Data editing<br>(OpenCombat-SDL, OpenCombat)"]
+    Advanced["ADVANCED<br>QML/JS Scripting<br>Behavior scripting<br>(CloseCombatFree)"]
+    Expert["EXPERT<br>C++/Rust Coding<br>Engine modification<br>(All engines)"]
     
     Beginner --> Intermediate --> Advanced --> Expert
     
-    style Beginner fill:#c8e6c9
-    style Intermediate fill:#fff9c4
-    style Advanced fill:#ffcc80
-    style Expert fill:#ef9a9a
+    classDef beginnerStyle fill:#c8e6c9,stroke:#000,stroke-width:2px,color:#000
+    classDef intermediateStyle fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef advancedStyle fill:#ffcc80,stroke:#e65100,stroke-width:2px,color:#000
+    classDef expertStyle fill:#ef9a9a,stroke:#b71c1c,stroke-width:2px,color:#000
+    
+    class Beginner beginnerStyle
+    class Intermediate intermediateStyle
+    class Advanced advancedStyle
+    class Expert expertStyle
 ```
 
 ### 7.6.3 Modding Complexity vs. Expressiveness
@@ -975,9 +991,9 @@ xychart-beta
     y-axis "Expressiveness" 0 --> 100
     bar [20, 55, 95]
     
-    annotation 1 "OpenCombat-SDL<br/>(XML only)"
-    annotation 2 "OpenCombat<br/>(JSON/TMX + Runtime)"
-    annotation 3 "CloseCombatFree<br/>(QML - Full scripting)"
+    annotation 1 "OpenCombat-SDL<br>(XML only)"
+    annotation 2 "OpenCombat<br>(JSON/TMX + Runtime)"
+    annotation 3 "CloseCombatFree<br>(QML - Full scripting)"
 ```
 
 ### 7.6.4 Recommended Use Cases
@@ -1180,8 +1196,8 @@ Define a consistent mod structure for interoperability:
 
 ```mermaid
 flowchart TD
-    root["mod_name/"] --> mod_yaml["mod.yaml<br/>Mod metadata"]
-    root --> manifest["manifest.json<br/>File manifest"]
+    root["mod_name/"] --> mod_yaml["mod.yaml<br>Mod metadata"]
+    root --> manifest["manifest.json<br>File manifest"]
     root --> assets["assets/"]
     root --> data["data/"]
     root --> maps["maps/"]
@@ -1190,29 +1206,29 @@ flowchart TD
     root --> ui["ui/"]
     root --> docs["docs/"]
     
-    assets --> assets_images["images/<br/>Textures & sprites"]
-    assets --> assets_audio["audio/<br/>Sound effects"]
-    assets --> assets_models["models/<br/>3D models"]
-    assets --> assets_fonts["fonts/<br/>Custom fonts"]
+    assets --> assets_images["images/<br>Textures & sprites"]
+    assets --> assets_audio["audio/<br>Sound effects"]
+    assets --> assets_models["models/<br>3D models"]
+    assets --> assets_fonts["fonts/<br>Custom fonts"]
     
-    data --> data_units["units/<br/>Unit definitions"]
-    data --> data_weapons["weapons/<br/>Weapon definitions"]
-    data --> data_vehicles["vehicles/<br/>Vehicle definitions"]
-    data --> data_factions["factions/<br/>Faction config"]
+    data --> data_units["units/<br>Unit definitions"]
+    data --> data_weapons["weapons/<br>Weapon definitions"]
+    data --> data_vehicles["vehicles/<br>Vehicle definitions"]
+    data --> data_factions["factions/<br>Faction config"]
     
-    maps --> maps_tmx["*.tmx<br/>Tiled map files"]
+    maps --> maps_tmx["*.tmx<br>Tiled map files"]
     
-    scenarios --> scenarios_yaml["*.yaml<br/>Scenario definitions"]
+    scenarios --> scenarios_yaml["*.yaml<br>Scenario definitions"]
     
-    scripts --> scripts_ai["ai/<br/>AI behavior"]
-    scripts --> scripts_behaviors["behaviors/<br/>Unit behavior"]
-    scripts --> scripts_events["events/<br/>Event scripts"]
+    scripts --> scripts_ai["ai/<br>AI behavior"]
+    scripts --> scripts_behaviors["behaviors/<br>Unit behavior"]
+    scripts --> scripts_events["events/<br>Event scripts"]
     
-    ui --> ui_themes["themes/<br/>UI themes"]
-    ui --> ui_widgets["custom_widgets/<br/>UI components"]
+    ui --> ui_themes["themes/<br>UI themes"]
+    ui --> ui_widgets["custom_widgets/<br>UI components"]
     
-    docs --> docs_readme["README.md<br/>Documentation"]
-    docs --> docs_changelog["CHANGELOG.md<br/>Version history"]
+    docs --> docs_readme["README.md<br>Documentation"]
+    docs --> docs_changelog["CHANGELOG.md<br>Version history"]
 ```
 
 **mod.yaml specification:**
@@ -1258,9 +1274,13 @@ flowchart TD
     B --> C[Security]
     C --> A
     
-    style A fill:#bbdefb
-    style B fill:#c8e6c9
-    style C fill:#ffccbc
+    classDef modStyle fill:#bbdefb,stroke:#0d47a1,stroke-width:2px,color:#000
+    classDef perfStyle fill:#c8e6c9,stroke:#000,stroke-width:2px,color:#000
+    classDef secStyle fill:#ffccbc,stroke:#bf360c,stroke-width:2px,color:#000
+    
+    class A modStyle
+    class B perfStyle
+    class C secStyle
 ```
 
 Moddability, performance, and security pull in different directions. Balancing all three demands thoughtful architecture.
@@ -1534,10 +1554,15 @@ flowchart TB
     
     L4 --> L3 --> L2 --> L1
     
-    style L4 fill:#ffccbc
-    style L3 fill:#fff9c4
-    style L2 fill:#c8e6c9
-    style L1 fill:#bbdefb
+    classDef l4Style fill:#ffccbc,stroke:#bf360c,stroke-width:2px,color:#000
+    classDef l3Style fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef l2Style fill:#c8e6c9,stroke:#000,stroke-width:2px,color:#000
+    classDef l1Style fill:#bbdefb,stroke:#0d47a1,stroke-width:2px,color:#000
+    
+    class L4 l4Style
+    class L3 l3Style
+    class L2 l2Style
+    class L1 l1Style
 ```
 
 ### 7.10.2 Implementation Checklist

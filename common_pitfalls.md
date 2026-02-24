@@ -1695,18 +1695,27 @@ Different systems use different modding interfaces—JSON for weapons, XML for u
 
 **Real Example:**
 ```mermaid
-mindmap
-  root((mods/))
-    weapons["weapons/"]
-      pistol.json["pistol.json - JSON"]
-    units["units/"]
-      sniper.xml["sniper.xml - XML"]
-    ai["ai/"]
-      aggressive.lua["aggressive.lua - Lua"]
-    maps["maps/"]
-      level1.tmx["level1.tmx - Tiled format"]
-    sounds["sounds/"]
-      explosion.ogg["explosion.ogg - Raw file"]
+flowchart TD
+    subgraph Inconsistent["Inconsistent Mod API Formats"]
+        direction TB
+        root["mods/"] --> weapons["weapons/"]
+        root --> units["units/"]
+        root --> ai["ai/"]
+        root --> maps["maps/"]
+        root --> sounds["sounds/"]
+
+        weapons --> pistol["pistol.json<br>JSON format"]
+        units --> sniper["sniper.xml<br>XML format"]
+        ai --> aggressive["aggressive.lua<br>Lua format"]
+        maps --> level1["level1.tmx<br>Tiled format"]
+        sounds --> explosion["explosion.ogg<br>Raw binary"]
+    end
+
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef folder fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef file fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    class root,weapons,units,ai,maps,sounds folder
+    class pistol,sniper,aggressive,level1,explosion file
 ```
 
 **Why It's Bad:**
@@ -1718,18 +1727,27 @@ Count how many file formats your modding system uses. Check if modders need mult
 **How to Fix It:**
 Standardize on one format:
 ```mermaid
-mindmap
-  root((mods/))
-    weapons["weapons/"]
-      pistol.yaml["pistol.yaml - All YAML"]
-    units["units/"]
-      sniper.yaml["sniper.yaml"]
-    ai["ai/"]
-      aggressive.yaml["aggressive.yaml - Behavior trees in YAML"]
-    maps["maps/"]
-      level1.yaml["level1.yaml - Map data in YAML"]
-    sounds["sounds/"]
-      explosion.ogg["explosion.ogg - Binary assets remain acceptable"]
+flowchart TD
+    subgraph Standardized["Standardized YAML API"]
+        direction TB
+        root["mods/"] --> weapons2["weapons/"]
+        root --> units2["units/"]
+        root --> ai2["ai/"]
+        root --> maps2["maps/"]
+        root --> sounds2["sounds/"]
+
+        weapons2 --> pistol2["pistol.yaml<br>YAML format"]
+        units2 --> sniper2["sniper.yaml<br>YAML format"]
+        ai2 --> aggressive2["aggressive.yaml<br>Behavior trees in YAML"]
+        maps2 --> level2["level1.yaml<br>Map data in YAML"]
+        sounds2 --> explosion2["explosion.ogg<br>Binary assets acceptable"]
+    end
+
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef folder fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef file fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    class root,weapons2,units2,ai2,maps2,sounds2 folder
+    class pistol2,sniper2,aggressive2,level2,explosion2 file
 ```
 
 Or adopt CloseCombatFree's QML approach:

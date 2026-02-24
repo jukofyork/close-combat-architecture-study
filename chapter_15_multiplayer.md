@@ -142,6 +142,8 @@ flowchart TB
             N3["Replay verification possible"]
         end
     end
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 This server-authoritative architecture eliminates all client-side cheating. The client cannot modify game state—it can only request actions that the server validates and executes.
@@ -428,7 +430,7 @@ flowchart TB
     subgraph CS["CLIENT-SERVER ARCHITECTURE"]
         direction TB
         
-        Server["SERVER<br/>(Authority)"]
+        Server["SERVER<br>(Authority)"]
         
         ClientA["Client A"]
         ClientB["Client B"]
@@ -441,7 +443,9 @@ flowchart TB
         ClientA ~~~ ClientB ~~~ ClientC
     end
     
-    Note["Server: Validates all commands, computes all state<br/>Clients: Send commands, receive state updates"]
+    Note["Server: Validates all commands, computes all state<br>Clients: Send commands, receive state updates"]
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 **Characteristics**:
@@ -459,7 +463,7 @@ flowchart TB
     subgraph P2P["PEER-TO-PEER ARCHITECTURE"]
         direction TB
         
-        PeerA["Peer A<br/>(Host/Auth)"]
+        PeerA["Peer A<br>(Host/Auth)"]
         PeerB["Peer B"]
         PeerC["Peer C"]
         
@@ -468,7 +472,9 @@ flowchart TB
         PeerB -.->|"Direct"| PeerC
     end
     
-    Note["All peers communicate directly<br/>One peer acts as authoritative host<br/>Host migration occurs if host disconnects"]
+    Note["All peers communicate directly<br>One peer acts as authoritative host<br>Host migration occurs if host disconnects"]
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 **Advantages**:
@@ -491,14 +497,16 @@ flowchart LR
     subgraph Relay["RELAY SERVER MODEL"]
         direction LR
         
-        ClientA["Client A<br/>(Host)"]
-        RelayServer["Relay Server<br/>(No logic)"]
+        ClientA["Client A<br>(Host)"]
+        RelayServer["Relay Server<br>(No logic)"]
         ClientB["Client B"]
         
         ClientA <---> RelayServer <---> ClientB
     end
     
-    Note["Relay forwards packets but doesn't simulate<br/>One client acts as authoritative host<br/>Solves NAT traversal issues"]
+    Note["Relay forwards packets but doesn't simulate<br>One client acts as authoritative host<br>Solves NAT traversal issues"]
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 **Use Cases**:
@@ -1212,25 +1220,27 @@ flowchart TD
         subgraph Competitive["Competitive PvP"]
             direction TB
             Comp1["Deterministic + Authoritative Server"]
-            Comp2["OpenCombat approach<br/>Fixed timestep<br/>Message-based sync<br/>Server validation"]
+            Comp2["OpenCombat approach<br>Fixed timestep<br>Message-based sync<br>Server validation"]
         end
         
         subgraph Cooperative["Cooperative PvE"]
             direction TB
             Coop1["Deterministic or non-deterministic"]
-            Coop2["Either approach works<br/>Non-deterministic is easier<br/>Deterministic enables replay"]
+            Coop2["Either approach works<br>Non-deterministic is easier<br>Deterministic enables replay"]
         end
         
         subgraph Casual["Casual/Social"]
             direction TB
             Cas1["Non-deterministic"]
-            Cas2["State snapshots<br/>Event replication<br/>Simpler implementation"]
+            Cas2["State snapshots<br>Event replication<br>Simpler implementation"]
         end
         
         Q --> Competitive
         Q --> Cooperative
         Q --> Casual
     end
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ### 15.9.3 Testing Determinism
@@ -1315,6 +1325,8 @@ flowchart TB
         
         World --> Rendering
     end
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 **Target Architecture** (Multiplayer):
@@ -1325,7 +1337,7 @@ flowchart TB
         direction LR
         
         subgraph Server["SERVER"]
-            S1["Authoritative<br/>Simulation"]
+            S1["Authoritative<br>Simulation"]
             S2["Message-driven"]
         end
         
@@ -1333,13 +1345,15 @@ flowchart TB
             direction TB
             C1["Predicted State"]
             C2["Reconciliation"]
-            C3["Render State<br/>(Interpolated)"]
+            C3["Render State<br>(Interpolated)"]
             
             C1 --> C2 --> C3
         end
         
         Server <-->|Network| Client
     end
+    
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ### 15.10.2 State Management Modifications

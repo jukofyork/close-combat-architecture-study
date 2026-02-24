@@ -123,12 +123,12 @@ Tank {
 **The Recommended Architecture for 2026+**:
 
 ```mermaid
-graph TB
+flowchart TB
     subgraph HybridArchitecture["HYBRID ARCHITECTURE"]
         subgraph CoreSim["CORE SIMULATION (OpenCombat patterns)"]
             CS1[Deterministic game loop]
             CS2[Message-driven state updates]
-            CS3[Server-authoritative<br/>even for single-player]
+            CS3[Server-authoritative<br>even for single-player]
             CS4[Fixed timestep physics]
         end
 
@@ -136,7 +136,7 @@ graph TB
             ED1[JSON/YAML data files]
             ED2[Lua scripting for behaviors]
             ED3[Hot reload for rapid iteration]
-            ED4[Component composition<br/>over inheritance]
+            ED4[Component composition<br>over inheritance]
         end
 
         subgraph SimDepth["SIMULATION DEPTH (OpenCombat-SDL patterns)"]
@@ -145,6 +145,11 @@ graph TB
             SD3[Rich state interactions]
         end
     end
+
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef subgraph fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    class HybridArchitecture,CoreSim,EntityDef,SimDepth subgraph
+    class CS1,CS2,CS3,CS4,ED1,ED2,ED3,ED4,SD1,SD2,SD3 default
 ```
 
 This synthesis works because:
@@ -162,11 +167,11 @@ Here are concrete recommendations for each system, based on comparative analysis
 **Recommendation**: Use State Hierarchy with Bitfield Overlay
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph Hierarchy["Three-Tier Hierarchy for Timescale Separation"]
-        Phase[Phase<br/>Game level: Deployment, Battle, End]
-        Behavior[Behavior<br/>Tactical: MoveTo, Defend, Engage]
-        Gesture[Gesture<br/>Physical: Idle, Aiming, Firing<br/>with completion time]
+        Phase[Phase<br>Game level: Deployment, Battle, End]
+        Behavior[Behavior<br>Tactical: MoveTo, Defend, Engage]
+        Gesture[Gesture<br>Physical: Idle, Aiming, Firing<br>with completion time]
 
         Phase --> Behavior --> Gesture
     end
@@ -178,6 +183,11 @@ graph TD
 
         Cap1 --- Cap2 --- Cap3
     end
+
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef subgraph fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    class Hierarchy,Bitfield subgraph
+    class Phase,Behavior,Gesture,Cap1,Cap2,Cap3 default
 ```
 
 The hierarchy provides clear relationships and timescale separation. The bitfield enables efficient capability queries. Together, they address both organizational and performance needs.
@@ -550,6 +560,13 @@ mindmap
       assets["assets/"]
         images["images/"]
         audio["audio/"]
+
+    classDef rootNode fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    classDef folderNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef fileNode fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    class root rootNode
+    class mod_name,data,scripts,maps,assets,units,weapons,vehicles,ai,behaviors,images,audio folderNode
+    class mod.json,dependencies.json fileNode
 ```
 
 **Mod Metadata (mod.json):**
@@ -837,6 +854,11 @@ flowchart TB
         STATE -->|Renders| RENDER
         INPUT -->|Creates| MSG
     end
+
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef layer fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    class CoreLayer,DataLayer,SystemsLayer,PresentationLayer layer
+    class SIM,MSG,STATE,JSON,LUA,TMUX,AI,COM,PF,PHY,RENDER,INPUT,UI default
 ```
 
 ### 10.4.2 Key Design Decisions
@@ -917,6 +939,13 @@ mindmap
     tests["tests/ - Unit tests"]
     CMakeLists.txt["CMakeLists.txt - Build config"]
     README.md["README.md"]
+
+    classDef rootNode fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    classDef folderNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef fileNode fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    class root rootNode
+    class mod_name,src,include,data,scripts,maps,assets,mods,docs,tests,core,simulation,ai,graphics,input,network,units,weapons,behaviors,scenarios,ai_scripts,behavior_scripts,images,audio,fonts folderNode
+    class main.cpp,CMakeLists.txt,README.md fileNode
 ```
 
 ## 10.5 Checklist for New Projects
